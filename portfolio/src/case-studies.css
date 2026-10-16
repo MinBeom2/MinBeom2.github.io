@@ -15,8 +15,9 @@
 .detail-callout h3 { font-size: 16px; margin-bottom: 8px; }
 .case-cover figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 13px; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .case-cover figcaption a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
-.case-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; list-style: none; }
-.case-breadcrumb li + li::before { content: '/'; color: var(--muted); margin-right: 12px; }
+.case-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 0; list-style: none; }
+.case-breadcrumb li { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
+.case-breadcrumb li + li::before { content: '/'; color: var(--muted); }
 .case-nav > h2 { font-size: 14px; font-weight: 600; margin-bottom: 13px; }
 #main:focus, #hero-title:focus, #case-title:focus, #not-found-title:focus { outline: none; }
 .detail-header > p:first-child { font-size: inherit; }

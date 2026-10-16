@@ -20,6 +20,7 @@
   --numeric: 'Manrope Variable', 'Noto Sans KR Variable', sans-serif;
   --max-width: 1120px;
   --radius: 14px;
+  --header-flow: 80px;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 112px; scrollbar-gutter: stable; scrollbar-color: #7a7a7a #e8e8e8; }
@@ -50,12 +51,12 @@ img { height: auto; }
 .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--control-line); border-radius: 8px; background: var(--paper); color: var(--ink); }
 .icon-button:hover { background: var(--pale); }
 
-.hero { padding-block: 56px 48px; }
-.hero-copy { min-width: 0; max-width: 800px; }
-.hero h1 { font-size: clamp(38px, 3.7vw, 54px); letter-spacing: -.03em; font-weight: 740; line-height: 1.35; word-break: keep-all; text-wrap: balance; }
+.hero { display: flex; align-items: center; min-height: calc(100svh - var(--header-flow)); padding-block: 64px 128px; }
+.hero-copy { min-width: 0; max-width: 1040px; }
+.hero h1 { font-size: clamp(48px, 6.4vw, 80px); letter-spacing: -.03em; font-weight: 740; line-height: 1.35; word-break: keep-all; text-wrap: balance; }
 .hero h1 > span { display: block; }
-.hero-person { margin-top: 24px; font-size: 16px; font-weight: 600; color: var(--ink); }
-.hero-description { max-width: 42ch; margin-top: 12px; font-size: 16px; line-height: 1.85; color: var(--muted); word-break: keep-all; }
+.hero-person { margin-top: 36px; font-size: 20px; font-weight: 600; color: var(--ink); }
+.hero-description { max-width: 42ch; margin-top: 20px; font-size: 20px; line-height: 1.9; color: var(--muted); word-break: keep-all; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; min-height: 48px; }
 .button.primary { background: var(--ink); color: var(--inverse); }
 .button.primary:hover { background: #454545; }
@@ -267,16 +268,8 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .page-not-found h1 { font-size: clamp(30px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; }
 .page-not-found p { max-width: 60ch; color: var(--muted); }
 
-@media (min-width: 1600px) {
-  .hero { padding-block: 72px 56px; }
-  .hero h1 { font-size: 56px; }
-}
-
 @media (max-width: 1100px) {
   .container { width: calc(100% - 80px); }
-  .hero { padding-block: 52px 44px; }
-  .hero h1 { font-size: 40px; }
-  .hero-description { font-size: 16px; }
   .project-grid { gap: 32px; }
   .project-visual { padding-inline: 22px; }
   .ait-map { grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr); }
@@ -293,9 +286,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 }
 
 @media (max-width: 960px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; }
-  .hero-copy { max-width: 700px; }
-  .hero h1 { font-size: 48px; }
   .personal-project { grid-template-columns: .9fr 1.2fr; }
   .personal-content { padding: 30px; }
   .about-section { grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
@@ -314,7 +304,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 @media (max-width: 820px) {
   .container { width: calc(100% - 48px); }
   .section-space { padding-block: 56px; }
-  .hero { padding-block: 44px 40px; }
   .section-heading h2 { font-size: 29px; }
   .project-grid { grid-template-columns: 1fr; gap: 48px; }
   .project-visual { min-height: 325px; padding: 26px; }
@@ -351,10 +340,11 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-tile h3 { font-size: 16px; }
   html { scroll-padding-top: 96px; }
   .container { width: calc(100% - 40px); }
-  .hero { padding-block: 36px 36px; }
-  .hero h1 { font-size: clamp(32px, 8.2vw, 44px); letter-spacing: -.03em; line-height: 1.45; }
-  .hero-person { margin-top: 20px; font-size: 15px; }
-  .hero-description { font-size: 15px; line-height: 1.85; margin-top: 14px; }
+  :root { --header-flow: 72px; }
+  .hero { padding-block: 48px 96px; }
+  .hero h1 { font-size: clamp(32px, 9vw, 46px); letter-spacing: -.03em; line-height: 1.45; }
+  .hero-person { margin-top: 28px; font-size: 16px; }
+  .hero-description { font-size: 16px; line-height: 1.9; margin-top: 16px; }
   .desktop-break { display: none; }
   .button { font-size: 13px; padding: 10px 15px; gap: 8px; min-height: 46px; }
   .section-space { padding-block: 44px; }

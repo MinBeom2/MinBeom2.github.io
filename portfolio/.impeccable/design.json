@@ -212,7 +212,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "홈 제목",
-        "purpose": "홈 소개의 한국어 큰 제목."
+        "purpose": "첫 viewport를 차지하는 홈 소개의 두 줄 한국어 제목. 화면 폭에 맞춰 유동 크기를 적용한다."
       },
       "project-display": {
         "displayName": "상세 프로젝트명",
