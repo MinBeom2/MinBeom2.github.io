@@ -1,0 +1,70 @@
+---
+version: 1
+slug: "src-app-tsx"
+primary_target: "src/App.tsx"
+related_targets: ["src/styles.css","src/case-studies.css"]
+---
+
+# 포트폴리오 화면 기준
+
+홈: Experience. 프로젝트 상세 모달: Read. 채용 담당자와 기술 면접관이 본인 구현 범위·문제 해결 근거를 읽고 연락하는 흐름이다.
+
+## Direction contract
+
+THESIS: 프로젝트의 본인 역할과 확인한 결과를 먼저 읽게 한다. 주어진 수치를 운영 성과로 부풀리지 않는다.
+
+OWN-WORLD: 사용자 선택의 밝은 회색 바탕·차콜 글자. 기존 글꼴 역할과 홈의 큰 구성을 유지하며 회색의 농도, 읽기 간격, 실제 로고와 사진으로 정돈한다.
+
+STORY: 홈에서 역할과 프로젝트를 확인하고 홈 위의 모달에서 구현·판단·검증·근거를 읽고, 닫으면 이전 위치로 돌아온다. 실험 조건과 개인 브랜치·팀 기여·미해결 범위를 함께 설명한다.
+
+FIRST VIEWPORT: 홈은 큰 제목과 이름·역할·소개만 왼쪽에 표시한다. 아래 프로젝트에는 로고·이름만 담은 같은 크기의 작은 정사각 타일 세 개를 정렬한다. 클릭하면 확대 효과와 함께 기존 상세 모달이 열린다. 중앙 아일랜드의 세 메뉴는 현재 읽는 섹션을 표시한다. 상세 모달은 로고·프로젝트명·기간·팀·역할로 시작한다.
+
+FORM: 기존 홈 refinement와 2026-10-14 사용자가 명시한 아일랜드 헤더와 모달 확장. Seed key: not-applicable-scoped-refinement. 새로운 개방형 시각 세계 선택은 하지 않는다.
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## 2026-10-16 전체 흐름 다듬기 (사용자 확인)
+
+THESIS: 사용자가 소개와 프로젝트를 더 가깝게 배치하고 홈·기술·상세까지 함께 정돈하는 방향을 확인했다. 삭제된 요소와 로고·이름만 있는 작은 정사각 프로젝트 타일은 유지한다.
+
+OWN-WORLD: #f4f4f4 바탕, #262626 차콜, #ffffff 면, #ebebeb 보조 면, #595959 본문, #d5d5d5 구획선을 유지한다. Noto Sans KR과 Manrope의 역할, 원본 로고 색과 비율을 보존한다. 화면의 최대 폭은 1120px로 모으고 왼쪽 정렬과 간격 위계를 정리한다.
+
+STORY: 큰 소개 문구 다음에 프로젝트를 빠르게 발견하고 타일을 눌러 기록을 읽는다. 소개에서는 사진·문구를 조밀하게 묶고 기술의 한 줄·펼침 상세를 탐색한다. 모바일 상세는 메타정보와 두 열 목차를 지나 본문에 더 빨리 도달한다.
+
+FIRST VIEWPORT: 소개의 상하 여백을 줄이고 데스크톱 프로젝트 제목과 3개 정사각 타일을 한 줄의 두 영역으로 정렬한다. 타일은 184px 수준을 유지하며 모바일 두 열이다. 소개는 820px 이하에서 한 열로 접고 사진과 문구를 옆에 묶는다. 좁은 홈 제목의 고립된 줄을 없앤다.
+
+FORM: 확정된 회색 디자인 안의 polish다. 기존 콘텐츠·동작을 유지하고 레이아웃 밀도·광학 정렬·타이포 위계만 정돈한다. 새로운 컨셉·장식·서비스 주장을 추가하지 않는다. 컨셉 추첨은 국소 refinement에 해당하지 않는다.
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## 2026-10-16 사용자 표시 영역 삭제와 프로젝트 변경
+
+THESIS: 첨부 이미지의 표시된 검증 카드·홈 버튼·주 사용 기술 목록·소개 GitHub 링크를 제거하고 프로젝트의 좌우 높이를 같은 정사각 타일로 맞춘다.
+
+OWN-WORLD: 기존 밝은 회색·차콜, 원본 로고 색과 글꼴을 유지한다. 타일은 흰색 면과 1px 구획선, 14px 모서리이며 그림자가 없다. 홈에서 타일에는 로고와 이름 두 요소만 둔다.
+
+STORY: 짧아진 소개 뒤에 Ait·ONEWORK·SteamFolder를 같은 크기로 훑고 하나를 선택해 기존 상세 기록을 크게 읽는다. 닫으면 원래 타일의 초점과 스크롤 위치로 돌아온다. 기술 영역의 시안은 유지한다.
+
+FIRST VIEWPORT: 제목·이름·소개가 있는 한 열 홈 다음으로 프로젝트 제목과 최대 200px 정사각 타일 3개가 왼쪽 정렬된다. 600px 이하에서는 두 열로 접되 같은 크기를 유지한다. SteamFolder에는 기존 중립 폴더 아이콘을 쓴다.
+
+FORM: 사용자가 지정한 삭제와 작은 정사각 목록으로의 국소 변경이다. 새로운 시각 세계·컨셉 선택은 없다. 대화상자의 220ms 확대는 클릭에 대한 반응이며 reduced motion에서는 즉시 연다.
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Confirmed assets and gaps
+
+제공한 증명사진, Ait 로고, ONEWORK 로고와 실제 화면을 사용한다. Ait 화면은 사용자가 나중에 캡처한다. 원래 사진·로고를 시각적으로 변형하거나 허구 캡처로 대체하지 않는다.
+
+## 2026-10-16 기술 영역 시안
+
+THESIS: 기술명과 예시 숙련도, 대표 근거를 한 행에서 읽고 필요한 경험만 펼친다. 사용자는 상세 내용과 실제 평가를 나중에 확정하며 이번에는 디자인을 검토한다.
+
+OWN-WORLD: 기존 회색·차콜과 Noto Sans KR·Manrope를 보존한다. 제공된 기술 SVG의 원색과 비율은 유지하고, 로고가 없는 기술은 단순 텍스트 약칭으로 표시한다. 그림자 없는 목록과 흰 펼침 면을 쓴다.
+
+STORY: 세 분류에서 기술과 근거 한 줄을 훑고 행을 누르면 경험과 기존 프로젝트 상세 연결을 읽는다. 모두 펼치기로 긴 근거의 초기 노출 방식도 비교한다. 예시 등급 표시를 목록 앞에 둔다.
+
+FIRST VIEWPORT: 소개 왼쪽 사진·문구를 유지하고 오른쪽에 사용하는 기술 제목·숙련도 기준·시안 안내, 분류 버튼, 로고·기술명·한 줄·등급·펼침 아이콘 순서의 목록을 둔다. 모바일에서는 기존 한 열 소개 뒤에 전체 폭 목록이 이어진다.
+
+FORM: 기존 소개 내부의 좁은 확장. 사용자가 추천 시안으로 진행을 확인했으며 새로운 시각 세계나 별도 스킬 모달을 만들지 않는다. Seed reference: not-applicable-scoped-extension. 색 #f4f4f4/#262626/#ffffff/#ebebeb/#595959/#d5d5d5, 본문 왼쪽 정렬과 기존 두 글꼴 역할을 사용한다.
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

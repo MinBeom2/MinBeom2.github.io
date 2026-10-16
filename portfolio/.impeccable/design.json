@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T14:52:05.9383358+09:00",
+  "title": "Design System: 김민범 포트폴리오",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "차콜",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "ink-hover": {
+        "role": "primary",
+        "displayName": "부드러운 차콜",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "본문 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "quiet": {
+        "role": "neutral",
+        "displayName": "조건 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "밝은 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "흰 종이",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "pale": {
+        "role": "neutral",
+        "displayName": "옅은 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "구획선",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "control-line": {
+        "role": "neutral",
+        "displayName": "행동 경계",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "inverse": {
+        "role": "neutral",
+        "displayName": "반전 글자",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "inverse-muted": {
+        "role": "neutral",
+        "displayName": "반전 보조 글자",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "diagram-surface": {
+        "role": "neutral",
+        "displayName": "도식 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "tag-surface": {
+        "role": "neutral",
+        "displayName": "태그 회색",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "media-surface": {
+        "role": "neutral",
+        "displayName": "영상 차콜",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#222222",
+          "#3a3a3a",
+          "#555555",
+          "#737373",
+          "#949494",
+          "#b6b6b6",
+          "#eeeeee"
+        ]
+      },
+      "modal-backdrop": {
+        "role": "neutral",
+        "displayName": "모달 배경 어둡기"
+      },
+      "modal-close-hover": {
+        "role": "neutral",
+        "displayName": "닫기 버튼 hover"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "홈 제목",
+        "purpose": "홈 소개의 한국어 큰 제목."
+      },
+      "project-display": {
+        "displayName": "상세 프로젝트명",
+        "purpose": "상세 화면의 영문 프로젝트명."
+      },
+      "headline": {
+        "displayName": "홈 영역 제목",
+        "purpose": "홈 콘텐츠 구획."
+      },
+      "detail-headline": {
+        "displayName": "상세 영역 제목",
+        "purpose": "상세 stylesheet가 적용하는 읽기 구획."
+      },
+      "project-title": {
+        "displayName": "홈 프로젝트명",
+        "purpose": "대표 프로젝트와 개인 프로젝트명."
+      },
+      "body": {
+        "displayName": "기본 본문",
+        "purpose": "기본 한국어 본문."
+      },
+      "reading-body": {
+        "displayName": "상세 본문",
+        "purpose": "검증 기록의 긴 서술."
+      },
+      "label": {
+        "displayName": "행동 글자",
+        "purpose": "메뉴와 버튼의 글자."
+      },
+      "numeric": {
+        "displayName": "검증 수치",
+        "purpose": "응답 시간의 전후 비교; tabular numerals 적용."
+      },
+      "tag": {
+        "displayName": "기술 태그",
+        "purpose": "설명용 기술 목록."
+      },
+      "island-mobile-label": {
+        "purpose": "모바일 아일랜드 메뉴의 13px 글자.",
+        "displayName": "모바일 메뉴"
+      }
+    },
+    "shadows": [
+      {
+        "value": "0 12px 28px rgba(0, 0, 0, .14)",
+        "name": "island",
+        "purpose": "떠 있는 중앙 헤더."
+      },
+      {
+        "value": "0 24px 72px rgba(0, 0, 0, .24)",
+        "name": "project-modal",
+        "purpose": "홈 위의 프로젝트 읽기 모달."
+      }
+    ],
+    "motion": [
+      {"name":"project-expand","value":"project-expand 220ms cubic-bezier(.16, 1, .3, 1)","purpose":"상세 모달을 scale(.94)·opacity .6에서 scale(1)·opacity 1로 연다. reduced motion에서는 animation 없음."},
+      {
+        "name": "control-transition",
+        "value": "background-color 160ms ease, color 160ms ease, border-color 160ms ease",
+        "purpose": "버튼과 링크의 색·경계 상태 전환. reduced motion에서는 transition을 끈다."
+      },
+      {
+        "name": "anchor-scroll",
+        "value": "smooth",
+        "purpose": "anchor와 맨 위 이동. reduced motion에서는 auto."
+      },
+      {
+        "value": "transform 240ms cubic-bezier(.22, 1, .36, 1), opacity 160ms ease",
+        "name": "island-selection",
+        "purpose": "현재 읽는 섹션의 선택 표시 이동. reduced motion에서는 transition 없음."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "600px"
+      },
+      {
+        "name": "stacked-about-max",
+        "value": "820px"
+      },
+      {
+        "name": "stacked-projects-and-case-nav-max",
+        "value": "960px"
+      },
+      {
+        "name": "compact-desktop-max",
+        "value": "1100px"
+      },
+      {
+        "name": "wide-desktop-min",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "잘못된 프로젝트 주소에서 목록으로 복귀하는 차콜 행동.",
+      "html": "<a class=\"ds-primary\" href=\"#projects\">프로젝트 목록 보기<svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:11px 20px;border-radius:8px;background:var(--ink,#262626);color:var(--inverse,#ffffff);font-family:'Noto Sans KR Variable',sans-serif;font-size:14px;font-weight:600;line-height:1.8;text-decoration:none;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}.ds-primary:hover{background:#454545}.ds-primary:focus-visible{outline:2px solid var(--ink,#262626);outline-offset:4px}@media(max-width:600px){.ds-primary{font-size:13px;min-height:46px;padding:10px 15px;gap:8px}}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "상세 진입과 코드 보기의 글자 행동.",
+      "html": "<a class=\"ds-text-link\" href=\"#project/ait\">Ait 자세히 보기<svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-text-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:8px 0;border:0;background:transparent;color:var(--ink,#262626);font-family:'Noto Sans KR Variable',sans-serif;font-size:14px;font-weight:650;line-height:1.8;text-decoration:none;text-underline-offset:.25em;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}.ds-text-link:hover{text-decoration:underline}.ds-text-link:focus-visible{outline:2px solid var(--ink,#262626);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-text-link{transition:none}}"
+    },
+    {
+      "name": "Technology Tags",
+      "kind": "chip",
+      "refersTo": "technology-tag",
+      "description": "클릭 상태가 없는 설명용 기술 목록.",
+      "html": "<ul class=\"ds-tags\" aria-label=\"주요 사용 기술\"><li>Spring Boot</li><li>JPA</li><li>WebSocket</li><li>SSE</li></ul>",
+      "css": ".ds-tags{display:flex;gap:7px;flex-wrap:wrap;margin:0;padding:0;list-style:none}.ds-tags li{padding:4px 9px;border-radius:4px;background:#e6e6e6;color:#454545;font-family:var(--numeric,'Manrope Variable','Noto Sans KR Variable',sans-serif);font-size:12px;font-weight:550;line-height:1.8}"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "description": "중앙의 어두운 아일랜드에 세 메뉴를 표시. 밝은 선택 표시는 현재 읽는 섹션을 따라 이동한다.",
+      "html": "<nav class=\"ds-island\" aria-label=\"주요 메뉴\"><span class=\"ds-indicator\" aria-hidden=\"true\"></span><a href=\"#projects\" aria-current=\"location\">프로젝트</a><a href=\"#approach\">작업 방식</a><a href=\"#about\">소개</a></nav>",
+      "css": ".ds-island{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:348px;max-width:calc(100% - 40px);height:60px;padding:6px;box-sizing:border-box;border-radius:999px;background:var(--ink,#262626);color:var(--inverse-muted,#d4d4d4);box-shadow:0 12px 28px rgba(0,0,0,.14);font-family:\"Noto Sans KR Variable\",sans-serif;isolation:isolate}.ds-island a{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 12px;box-sizing:border-box;border-radius:999px;font-size:14px;font-weight:550;color:inherit;text-decoration:none;white-space:nowrap}.ds-island a[aria-current]{color:var(--ink,#262626);font-weight:650}.ds-island a:hover{color:var(--inverse,#ffffff)}.ds-island a[aria-current]:hover{color:var(--ink,#262626)}.ds-island a:focus-visible{outline:2px solid var(--inverse,#ffffff);outline-offset:3px}.ds-indicator{position:absolute;inset:6px auto 6px 6px;width:calc((100% - 12px)/3);border-radius:999px;background:var(--paper,#ffffff);transition:transform 240ms cubic-bezier(.22,1,.36,1),opacity 160ms ease}@media(max-width:600px){.ds-island{width:310px;height:56px}.ds-island a{min-height:44px;padding:8px;font-size:13px}}@media(prefers-reduced-motion:reduce){.ds-indicator{transition:none}}"
+    },
+    {
+      "name": "Project Tile",
+      "kind": "card",
+      "description": "184px 정사각 로고·이름 링크. 중간 폭 164px·모바일 최대 160px로 줄이며 선택하면 기존 상세 모달을 연다.",
+      "html": "<a class=\"ds-project-tile\" href=\"#project/steamfolder\" aria-label=\"SteamFolder 자세히 보기\" aria-haspopup=\"dialog\"><svg width=\"52\" height=\"52\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 7V5a2 2 0 0 1 2-2h5l3 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/></svg><h3>SteamFolder</h3></a>",
+      "css": ".ds-project-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;width:184px;max-width:100%;aspect-ratio:1;padding:24px 12px;border:1px solid var(--line,#d5d5d5);border-radius:14px;background:var(--paper,#ffffff);color:var(--ink,#262626);text-align:center;text-decoration:none;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}.ds-project-tile h3{margin:0;font-family:var(--numeric,'Manrope Variable','Noto Sans KR Variable',sans-serif);font-size:18px;font-weight:750;line-height:1.5;letter-spacing:-.025em}.ds-project-tile:hover{background:var(--pale,#ebebeb);border-color:var(--control-line,#8a8a8a)}.ds-project-tile:focus-visible{outline:2px solid var(--ink,#262626);outline-offset:5px}@media(max-width:1100px){.ds-project-tile{width:164px;padding-block:20px;gap:16px}}@media(max-width:600px){.ds-project-tile{width:160px;gap:12px;padding:14px 8px;border-radius:12px}.ds-project-tile h3{font-size:16px}}@media(prefers-reduced-motion:reduce){.ds-project-tile{transition:none}}"
+    },
+    {
+      "name": "Detail Callout",
+      "kind": "card",
+      "description": "실험의 해석 조건을 설명하는 상세 주석.",
+      "html": "<aside class=\"ds-callout\"><h3>LIKE 검색은 병목을 확인한 대조 실험</h3><p>기능 자체를 제외한 비교로, 검색 기능을 유지한 상태의 개선 결과와 구분합니다.</p></aside>",
+      "css": ".ds-callout{padding:22px 24px;background:#e7e7e7;border-radius:10px;color:var(--ink,#262626);font-family:'Noto Sans KR Variable',sans-serif;line-height:1.8}.ds-callout h3{margin:0 0 8px;font-size:16px;font-weight:650;line-height:1.5;letter-spacing:-.02em}.ds-callout p{margin:8px 0 0;color:var(--muted,#595959);font-size:15px;line-height:1.95;word-break:keep-all;overflow-wrap:anywhere}@media(max-width:600px){.ds-callout{padding:20px}.ds-callout p{font-size:14px;line-height:1.9}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "밝은 회색, 차콜, 실제 기록",
+    "overview": "사용자가 확정한 밝은 회색 바탕과 차콜 글자를 구현한 현재 디자인 체계다. 넓은 여백, 왼쪽 정렬, 제한된 읽기 폭으로 프로젝트의 담당 범위와 검증 기록을 읽게 한다. 회색 농도가 제목·본문·조건·구획의 위계를 만들고, 원본 사진과 프로젝트 로고·실제 화면은 고유 색을 유지한다.\n\n기존 홈의 순서와 두 글꼴의 역할을 유지한 refinement에서 추출했다. 프로젝트 상세도 같은 표면·글자·간격 체계를 사용한다. 이 문서의 토큰은 `src/styles.css`와 뒤에 적용되는 `src/case-studies.css`, 글꼴 로딩은 `src/main.tsx`, 구성과 상호작용은 `src/App.tsx`에 근거한다. 자산의 원본과 사용 경위는 `docs/assets.md`, 사실·기여·검증의 경계는 `PRODUCT.md`를 따른다.",
+    "keyCharacteristics": [
+      "밝은 회색 바탕, 차콜 글자, 흰색 또는 옅은 회색 표면.",
+      "한국어의 읽기 위계와 영문 프로젝트명·수치의 글꼴 역할 분리.",
+      "본문은 평면 구획, 아일랜드 헤더·상세 모달에만 떠 있는 그림자.",
+      "원본 사진·로고·실제 화면과, 개념도·흐름도로 명시한 자료."
+    ],
+    "rules": [
+      {
+        "name": "The Gray Hierarchy Rule",
+        "body": "사이트의 구획과 행동은 회색 농도로 구분한다. 원본 프로젝트 로고·사진·서비스 화면의 색은 유지한다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Typeface Roles Rule",
+        "body": "한국어 서술은 Noto Sans KR, 영문 프로젝트명과 수치는 Manrope의 역할을 유지한다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "본문의 구분은 농도·경계·간격으로 표현한다. 그림자는 떠 있는 헤더와 모달에 한정한다.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 회색 농도와 글자 크기·두께·간격으로 정보의 위계를 유지한다.",
+      "**Do** 원본 사진·로고·실제 화면의 색과 비율을 유지하고 출처와 사용 경위를 기록한다.",
+      "**Do** 도식에는 흐름도·개념도라는 설명을 붙이고 실제 화면과 구분한다.",
+      "**Do** 작은 화면에서는 열을 순서대로 접고, 측정 표의 가로 스크롤은 표 안에 한정한다.",
+      "**Do** 수치와 검증 조건, 본인 기여와 현재 상태를 가까이 배치하여 함께 읽게 한다."
+    ],
+    "donts": [
+      "**Don't** 사이트 행동에 이전 파랑 강조 체계를 다시 적용하거나 원본 자산의 색을 회색으로 변환한다.",
+      "**Don't** 프로젝트마다 같은 외곽선과 그림자를 반복하여 기록보다 컨테이너를 강조한다.",
+      "**Don't** 제공되지 않은 서비스 화면·로고·데모를 만들어 실제 자료로 제시한다.",
+      "**Don't** 팀의 전체 화면이나 측정 기록을 개인의 운영 성과·해결 완료로 표현한다."
+    ]
+  }
+}

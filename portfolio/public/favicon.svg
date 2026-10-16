@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>김민범 MB</title>
+  <rect width="64" height="64" rx="14" fill="#262626"/>
+  <path fill="#f4f4f4" d="M10 44V20h5l6 11 6-11h5v24h-6V31l-5 9-5-9v13z"/>
+  <path fill="#f4f4f4" fill-rule="evenodd" d="M36 20h10c10 0 12 10 6 12 7 3 5 12-5 12H36zm6 5v5h4c4 0 4-5 0-5zm0 10v4h5c4 0 4-4 0-4z"/>
+</svg>
