@@ -84,9 +84,9 @@ function SteamVisual() {
 }
 
 function ProjectTile({ project }: { project: Project }) {
-  return <li><a className="project-tile" href={'#project/' + project.id} aria-label={project.name + ' 자세히 보기'} aria-haspopup="dialog">
-    <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={52} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
-    <h3>{project.name}</h3>
+  return <li><a className="project-tile" href={'#project/' + project.id} aria-label={project.name + ' 자세히 보기'} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">
+    <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={60} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
+    <div className="project-tile-copy"><h3>{project.name}</h3><p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p></div>
   </a></li>
 }
 

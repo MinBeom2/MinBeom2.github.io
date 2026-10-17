@@ -4,6 +4,7 @@ export type Project = {
   id: ProjectId
   name: string
   subtitle: string
+  overview: string
   description: string
   period: string
   team: string
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     id: 'ait',
     name: 'Ait',
     subtitle: 'AI 모의 면접과 화상 스터디를 한곳에',
+    overview: 'AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼입니다.',
     description: '이력서, 자기소개서, GitHub 자료를 활용한 면접 준비 플랫폼. 스터디 운영, 커뮤니티와 알림 백엔드를 담당했습니다.',
     period: '2026.07.06 – 08.10',
     team: 'SSAFY 6인 팀',
@@ -51,6 +53,7 @@ export const projects: Project[] = [
     id: 'onework',
     name: 'ONEWORK',
     subtitle: '예지보전과 품질 관제에 필요한 영상 연결',
+    overview: '설비 상태와 카메라 영상을 함께 확인하는 스마트 팩토리 관제 플랫폼입니다.',
     description: '스마트 팩토리 관제 플랫폼의 MediaMTX 중심 백엔드. RTSP 영상 송출, 카메라 API와 실행과 녹화 설정을 구현했습니다.',
     period: '2026.08.18 – 09.28',
     team: 'SSAFY 6인 팀',
@@ -72,6 +75,7 @@ export const projects: Project[] = [
     id: 'steamfolder',
     name: 'SteamFolder',
     subtitle: '내 게임 라이브러리를 정리하고 공유하기',
+    overview: '보유한 Steam 게임을 폴더로 정리하고 링크로 공유하는 서비스입니다.',
     description: '보유 게임을 폴더로 정리하고 쇼케이스 링크로 공유하는 개인 서비스. 프론트엔드와 백엔드를 함께 개발하고 있습니다.',
     period: '로컬 개발 중',
     team: '개인 프로젝트',

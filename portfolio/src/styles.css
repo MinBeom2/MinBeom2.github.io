@@ -75,14 +75,16 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .section-heading p { color: var(--muted); font-size: 16px; margin-top: 10px; }
 .section-side-note { color: var(--quiet); font-size: 12px; padding-bottom: 3px; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
-.project-tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 184px)); gap: 20px; }
+.project-tile-grid { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
 .project-tile-grid > li { min-width: 0; }
-.project-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; width: 100%; aspect-ratio: 1; padding: 24px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); text-align: center; }
+.project-tile { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 24px; width: 100%; height: 100%; min-height: 300px; padding: 32px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); text-align: center; }
 .project-tile:hover { background: var(--pale); border-color: var(--control-line); }
-.project-tile-mark { display: flex; align-items: center; justify-content: center; width: 112px; max-width: 100%; height: 72px; color: var(--ink); }
-.project-tile-logo { width: 64px; height: 64px; object-fit: contain; }
-.project-tile-logo-onework { width: 100px; max-width: 100%; }
-.project-tile h3 { font-family: var(--numeric); font-size: 18px; font-weight: 750; line-height: 1.5; letter-spacing: -.025em; }
+.project-tile-mark { display: flex; align-items: center; justify-content: center; width: 128px; max-width: 100%; height: 80px; color: var(--ink); }
+.project-tile-logo { width: 72px; height: 72px; object-fit: contain; }
+.project-tile-logo-onework { width: 120px; max-width: 100%; }
+.project-tile-copy { width: 100%; }
+.project-tile-description { max-width: 30ch; margin: 12px auto 0; color: var(--muted); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }
+.project-tile h3 { font-family: var(--numeric); font-size: 20px; font-weight: 750; line-height: 1.5; letter-spacing: -.025em; }
 .project-card { min-width: 0; }
 .project-visual { display: flex; flex-direction: column; justify-content: space-between; border-radius: var(--radius); padding: 26px 28px 20px; min-height: 310px; overflow: hidden; }
 .visual-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
@@ -291,8 +293,8 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .ait-map { grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr); }
   .map-node span { font-size: 12px; overflow-wrap: anywhere; }
   .about-section { grid-template-columns: 248px minmax(0, 1fr); gap: 40px; }
-  .project-tile-grid { grid-template-columns: repeat(3, minmax(0, 164px)); gap: 16px; }
-  .project-tile { padding-block: 20px; gap: 16px; }
+  .project-tile-grid { gap: 20px; }
+  .project-tile { padding: 28px 24px; gap: 20px; }
   .contact-panel { padding: 36px; gap: 32px; }
   .contact-panel h2 { font-size: 27px; }
   .contact-links a { font-size: 14px; }
@@ -349,13 +351,18 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .case-cover .project-visual { min-height: 330px; }
 }
 
+@media (max-width: 700px) {
+  .project-tile-grid { grid-template-columns: 1fr; gap: 20px; }
+  .project-tile { min-height: 260px; justify-content: center; }
+}
+
 @media (max-width: 600px) {
-  .project-tile-grid { grid-template-columns: repeat(2, minmax(0, 160px)); gap: 16px; }
-  .project-tile { gap: 12px; padding: 14px 8px; border-radius: 12px; }
-  .project-tile-mark { width: 96px; height: 56px; }
-  .project-tile-logo { width: 52px; height: 52px; }
-  .project-tile-logo-onework { width: 86px; }
-  .project-tile h3 { font-size: 16px; }
+  .project-tile-grid { gap: 16px; }
+  .project-tile { gap: 20px; padding: 28px 24px; border-radius: 12px; }
+  .project-tile-mark { width: 112px; height: 64px; }
+  .project-tile-logo { width: 60px; height: 60px; }
+  .project-tile-logo-onework { width: 104px; }
+  .project-tile h3 { font-size: 20px; }
   html { scroll-padding-top: 96px; }
   .container { width: calc(100% - 40px); }
   :root { --header-flow: 72px; }
