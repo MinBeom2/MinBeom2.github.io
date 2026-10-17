@@ -104,11 +104,44 @@ function HomePage() {
       <ul className="project-tile-grid">{projects.map(project => <ProjectTile key={project.id} project={project} />)}</ul>
     </section>
     <section className="approach-section section-space" id="approach" aria-labelledby="approach-title">
-      <div className="container"><div className="section-heading"><div><h2 id="approach-title">이렇게 일합니다</h2><p>구현에서 멈추지 않고, 확인한 결과를 남깁니다.</p></div></div><div className="approach-grid">
-        <article><h3>숫자로 문제를 좁힙니다</h3><p>부하 테스트와 실행 계획으로 조회 병목을 확인합니다. 쿼리와 처리 방식을 조정한 뒤 측정 기록으로 비교합니다.</p><span className="approach-example">Ait의 nGrinder 조회 테스트</span></article>
-        <article><h3>연결의 경계를 확인합니다</h3><p>인증과 멤버 권한, 배포 환경의 요청 경로를 확인합니다. 동작한 범위와 남은 문제를 구분해 기록합니다.</p><span className="approach-example">채팅 권한 검증 / WebGL 요청 경로</span></article>
-        <article><h3>팀이 따라 할 수 있게 남깁니다</h3><p>Git Flow를 제안하고, Git에 익숙하지 않은 팀원을 위해 명령어와 작업 순서 가이드를 작성해 공유했습니다.</p><span className="approach-example">Ait 브랜치 작업 가이드</span></article>
-      </div></div>
+      <div className="container">
+        <div className="section-heading"><div><h2 id="approach-title">이렇게 일합니다</h2><p>구현에서 멈추지 않고, 확인한 결과를 남깁니다.</p></div></div>
+        <div className="approach-grid">
+          <article>
+            <h3>숫자로 문제를 좁힙니다</h3>
+            <p>nGrinder로 조회 API의 응답 시간을 비교했습니다. 채팅 이력의 조인 전략을 조정하고 전후 측정 기록을 남겼습니다.</p>
+            <div className="approach-evidence">
+              <dl className="approach-measure" aria-label="채팅 조회 평균 응답 시간 비교">
+                <div><dt>개선 전</dt><dd>1,804.71 <span>ms</span></dd></div>
+                <div><dt>개선 후</dt><dd>131.59 <span>ms</span></dd></div>
+              </dl>
+              <p className="approach-note">개인 검증 환경, Vuser 50, 1분</p>
+            </div>
+            <a className="approach-link" href="#project/ait/benchmarks">측정 조건과 결과 보기</a>
+          </article>
+          <article>
+            <h3>연결의 경계를 확인합니다</h3>
+            <p>실시간 채팅에서 연결 인증과 메시지 전송 권한을 나눠 확인했습니다. 메시지 저장과 그룹별 전달을 연결했습니다.</p>
+            <div className="approach-evidence">
+              <dl className="approach-flow" aria-label="스터디 채팅의 권한 확인 순서">
+                <div><dt>연결할 때</dt><dd>JWT 검증</dd></div>
+                <div><dt>전송하기 전</dt><dd>그룹 멤버 확인</dd></div>
+                <div><dt>전달할 때</dt><dd>저장 후 그룹에 발행</dd></div>
+              </dl>
+            </div>
+            <a className="approach-link" href="#project/ait/troubleshooting">채팅 구현과 검증 보기</a>
+          </article>
+          <article>
+            <h3>팀이 따라 할 수 있게 씁니다</h3>
+            <p>Git Flow를 제안하고, Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p>
+            <div className="approach-evidence">
+              <pre className="approach-code" aria-label="Git 작업 가이드의 브랜치 시작 예시"><code>{'git switch develop\ngit pull origin develop\ngit checkout -b feature/기능이름'}</code></pre>
+              <p className="approach-note">공유한 가이드의 작업 시작 순서</p>
+            </div>
+            <a className="approach-link" href="#project/ait/evidence">협업 가이드 근거 보기</a>
+          </article>
+        </div>
+      </div>
     </section>
     <section className="about-section container section-space" id="about" aria-labelledby="about-title">
       <div className="about-intro"><img className="profile-portrait" src={assets.portrait} alt="김민범 프로필 사진" width="569" height="759" loading="lazy" decoding="async" /><h2 id="about-title">백엔드를 중심으로,<br />필요한 연결까지.</h2><p>API와 데이터를 다루고,<br />실시간 연결과 화면 구현으로<br />서비스의 흐름을 이해합니다.</p></div>
@@ -299,7 +332,12 @@ function ProjectModal({ route, onClose }: { route: Exclude<Route, { kind: 'home'
       const anchor = route.kind === 'project' ? route.anchor : ''
       if (anchor && anchor !== 'main') {
         const target = document.getElementById('case-' + anchor)
-        target?.scrollIntoView({ block: 'start' })
+        if (target) {
+          const heading = target.querySelector<HTMLElement>('h2, h3') ?? target
+          heading.tabIndex = -1
+          target.scrollIntoView({ block: 'start' })
+          heading.focus({ preventScroll: true })
+        }
       } else {
         scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' })
         document.getElementById(titleId)?.focus({ preventScroll: true })

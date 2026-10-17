@@ -24,7 +24,7 @@
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 112px; scrollbar-gutter: stable; scrollbar-color: #7a7a7a #e8e8e8; }
-body { min-width: 320px; font-size: 16px; line-height: 1.8; }
+body { min-width: 0; font-size: 16px; line-height: 1.8; }
 button, a { -webkit-tap-highlight-color: transparent; transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; text-underline-offset: .25em; }
@@ -53,9 +53,9 @@ img { height: auto; }
 
 .hero { display: flex; align-items: center; min-height: calc(100svh - var(--header-flow)); padding-block: 64px 128px; }
 .hero-copy { min-width: 0; max-width: 1040px; }
-.hero h1 { font-size: clamp(48px, 6.4vw, 80px); letter-spacing: -.03em; font-weight: 740; line-height: 1.35; word-break: keep-all; text-wrap: balance; }
+.hero h1 { font-size: clamp(48px, 7.2vw, 96px); letter-spacing: -.03em; font-weight: 740; line-height: 1.3; word-break: keep-all; text-wrap: balance; }
 .hero h1 > span { display: block; }
-.hero-person { margin-top: 36px; font-size: 20px; font-weight: 600; color: var(--ink); }
+.hero-person { margin-top: 32px; font-size: 20px; font-weight: 600; color: var(--ink); }
 .hero-description { max-width: 42ch; margin-top: 20px; font-size: 20px; line-height: 1.9; color: var(--muted); word-break: keep-all; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; min-height: 48px; }
 .button.primary { background: var(--ink); color: var(--inverse); }
@@ -68,11 +68,11 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .bar { height: 100%; border-radius: 2px; }
 .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); flex-shrink: 0; }
 
-.projects-section { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px; padding-top: 36px; padding-bottom: 60px; border-top: 1px solid var(--line); }
+.projects-section { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 40px; min-height: 480px; padding-block: 80px 96px; border-top: 1px solid var(--line); }
 .projects-section > .section-heading { margin-bottom: 0; align-items: flex-start; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 36px; }
-.section-heading h2 { font-size: 30px; font-weight: 700; letter-spacing: -.025em; line-height: 1.45; text-wrap: balance; }
-.section-heading p { color: var(--muted); font-size: 15px; margin-top: 10px; }
+.section-heading h2 { font-size: 32px; font-weight: 700; letter-spacing: -.025em; line-height: 1.45; text-wrap: balance; }
+.section-heading p { color: var(--muted); font-size: 16px; margin-top: 10px; }
 .section-side-note { color: var(--quiet); font-size: 12px; padding-bottom: 3px; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
 .project-tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 184px)); gap: 20px; }
@@ -160,11 +160,26 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .subtle-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-family: var(--numeric); font-size: 13px; color: var(--muted); }
 .subtle-link:hover { color: var(--ink); text-decoration: underline; }
 
-.approach-section { background: var(--pale); }
-.approach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 32px; }
-.approach-grid h3 { font-size: 18px; font-weight: 650; letter-spacing: -.02em; }
-.approach-grid p { font-size: 15px; color: var(--muted); line-height: 1.9; margin-top: 13px; word-break: keep-all; }
-.approach-example { display: block; font-size: 13px; color: var(--quiet); margin-top: 20px; }
+.approach-section { background: var(--pale); min-height: 600px; padding-block: 80px 88px; }
+.approach-section .section-heading { margin-bottom: 36px; }
+.approach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.approach-grid > article { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.approach-grid h3 { font-size: 20px; font-weight: 650; letter-spacing: -.025em; line-height: 1.55; word-break: keep-all; }
+.approach-grid > article > p { max-width: 36ch; font-size: 16px; color: var(--muted); line-height: 1.85; margin-top: 14px; word-break: keep-all; }
+.approach-evidence { width: 100%; min-height: 140px; margin-top: 28px; }
+.approach-measure { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.approach-measure dt { color: var(--muted); font-size: 13px; }
+.approach-measure dd { margin-top: 8px; font-family: var(--numeric); font-size: 27px; font-weight: 650; letter-spacing: -.025em; line-height: 1.4; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.approach-measure dd > span { font-size: 13px; font-weight: 500; letter-spacing: 0; }
+.approach-evidence .approach-note { margin-top: 16px; color: var(--quiet); font-size: 13px; line-height: 1.7; word-break: keep-all; }
+.approach-flow { display: grid; gap: 10px; }
+.approach-flow > div { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; font-size: 14px; line-height: 1.8; }
+.approach-flow dt { color: var(--muted); }
+.approach-flow dd { font-weight: 550; word-break: keep-all; }
+.approach-code { margin: 0; max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 2; color: var(--ink); }
+.approach-code code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.approach-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: auto; padding-block: 8px; font-size: 14px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; }
+.approach-link:hover { color: var(--muted); }
 
 .about-section { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; padding-block: 72px; }
 .about-intro { position: sticky; top: 112px; align-self: start; }
@@ -269,13 +284,13 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .page-not-found p { max-width: 60ch; color: var(--muted); }
 
 @media (max-width: 1100px) {
+  .approach-measure dd { font-size: 23px; }
   .container { width: calc(100% - 80px); }
   .project-grid { gap: 32px; }
   .project-visual { padding-inline: 22px; }
   .ait-map { grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr); }
   .map-node span { font-size: 12px; overflow-wrap: anywhere; }
   .about-section { grid-template-columns: 248px minmax(0, 1fr); gap: 40px; }
-  .projects-section { gap: 28px; }
   .project-tile-grid { grid-template-columns: repeat(3, minmax(0, 164px)); gap: 16px; }
   .project-tile { padding-block: 20px; gap: 16px; }
   .contact-panel { padding: 36px; gap: 32px; }
@@ -286,12 +301,18 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 }
 
 @media (max-width: 960px) {
+  .approach-section { min-height: 0; padding-block: 72px; }
+  .approach-grid { grid-template-columns: 1fr; gap: 40px; }
+  .approach-grid > article { max-width: 620px; width: 100%; }
+  .approach-grid > article + article { border-top: 1px solid var(--line); padding-top: 40px; }
+  .approach-grid > article > p { margin-top: 12px; max-width: 56ch; }
+  .approach-evidence { min-height: 0; max-width: 380px; margin-top: 24px; }
+  .approach-link { margin-top: 20px; }
+  .approach-measure dd { font-size: 27px; }
   .personal-project { grid-template-columns: .9fr 1.2fr; }
   .personal-content { padding: 30px; }
   .about-section { grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
   .about-intro h2 { font-size: 25px; }
-  .projects-section { display: block; }
-  .projects-section > .section-heading { margin-bottom: 24px; }
   .background-item, .certifications { grid-template-columns: 106px 1fr; gap: 16px; }
   .case-layout { grid-template-columns: 1fr; gap: 32px; }
   .case-nav { position: static; padding: 22px 0; border-block: 1px solid var(--line); }
@@ -313,10 +334,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .personal-project { grid-template-columns: 1fr; margin-top: 48px; }
   .personal-project .steam-visual { min-height: 285px; }
   .personal-content { padding: 30px; }
-  .approach-grid { grid-template-columns: 1fr; gap: 32px; }
-  .approach-grid h3 { margin-top: 1px; }
-  .approach-grid p { margin-top: 10px; max-width: 62ch; }
-  .approach-example { margin-top: 12px; }
+  .projects-section { min-height: 0; padding-block: 64px 72px; gap: 32px; }
   .about-section { grid-template-columns: 1fr; gap: 36px; }
   .about-intro { position: static; display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 28px; }
   .profile-portrait { grid-row: 1 / 3; width: 128px; margin: 0; }
@@ -348,7 +366,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .desktop-break { display: none; }
   .button { font-size: 13px; padding: 10px 15px; gap: 8px; min-height: 46px; }
   .section-space { padding-block: 44px; }
-  .projects-section { padding-top: 28px; }
+  .projects-section { min-height: 0; padding-block: 56px 64px; gap: 28px; }
   .section-heading { margin-bottom: 24px; }
   .section-heading h2 { font-size: 26px; }
   .section-heading p { font-size: 14px; margin-top: 9px; }
@@ -389,10 +407,12 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .personal-content h3 { font-size: 28px; }
   .personal-subtitle { font-size: 15px; }
   .personal-actions { gap: 12px 22px; }
-  .approach-grid { margin-top: 30px; gap: 30px; }
-  .approach-grid h3 { font-size: 17px; }
-  .approach-grid p { font-size: 15px; }
-  .approach-example { font-size: 13px; }
+  .approach-section { padding-block: 64px; }
+  .approach-section .section-heading { margin-bottom: 36px; }
+  .approach-grid { gap: 36px; }
+  .approach-grid > article + article { padding-top: 36px; }
+  .approach-grid h3 { font-size: 20px; }
+  .approach-measure dd { font-size: 26px; }
   .about-section { gap: 32px; }
   .about-intro { grid-template-columns: 96px minmax(0, 1fr); column-gap: 20px; }
   .profile-portrait { width: 96px; margin: 0; }
@@ -450,6 +470,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 }
 
 @media (max-width: 360px) {
+  .approach-measure dd { font-size: 23px; }
   .hero h1 { font-size: 27px; line-height: 1.45; }
   .about-intro { grid-template-columns: 72px minmax(0, 1fr); column-gap: 16px; }
   .profile-portrait { width: 72px; }

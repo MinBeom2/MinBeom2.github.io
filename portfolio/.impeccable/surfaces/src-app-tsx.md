@@ -82,3 +82,18 @@ FIRST VIEWPORT: 소개 왼쪽 사진·문구를 유지하고 오른쪽에 사용
 FORM: 기존 소개 내부의 좁은 확장. 사용자가 추천 시안으로 진행을 확인했으며 새로운 시각 세계나 별도 스킬 모달을 만들지 않는다. Seed reference: not-applicable-scoped-extension. 색 #f4f4f4/#262626/#ffffff/#ebebeb/#595959/#d5d5d5, 본문 왼쪽 정렬과 기존 두 글꼴 역할을 사용한다.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+
+## 2026-10-17 사용자 승인: 소개와 근거 영역의 비중
+
+THESIS: 첫 화면의 큰 소개와 실제 프로젝트·작업 기록이 균형 있게 읽히도록 비중을 조정한다. 홈 모드는 Experience, 상세 모달은 Read다.
+
+OWN-WORLD: 기존 #f4f4f4, #262626, #ffffff, #ebebeb, #595959, #d5d5d5와 Noto Sans KR·Manrope, 왼쪽 정렬을 유지한다. 섹션 번호, 장식 카드, 새 이미지와 색상은 추가하지 않는다.
+
+STORY: 두 줄 소개를 읽고 제목 아래 프로젝트 타일 세 개를 선택한다. 작업 방식에서는 짧은 원칙과 실제 근거를 읽고 측정 조건·권한 구현·Git 가이드 기록으로 바로 들어간다. 모달이 닫히면 진입 링크와 읽던 위치로 돌아온다.
+
+FIRST VIEWPORT: 헤더를 뺀 풀스크린 소개와 모바일 두 줄 제목을 유지한다. 넓은 화면 제목의 최대 크기는 96px다. 프로젝트는 최소 480px, 작업 방식은 최소 600px를 기준으로 내용에 따라 커지며 프로젝트는 820px 이하, 작업 방식은 960px 이하에서 고정 최소 높이를 해제한다.
+
+FORM: 기존 시각 세계 안의 레이아웃·타이포 refinement다. 프로젝트 정사각 타일과 원래 로고·이름 구성을 보존한다. 작업 방식의 세 근거는 실제 전후 측정, 권한 확인 순서, 공유한 가이드 예시로 각각 표현한다. 이 절이 앞선 80px 제목과 프로젝트 좌우 배치를 대체한다.
+
+FINISH: 프로덕션 빌드와 넓은 화면·중간 폭·모바일의 한 차례 묶음 검증, 필요한 수정 한 차례와 최종 확인으로 마무리한다.
