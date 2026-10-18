@@ -11,7 +11,7 @@ function SkillRow({ skill, onToggle }: { skill: SkillEvidence; onToggle: () => v
     <summary>
       <span className="skill-logo" aria-hidden="true">{skill.logo ? <img src={import.meta.env.BASE_URL + 'assets/skills/' + skill.logo} alt="" width="64" height="44" loading="lazy" decoding="async" /> : <span className="skill-text-mark">{skill.mark}</span>}</span>
       <span className="skill-copy"><strong>{skill.name}</strong><span>{skill.summary}</span></span>
-      <span className="skill-level"><span className="sr-only">시안용 숙련도 예시: </span>{skill.sampleLevel}</span>
+      {skill.level ? <span className="skill-level"><span className="sr-only">숙련도: </span>{skill.level}</span> : <span aria-hidden="true" />}
       <Chevron className="skill-chevron" />
     </summary>
     <div className="skill-detail"><p>{skill.evidence}</p><div className="skill-project-links"><span>사용한 프로젝트</span>{skill.projects.map(project => <a key={project.id} href={'#project/' + project.id + '/' + project.section}>{project.name}</a>)}</div></div>
@@ -36,8 +36,8 @@ export default function SkillsSection() {
   }
 
   return <section className="skills-section" aria-labelledby={instanceId + '-title'}>
-    <div className="skills-heading"><h3 id={instanceId + '-title'}>사용하는 기술</h3><details className="skill-level-guide"><summary>숙련도 기준<Chevron /></summary><div className="skill-guide-content"><p>구현할 수 있는 범위를 기준으로 표시합니다.</p><dl><div><dt>상중</dt><dd>주요 기능을 독립적으로 구현하고 문제를 해결</dd></div><div><dt>중</dt><dd>문서를 참고해 필요한 기능을 구현</dd></div><div><dt>중하</dt><dd>예제를 응용해 제한된 기능을 구현</dd></div><div><dt>하</dt><dd>기초 개념을 학습하고 예제를 실행</dd></div></dl></div></details><p>어디에, 어떻게 사용했는지 함께 담았습니다.</p></div>
-    <div className="skill-list-toolbar"><p className="skill-preview-note">등급은 디자인 확인용 예시입니다.</p><button type="button" onClick={toggleAll} aria-controls={instanceId + '-list'}>{allOpen ? '모두 접기' : '모두 펼치기'}<Chevron className={allOpen ? 'is-open' : ''} /></button></div>
+    <div className="skills-heading"><h3 id={instanceId + '-title'}>사용하는 기술</h3><details className="skill-level-guide"><summary>숙련도 기준<Chevron /></summary><div className="skill-guide-content"><p>구현과 검증 기록을 바탕으로 표시합니다.</p><dl><div><dt>상중</dt><dd>복잡한 기능과 외부 연동을 구현하고 테스트로 검증</dd></div><div><dt>중</dt><dd>일반적인 기능 구현과 설정, 문제 해결을 독립적으로 수행</dd></div></dl></div></details><p>어디에, 어떻게 사용했는지 함께 담았습니다.</p></div>
+    <div className="skill-list-toolbar"><p className="skill-preview-note">숙련도는 평가한 네 기술에만 표시합니다.</p><button type="button" onClick={toggleAll} aria-controls={instanceId + '-list'}>{allOpen ? '모두 접기' : '모두 펼치기'}<Chevron className={allOpen ? 'is-open' : ''} /></button></div>
     <div ref={listRef} id={instanceId + '-list'} className="skill-list" aria-label="사용하는 기술 목록">{skills.map(skill => <SkillRow key={skill.id} skill={skill} onToggle={syncOpenState} />)}</div>
   </section>
 }

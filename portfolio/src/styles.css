@@ -19,6 +19,7 @@
   --inverse-muted: #d4d4d4;
   --numeric: 'Manrope Variable', 'Noto Sans KR Variable', sans-serif;
   --max-width: 1120px;
+  --home-max-width: clamp(1120px, 75vw, 1600px);
   --radius: 14px;
 }
 
@@ -34,6 +35,7 @@ img { height: auto; }
 :disabled { cursor: not-allowed; opacity: .55; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .container { max-width: var(--max-width); width: calc(100% - 112px); margin-inline: auto; }
+#main > .container, .approach-section > .container, .site-footer { max-width: var(--home-max-width); }
 .section-space { padding-block: 72px; }
 .skip-link { position: fixed; top: -90px; left: 16px; z-index: 20; display: inline-flex; align-items: center; min-height: 48px; padding: 10px 20px; background: var(--ink); color: var(--inverse); border-radius: 8px; }
 .skip-link:focus { top: 12px; outline-color: var(--inverse); }
@@ -182,6 +184,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .approach-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: auto; padding-block: 8px; font-size: 14px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; }
 .approach-link:hover { color: var(--muted); }
 
+
 .about-section { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; padding-block: 72px; }
 .about-intro { position: sticky; top: 112px; align-self: start; }
 .profile-portrait { width: 144px; height: auto; max-width: 100%; object-fit: contain; border-radius: 12px; margin-bottom: 24px; background: var(--paper); }
@@ -216,9 +219,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .site-footer a:hover { text-decoration: underline; }
 .up-arrow { transform: rotate(-90deg); }
 
-.case-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 30px; color: var(--muted); font-size: 14px; }
-.case-breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; }
-.case-breadcrumb a:hover { color: var(--ink); text-decoration: underline; }
 .case-header { max-width: 960px; padding-block: 36px 44px; }
 .case-title-row { display: flex; align-items: center; gap: 20px; }
 .case-title-row h1 { font-family: var(--numeric); font-size: clamp(38px, 4vw, 56px); line-height: 1.3; font-weight: 750; letter-spacing: -.03em; word-break: keep-all; }
@@ -284,6 +284,20 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .page-not-found h1 { font-size: clamp(30px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; }
 .page-not-found p { max-width: 60ch; color: var(--muted); }
 
+/* Wider home compositions retain the existing reading measures and detail width. */
+@media (min-width: 1500px) {
+  .project-tile { min-height: clamp(300px, 17.7vw, 340px); gap: 28px; padding: 40px 32px; }
+  .project-tile-mark { width: 152px; height: 96px; }
+  .project-tile-logo { width: 88px; height: 88px; }
+  .project-tile-logo-onework { width: 144px; }
+  .project-tile h3 { font-size: 22px; }
+  .project-tile-description { max-width: 34ch; font-size: 16px; }
+  .approach-grid > article > p { max-width: 44ch; }
+  .ai-case-summary, .ai-case-explanation { max-width: 70ch; }
+  .ai-case-visual { max-width: 640px; }
+  .about-section { grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr); }
+}
+
 @media (max-width: 1100px) {
   .approach-measure dd { font-size: 23px; }
   .container { width: calc(100% - 80px); }
@@ -344,7 +358,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .contact-panel { flex-direction: column; align-items: flex-start; gap: 28px; }
   .contact-links { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 32px; }
   .contact-links a:first-child { padding-bottom: 0; border: 0; }
-  .case-breadcrumb { padding-top: 22px; }
   .case-header { padding-block: 26px 32px; }
   .case-title-row h1 { font-size: 44px; }
   .case-cover .project-visual { min-height: 330px; }
@@ -436,7 +449,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .contact-links a:first-child > svg:last-child { width: 18px; }
   .site-footer { font-size: 12px; margin-top: 12px; padding-block: 20px; }
   .site-footer > span:nth-child(2) { display: none; }
-  .case-breadcrumb { font-size: 13px; padding-top: 18px; }
   .case-header { padding-block: 20px 28px; }
   .case-title-row { gap: 14px; }
   .case-title-row h1 { font-size: 34px; }

@@ -4,6 +4,9 @@ import { benchmarks, profile, projects } from './content'
 import SkillsSection from './SkillsSection'
 import type { Project } from './content'
 import { projectDetails } from './caseStudies'
+import type { ProjectDetail, TechnologyComparison } from './caseStudies'
+import { aiFeedback } from './aiCapabilities'
+import AiCapabilitiesSection from './AiCapabilitiesSection'
 
 const asset = (path: string) => import.meta.env.BASE_URL + 'assets/' + path
 const assets = {
@@ -66,7 +69,7 @@ function StreamDiagram() {
       <div className="stream-line"><span /></div>
       <div className="stream-node stream-center"><div className="stream-icon"><Icon name="layers" size={30} /></div><strong>MediaMTX</strong><span>WebRTC WHEP</span></div>
       <div className="stream-line"><span /></div>
-      <div className="stream-node"><div className="stream-icon"><Icon name="play" size={29} /></div><strong>관제 화면</strong><span>웹 / Unity</span></div>
+      <div className="stream-node"><div className="stream-icon"><Icon name="play" size={29} /></div><strong>관제 화면</strong><span>HTML 영상 창</span></div>
     </div>
     <div className="visual-caption"><span>영상 전달 구조</span><span>HTTPS 통합 문제는 미해결</span></div>
   </div>
@@ -88,6 +91,14 @@ function ProjectTile({ project }: { project: Project }) {
     <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={60} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
     <div className="project-tile-copy"><h3>{project.name}</h3><p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p></div>
   </a></li>
+}
+
+function SteamAiFeedbackSection() {
+  return <section className="detail-section" id="case-ai-feedback" aria-labelledby="ai-feedback-title">
+    <h2 id="ai-feedback-title">{aiFeedback.title}</h2>
+    <p>{aiFeedback.intro}</p>
+    <dl className="feedback-priority">{aiFeedback.priorities.map(priority => <div key={priority.name}><dt>{priority.name}</dt><dd>{priority.description}</dd></div>)}</dl>
+  </section>
 }
 
 function HomePage() {
@@ -141,6 +152,7 @@ function HomePage() {
             <a className="approach-link" href="#project/ait/evidence">협업 가이드 근거 보기</a>
           </article>
         </div>
+        <AiCapabilitiesSection />
       </div>
     </section>
     <section className="about-section container section-space" id="about" aria-labelledby="about-title">
@@ -163,19 +175,60 @@ function BenchmarkSection() {
   </section>
 }
 
+function TechnologyComparisonDetails({ comparison }: { comparison: TechnologyComparison }) {
+  return <details className="technology-disclosure">
+    <summary>{comparison.comparisonTitle}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+    <div className="technology-comparison-content">
+      {comparison.comparisonNote && <p className="technology-comparison-note">{comparison.comparisonNote}</p>}
+      <table className="technology-comparison">
+        <caption className="sr-only">{comparison.comparisonTitle}: 현재 구현을 기준으로 본 대안과의 차이</caption>
+        <thead><tr><th scope="col">방식</th><th scope="col">이 구조에서의 차이</th></tr></thead>
+        <tbody>{comparison.alternatives.map(alternative => <tr key={alternative.method} className={alternative.selected ? 'technology-selected' : undefined}>
+          <th scope="row">{alternative.method}{alternative.selected && <span className="technology-used">사용</span>}</th>
+          <td>{alternative.difference}{alternative.reference && <div className="technology-reference"><ExternalLink href={alternative.reference.url}>{alternative.reference.label}</ExternalLink></div>}</td>
+        </tr>)}</tbody>
+      </table>
+      <div className="technology-reference"><ExternalLink href={comparison.reference.url}>{comparison.reference.label}</ExternalLink></div>
+    </div>
+  </details>
+}
+
+function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
+  const decision = detail.technologyDecision
+  return <div className="technology-choices">
+    <h3 className="technology-choice-title">{decision.title}</h3>
+    <p className="technology-choice-background">{decision.background}</p>
+    <p className="technology-choice-implementation">{decision.implementation}</p>
+    {decision.pipeline && <p className="technology-pipeline" aria-label="영상 전달 경로">{decision.pipeline}</p>}
+    {decision.selectionReasons && <details className="technology-disclosure">
+      <summary>선택 이유 자세히 보기<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+      <dl className="technology-reasons">{decision.selectionReasons.map(reason => <div key={reason.title}>
+        <dt>{reason.title}</dt><dd>{reason.description}{reason.reference && <div className="technology-reference"><ExternalLink href={reason.reference.url}>{reason.reference.label}</ExternalLink></div>}</dd>
+      </div>)}</dl>
+    </details>}
+    <TechnologyComparisonDetails comparison={decision} />
+    {decision.additionalComparisons?.map(comparison => <TechnologyComparisonDetails key={comparison.comparisonTitle} comparison={comparison} />)}
+    <p className="technology-choice-limitation"><strong>한계와 확인 범위</strong>{decision.limitation}</p>
+    <details className="technology-disclosure technology-implementation">
+      <summary>사용 기술과 적용 내용<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+      <dl className="case-technology-list">{detail.techChoices.map(choice => <div key={choice.technology}><dt>{choice.technology}</dt><dd>{choice.use}</dd></div>)}</dl>
+    </details>
+  </div>
+}
+
 function ProjectPage({ project }: { project: Project }) {
   const detail = projectDetails[project.id]
   const sections = [
     { id: 'overview', label: '문제와 목표' },
     { id: 'scope', label: '담당 구현' },
-    { id: 'technology', label: '기술 적용' },
+    { id: 'technology', label: '기술 선택' },
+    ...(project.id === 'steamfolder' ? [{ id: 'ai-feedback', label: 'AI 연동' }] : []),
     { id: 'troubleshooting', label: '문제 해결' },
     ...(project.id === 'ait' ? [{ id: 'benchmarks', label: '성능 측정' }] : []),
     { id: 'results', label: '결과와 현재 상태' },
     { id: 'evidence', label: '코드와 근거' },
   ]
   return <article className="container case-page">
-    <nav className="case-breadcrumb" aria-label="현재 위치"><ol><li><a href="#projects">프로젝트</a></li><li aria-current="page">{project.name}</li></ol></nav>
     <header className="case-header detail-header">
       <div className="case-title-row"><ProjectLogo project={project} className="case-logo" /><h1 id="case-title" tabIndex={-1}>{project.name}</h1></div>
       <p className="detail-subtitle">{project.subtitle}</p>
@@ -188,7 +241,8 @@ function ProjectPage({ project }: { project: Project }) {
         {project.id === 'onework' && <figure className="case-cover"><img src={assets.oneworkOverview} width="2558" height="1266" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /><figcaption><span>ONEWORK 서비스 화면. 제 담당은 카메라 연동과 API입니다.</span><ExternalLink href={assets.oneworkOverview}>화면 크게 보기</ExternalLink></figcaption></figure>}
         <section className="detail-section" id="case-overview" aria-labelledby="overview-title"><h2 id="overview-title">문제와 목표</h2><p>{project.problem}</p></section>
         <section className="detail-section" id="case-scope" aria-labelledby="scope-title"><h2 id="scope-title">직접 구현한 범위</h2><div className="contributions">{project.contributions.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>)}</div></section>
-        <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술을 적용한 자리</h2><dl className="case-technology-list">{detail.techChoices.map(choice => <div key={choice.technology}><dt>{choice.technology}</dt><dd>{choice.use}</dd></div>)}</dl>{project.id === 'ait' ? <AitVisual /> : project.id === 'onework' ? <StreamDiagram /> : <SteamVisual />}</section>
+        <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} />{project.id === 'ait' ? <AitVisual /> : project.id === 'onework' ? <StreamDiagram /> : <SteamVisual />}</section>
+        {project.id === 'steamfolder' && <SteamAiFeedbackSection />}
         <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
         {project.id === 'ait' && <BenchmarkSection />}
         <section className="detail-section" id="case-results" aria-labelledby="results-title"><h2 id="results-title">결과와 현재 상태</h2><ul className="case-result-list">{detail.results.map(result => <li key={result}><Icon name="check" size={18} /><span>{result}</span></li>)}</ul></section>
