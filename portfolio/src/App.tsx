@@ -7,6 +7,8 @@ import { projectDetails } from './caseStudies'
 import type { ProjectDetail, TechnologyComparison } from './caseStudies'
 import { aiFeedback } from './aiCapabilities'
 import AiCapabilitiesSection from './AiCapabilitiesSection'
+import ProcessSteps from './ProcessSteps'
+import Chevron from './Chevron'
 
 const asset = (path: string) => import.meta.env.BASE_URL + 'assets/' + path
 const assets = {
@@ -16,11 +18,16 @@ const assets = {
   oneworkOverview: asset('projects/onework-overview.png'),
 }
 
-type IconName = 'arrow' | 'external' | 'mail' | 'github' | 'code' | 'message' | 'bell' | 'database' | 'check' | 'close' | 'camera' | 'play' | 'folder' | 'layers' | 'branch' | 'menu'
+const projectPreviews = {
+  ait: { src: asset('projects/ait-landing.png'), width: 2830, height: 1446, alt: 'Ait 랜딩페이지의 면접 연습 소개와 AI 모의면접 미리보기' },
+  onework: { src: assets.oneworkOverview, width: 2558, height: 1266, alt: 'ONEWORK 디지털 트윈과 CCTV 영상 관제 화면' },
+  steamfolder: { src: asset('projects/steamfolder-landing.png'), width: 2879, height: 1440, alt: 'SteamFolder 랜딩페이지의 게임 라이브러리 소개와 로그인 화면' },
+}
+
+type IconName = 'external' | 'mail' | 'github' | 'code' | 'message' | 'bell' | 'database' | 'check' | 'close' | 'camera' | 'play' | 'folder' | 'layers' | 'branch' | 'menu'
 
 function Icon({ name, size = 20, className = '' }: { name: IconName; size?: number; className?: string }) {
   const paths: Record<IconName, ReactNode> = {
-    arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
     external: <path d="M14 4h6v6M20 4l-9 9M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5" />,
     mail: <><rect x="3" y="5" width="18" height="14" rx="3" /><path d="m4 7 8 6 8-6" /></>,
     github: <path d="M9 20c-4 1-4-2-6-2m12 4v-4a3.4 3.4 0 0 0-1-3c3 0 6-1 6-5a4 4 0 0 0-1-3 4 4 0 0 0 0-3s-1-1-4 1a13 13 0 0 0-6 0C6 3 5 4 5 4a4 4 0 0 0 0 3 4 4 0 0 0-1 3c0 4 3 5 6 5a3.4 3.4 0 0 0-1 3v4" />,
@@ -46,31 +53,28 @@ function ExternalLink({ href, children, className = '' }: { href: string; childr
 
 function ProjectLogo({ project, className = 'project-logo' }: { project: Project; className?: string }) {
   if (project.id === 'steamfolder') return null
-  return <img className={className} src={project.id === 'ait' ? assets.aitLogo : assets.oneworkLogo} alt={project.name + ' 로고'} width={project.id === 'ait' ? 512 : 584} height={project.id === 'ait' ? 512 : 284} decoding="async" />
+  return <img className={className + ' project-logo-' + project.id} src={project.id === 'ait' ? assets.aitLogo : assets.oneworkLogo} alt={project.name + ' 로고'} width={project.id === 'ait' ? 512 : 584} height={project.id === 'ait' ? 234 : 284} decoding="async" />
 }
 
 function AitVisual() {
-  return <div className="project-visual ait-visual" aria-label="Ait의 스터디 채팅과 알림 흐름도">
+  return <div className="project-visual ait-visual" aria-label="Ait의 담당 기능과 역할">
     <div className="visual-heading"><div className="project-brand"><ProjectLogo project={projects[0]} /><span className="ait-wordmark">Ait</span></div><span>스터디를 연결하는 백엔드</span></div>
-    <div className="ait-map">
-      <div className="map-node map-study"><Icon name="message" size={26} /><strong>스터디 채팅</strong><span>STOMP / WebSocket</span></div>
-      <div className="map-connector"><span>인증과 권한</span><div /></div>
-      <div className="map-node map-core"><Icon name="code" size={27} /><strong>Spring Boot</strong><span>스터디와 커뮤니티 API</span></div>
-      <div className="map-node map-notify"><Icon name="bell" size={22} /><div><strong>실시간 알림</strong><span>SSE / heartbeat</span></div></div>
-    </div>
-    <div className="visual-caption"><span>담당 기능 흐름도</span><span>스터디, 커뮤니티, 알림</span></div>
+    <dl className="ait-capabilities">
+      <div><dt>스터디 채팅</dt><dd>STOMP / WebSocket 연결 인증과 그룹 멤버 권한 확인</dd></div>
+      <div><dt>서비스 API</dt><dd>Spring Boot로 스터디와 커뮤니티 기능 구현</dd></div>
+      <div><dt>실시간 알림</dt><dd>SSE 알림 전송과 heartbeat 연결 관리</dd></div>
+    </dl>
+    <div className="visual-caption"><span>담당 기능과 역할</span><span>스터디, 커뮤니티, 알림</span></div>
   </div>
 }
 
 function StreamDiagram() {
   return <div className="project-visual onework-visual" aria-label="RTSP 카메라에서 MediaMTX를 거쳐 WebRTC WHEP로 영상 전달">
-    <div className="stream-map">
-      <div className="stream-node"><div className="stream-icon"><Icon name="camera" size={30} /></div><strong>카메라</strong><span>RTSP</span></div>
-      <div className="stream-line"><span /></div>
-      <div className="stream-node stream-center"><div className="stream-icon"><Icon name="layers" size={30} /></div><strong>MediaMTX</strong><span>WebRTC WHEP</span></div>
-      <div className="stream-line"><span /></div>
-      <div className="stream-node"><div className="stream-icon"><Icon name="play" size={29} /></div><strong>관제 화면</strong><span>HTML 영상 창</span></div>
-    </div>
+    <ProcessSteps label="영상 전달 순서" className="stream-steps" steps={[
+      { title: '카메라', note: 'RTSP 영상 송출' },
+      { title: 'MediaMTX', note: 'WebRTC WHEP로 중계' },
+      { title: '관제 화면', note: 'HTML 영상 창에서 재생' },
+    ]} />
     <div className="visual-caption"><span>영상 전달 구조</span><span>HTTPS 통합 문제는 미해결</span></div>
   </div>
 }
@@ -78,19 +82,27 @@ function StreamDiagram() {
 function SteamVisual() {
   return <div className="steam-visual" aria-label="게임 라이브러리를 폴더로 정리해 공유하는 서비스 개념도">
     <div className="folder-tree">
-      <div className="tree-root"><span className="folder-shape" /><strong>내 게임 라이브러리</strong></div>
-      <div className="tree-children"><span><Icon name="folder" /> 함께 할 게임</span><span><Icon name="folder" /> 다음에 할 게임</span></div>
-      <div className="tree-share"><Icon name="external" size={17} /><span>쇼케이스 링크로 공유</span></div>
+      <ul className="library-tree" aria-label="폴더 구성 예시"><li>
+        <div className="tree-root"><span className="folder-shape" /><strong>내 게임 라이브러리</strong></div>
+        <ul className="tree-children"><li><Icon name="folder" /> 함께 할 게임</li><li><Icon name="folder" /> 다음에 할 게임</li></ul>
+      </li></ul>
+      <p className="tree-share">쇼케이스 링크로 공유</p>
     </div>
     <span className="steam-visual-caption">서비스 개념도</span>
   </div>
 }
 
 function ProjectTile({ project }: { project: Project }) {
-  return <li><a className="project-tile" href={'#project/' + project.id} aria-label={project.name + ' 자세히 보기'} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">
-    <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={60} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
-    <div className="project-tile-copy"><h3>{project.name}</h3><p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p></div>
-  </a></li>
+  const preview = projectPreviews[project.id]
+  return <li className="project-showcase-row">
+    <a className="project-showcase-card" href={'#project/' + project.id} aria-label={project.name + ' 자세히 보기'} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">
+      <div className="project-tile">
+        <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
+        <div className="project-tile-copy"><h3>{project.name}</h3><p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p></div>
+      </div>
+      <div className="project-preview"><img src={preview.src} width={preview.width} height={preview.height} alt={preview.alt} loading="lazy" decoding="async" /></div>
+    </a>
+  </li>
 }
 
 function SteamAiFeedbackSection() {
@@ -111,45 +123,43 @@ function HomePage() {
       </div>
     </section>
     <section className="projects-section container section-space" id="projects" aria-labelledby="projects-title">
-      <div className="section-heading"><div><h2 id="projects-title">프로젝트</h2><p>프로젝트를 누르면 자세한 기록이 열립니다.</p></div></div>
-      <ul className="project-tile-grid">{projects.map(project => <ProjectTile key={project.id} project={project} />)}</ul>
+      <div className="section-heading"><div><h2 id="projects-title">프로젝트</h2><p>카드를 누르면 자세한 기록이 열립니다.</p></div></div>
+      <ul className="project-showcase">{projects.map(project => <ProjectTile key={project.id} project={project} />)}</ul>
     </section>
     <section className="approach-section section-space" id="approach" aria-labelledby="approach-title">
       <div className="container">
         <div className="section-heading"><div><h2 id="approach-title">이렇게 일합니다</h2><p>구현에서 멈추지 않고, 확인한 결과를 남깁니다.</p></div></div>
         <div className="approach-grid">
           <article>
-            <h3>숫자로 문제를 좁힙니다</h3>
-            <p>nGrinder로 조회 API의 응답 시간을 비교했습니다. 채팅 이력의 조인 전략을 조정하고 전후 측정 기록을 남겼습니다.</p>
+            <div className="approach-copy"><h3>테스트로 결과를 확인합니다</h3>
+            <p>조회 성능은 nGrinder로 비교하고, 동시 요청의 데이터 정합성은 통합 테스트로 확인했습니다. 변경 전후의 결과와 검증 조건을 함께 남겼습니다.</p></div>
             <div className="approach-evidence">
-              <dl className="approach-measure" aria-label="채팅 조회 평균 응답 시간 비교">
-                <div><dt>개선 전</dt><dd>1,804.71 <span>ms</span></dd></div>
-                <div><dt>개선 후</dt><dd>131.59 <span>ms</span></dd></div>
-              </dl>
-              <p className="approach-note">개인 검증 환경, Vuser 50, 1분</p>
+              <div className="approach-test"><h4>채팅 조회 응답 시간</h4>
+                <dl className="approach-measure" aria-label="채팅 조회 평균 응답 시간 비교">
+                  <div><dt>개선 전</dt><dd>1,804.71 <span>ms</span></dd></div>
+                  <div><dt>개선 후</dt><dd>131.59 <span>ms</span></dd></div>
+                </dl>
+                <p className="approach-note">개인 검증 환경, Vuser 50, 1분</p>
+                <a className="approach-link" href="#project/ait/benchmarks">측정 조건과 결과 보기</a>
+              </div>
+              <div className="approach-test"><h4>좋아요 동시 갱신 통합 테스트</h4>
+                <dl className="approach-test-conditions" aria-label="좋아요 동시 갱신 검증 결과">
+                  <div><dt>실행 조건</dt><dd>요청 100건 / 작업 스레드 32개</dd></div>
+                  <div><dt>확인 결과</dt><dd>최종 좋아요 100개</dd></div>
+                </dl>
+                <p className="approach-note">프로젝트 종료 후 개인 개선 / 팀 배포 미반영</p>
+                <a className="approach-link" href="#project/ait/concurrency">동시성 검증 기록 보기</a>
+              </div>
             </div>
-            <a className="approach-link" href="#project/ait/benchmarks">측정 조건과 결과 보기</a>
           </article>
           <article>
-            <h3>연결의 경계를 확인합니다</h3>
-            <p>실시간 채팅에서 연결 인증과 메시지 전송 권한을 나눠 확인했습니다. 메시지 저장과 그룹별 전달을 연결했습니다.</p>
-            <div className="approach-evidence">
-              <dl className="approach-flow" aria-label="스터디 채팅의 권한 확인 순서">
-                <div><dt>연결할 때</dt><dd>JWT 검증</dd></div>
-                <div><dt>전송하기 전</dt><dd>그룹 멤버 확인</dd></div>
-                <div><dt>전달할 때</dt><dd>저장 후 그룹에 발행</dd></div>
-              </dl>
-            </div>
-            <a className="approach-link" href="#project/ait/troubleshooting">채팅 구현과 검증 보기</a>
-          </article>
-          <article>
-            <h3>팀이 따라 할 수 있게 씁니다</h3>
-            <p>Git Flow를 제안하고, Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p>
+            <div className="approach-copy"><h3>팀이 따라 할 수 있게 씁니다</h3>
+            <p>Git Flow를 제안하고, Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p></div>
             <div className="approach-evidence">
               <pre className="approach-code" aria-label="Git 작업 가이드의 브랜치 시작 예시"><code>{'git switch develop\ngit pull origin develop\ngit checkout -b feature/기능이름'}</code></pre>
               <p className="approach-note">공유한 가이드의 작업 시작 순서</p>
+              <a className="approach-link" href="#project/ait/evidence">협업 가이드 근거 보기</a>
             </div>
-            <a className="approach-link" href="#project/ait/evidence">협업 가이드 근거 보기</a>
           </article>
         </div>
         <AiCapabilitiesSection />
@@ -159,7 +169,7 @@ function HomePage() {
       <div className="about-intro"><img className="profile-portrait" src={assets.portrait} alt="김민범 프로필 사진" width="569" height="759" loading="lazy" decoding="async" /><h2 id="about-title">백엔드를 중심으로,<br />필요한 연결까지.</h2><p>API와 데이터를 다루고,<br />실시간 연결과 화면 구현으로<br />서비스의 흐름을 이해합니다.</p></div>
       <div className="about-content"><SkillsSection /><div className="background"><h3>학력과 활동</h3><div className="background-item"><span>2026.01 –</span><div><strong>삼성청년SW AI 아카데미 15기</strong><p>SSAFY 교육 및 팀 프로젝트</p></div></div><div className="background-item"><span><time dateTime="2020-02">2020.02 입학</time><br /><time dateTime="2026-02">2026.02 졸업</time></span><div><strong>국립금오공과대학교</strong><p>컴퓨터공학과 학사</p></div></div><div className="certifications"><span>자격</span><p>SQLD (<time dateTime="2026-03">2026.03</time>)<br />정보처리기사 (<time dateTime="2025-12">2025.12</time>)</p></div></div></div>
     </section>
-    <section className="contact-section container" aria-labelledby="contact-title"><div className="contact-panel"><div><h2 id="contact-title">함께 만들 서비스에 대해<br />이야기하고 싶습니다.</h2></div><div className="contact-links"><a href={'mailto:' + profile.email}><Icon name="mail" size={22} /><span>{profile.email}</span><Icon name="arrow" size={21} /></a><ExternalLink href={profile.github}><Icon name="github" size={21} /> GitHub</ExternalLink></div></div></section>
+    <section className="contact-section container" aria-labelledby="contact-title"><div className="contact-panel"><div><h2 id="contact-title">함께 만들 서비스에 대해<br />이야기하고 싶습니다.</h2></div><div className="contact-links"><a href={'mailto:' + profile.email}><Icon name="mail" size={22} /><span>{profile.email}</span></a><ExternalLink href={profile.github}><Icon name="github" size={21} /> GitHub</ExternalLink></div></div></section>
   </>
 }
 
@@ -168,16 +178,19 @@ function BenchmarkSection() {
     <h2 id="benchmarks-title">nGrinder 성능 측정 기록</h2>
     <p>개발 및 검증 환경에서 기록한 전후 결과입니다. 조건별 수치와 적용한 변경을 함께 읽을 수 있도록 정리했습니다.</p>
     <div className="benchmark-wrap" tabIndex={0} role="region" aria-label="nGrinder 결과 표, 좁은 화면에서 가로 스크롤 가능">
-      <table className="benchmark-table"><caption>Ait의 개발 및 검증 환경 측정</caption><thead><tr><th scope="col">대상 / 기록된 조건</th><th scope="col">평균 응답 전 → 후 (ms)</th><th scope="col">TPS 전 → 후</th></tr></thead><tbody>{benchmarks.map(row => <tr key={row.name}><th scope="row">{row.name}<small>{row.condition}</small></th><td>{row.before}<span> → </span><strong>{row.after}</strong></td><td>{row.tps}</td></tr>)}</tbody></table>
+      <table className="benchmark-table"><caption>Ait의 개발 및 검증 환경 측정</caption><colgroup><col /></colgroup><colgroup span={2} /><colgroup span={2} /><thead>
+        <tr><th scope="col" rowSpan={2}>대상 / 기록된 조건</th><th scope="colgroup" colSpan={2}>평균 응답 시간 (ms)</th><th scope="colgroup" colSpan={2}>TPS</th></tr>
+        <tr><th scope="col">변경 전</th><th scope="col">변경 후</th><th scope="col">변경 전</th><th scope="col">변경 후</th></tr>
+      </thead><tbody>{benchmarks.map(row => <tr key={row.name}><th scope="row">{row.name}<small>{row.condition}</small></th><td>{row.before}</td><td><strong>{row.after}</strong></td><td>{row.tpsBefore}</td><td><strong>{row.tpsAfter}</strong></td></tr>)}</tbody></table>
     </div>
     <p className="detail-note">여러 설정과 쿼리를 함께 조정한 결과입니다. 특정 변경 하나의 효과나 실제 운영 트래픽이나 팀 배포 버전의 성능으로 해석하지 않습니다.</p>
-    <div className="detail-callout"><h3>LIKE 검색은 병목을 확인한 대조 실험</h3><p>LIKE 검색 조건을 일시적으로 제외했을 때 TPS 129.3 → 1,276.1, 평균 응답 407ms → 38ms를 관찰했습니다. 기능 자체를 제외한 비교로, 검색 기능을 유지한 상태의 개선 결과와 구분합니다.</p></div>
+    <div className="detail-callout"><h3>LIKE 검색은 병목을 확인한 대조 실험</h3><p>LIKE 검색 조건을 일시적으로 제외했을 때 TPS는 129.3에서 1,276.1로, 평균 응답 시간은 407ms에서 38ms로 변했습니다. 기능 자체를 제외한 비교로, 검색 기능을 유지한 상태의 개선 결과와 구분합니다.</p></div>
   </section>
 }
 
 function TechnologyComparisonDetails({ comparison }: { comparison: TechnologyComparison }) {
   return <details className="technology-disclosure">
-    <summary>{comparison.comparisonTitle}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+    <summary>{comparison.comparisonTitle}<Chevron /></summary>
     <div className="technology-comparison-content">
       {comparison.comparisonNote && <p className="technology-comparison-note">{comparison.comparisonNote}</p>}
       <table className="technology-comparison">
@@ -201,7 +214,7 @@ function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
     <p className="technology-choice-implementation">{decision.implementation}</p>
     {decision.pipeline && <p className="technology-pipeline" aria-label="영상 전달 경로">{decision.pipeline}</p>}
     {decision.selectionReasons && <details className="technology-disclosure">
-      <summary>선택 이유 자세히 보기<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+      <summary>선택 이유 자세히 보기<Chevron /></summary>
       <dl className="technology-reasons">{decision.selectionReasons.map(reason => <div key={reason.title}>
         <dt>{reason.title}</dt><dd>{reason.description}{reason.reference && <div className="technology-reference"><ExternalLink href={reason.reference.url}>{reason.reference.label}</ExternalLink></div>}</dd>
       </div>)}</dl>
@@ -210,7 +223,7 @@ function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
     {decision.additionalComparisons?.map(comparison => <TechnologyComparisonDetails key={comparison.comparisonTitle} comparison={comparison} />)}
     <p className="technology-choice-limitation"><strong>한계와 확인 범위</strong>{decision.limitation}</p>
     <details className="technology-disclosure technology-implementation">
-      <summary>사용 기술과 적용 내용<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.65" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+      <summary>사용 기술과 적용 내용<Chevron /></summary>
       <dl className="case-technology-list">{detail.techChoices.map(choice => <div key={choice.technology}><dt>{choice.technology}</dt><dd>{choice.use}</dd></div>)}</dl>
     </details>
   </div>
@@ -243,13 +256,13 @@ function ProjectPage({ project }: { project: Project }) {
         <section className="detail-section" id="case-scope" aria-labelledby="scope-title"><h2 id="scope-title">직접 구현한 범위</h2><div className="contributions">{project.contributions.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>)}</div></section>
         <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} />{project.id === 'ait' ? <AitVisual /> : project.id === 'onework' ? <StreamDiagram /> : <SteamVisual />}</section>
         {project.id === 'steamfolder' && <SteamAiFeedbackSection />}
-        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
+        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
         {project.id === 'ait' && <BenchmarkSection />}
         <section className="detail-section" id="case-results" aria-labelledby="results-title"><h2 id="results-title">결과와 현재 상태</h2><ul className="case-result-list">{detail.results.map(result => <li key={result}><Icon name="check" size={18} /><span>{result}</span></li>)}</ul></section>
         <section className="detail-section detail-links" id="case-evidence" aria-labelledby="evidence-title"><h2 id="evidence-title">코드와 근거</h2><dl className="case-evidence-list">{detail.evidence.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl>{project.links.map(link => <ExternalLink key={link.url} href={link.url}>{link.label}</ExternalLink>)}</section>
       </div>
     </div>
-    <section className="case-next" aria-labelledby="next-title"><h2 id="next-title">다른 프로젝트도 살펴보기</h2><div className="case-next-grid">{projects.filter(item => item.id !== project.id).map(item => <a className="next-project-link" key={item.id} href={'#project/' + item.id}><strong>{item.name}</strong><span>{item.subtitle}</span><Icon name="arrow" size={20} /></a>)}</div></section>
+    <section className="case-next" aria-labelledby="next-title"><h2 id="next-title">다른 프로젝트도 살펴보기</h2><div className="case-next-grid">{projects.filter(item => item.id !== project.id).map(item => <a className="next-project-link" key={item.id} href={'#project/' + item.id}><strong>{item.name}</strong><span>{item.subtitle}</span></a>)}</div></section>
   </article>
 }
 
@@ -432,7 +445,7 @@ export default function App() {
     <a className="skip-link" href="#main">본문으로 이동</a>
     <SiteHeader modalOpen={modalOpen} />
     <main id="main" tabIndex={-1}><HomePage /></main>
-    <footer className="container site-footer"><span>© {new Date().getFullYear()} {profile.name}</span><span>만들고, 확인하고, 기록합니다.</span><a href="#" onClick={event => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }) }}>맨 위로<Icon name="arrow" size={16} className="up-arrow" /></a></footer>
+    <footer className="container site-footer"><span>© {new Date().getFullYear()} {profile.name}</span><span>만들고, 확인하고, 기록합니다.</span><a href="#" onClick={event => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }) }}>맨 위로</a></footer>
     {route.kind !== 'home' && <ProjectModal route={route} onClose={closeProject} />}
   </>
 }

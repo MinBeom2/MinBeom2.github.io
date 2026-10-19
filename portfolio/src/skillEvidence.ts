@@ -107,7 +107,7 @@ export const skills: SkillEvidence[] = [
     name: "MediaMTX, RTSP, WebRTC",
     mark: "RTC",
     summary: "RTSP 영상을 WebRTC, HLS로 전달",
-    evidence: "ONEWORK에서 노트북 웹캠을 설비 CCTV로 활용해 RTSP → MediaMTX → WebRTC WHEP, HLS의 영상 흐름을 구성했습니다. Spring Boot 카메라 제어 API와 설비별 스트림을 연결했습니다. fMP4 녹화는 서버에서 1시간 분할, 24시간 보관으로 설정하고 외부 저장 경로에 마운트했으며 로컬에는 1분 분할 설정을 적용했습니다.",
+    evidence: "ONEWORK에서 노트북 웹캠을 설비 CCTV로 활용해 RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP, HLS로 전달하는 흐름을 구성했습니다. Spring Boot 카메라 제어 API와 설비별 스트림을 연결했습니다. fMP4 녹화는 서버에서 1시간 분할, 24시간 보관으로 설정하고 외부 저장 경로에 마운트했으며 로컬에는 1분 분할 설정을 적용했습니다.",
     projects: [onework],
   },
   {
@@ -131,7 +131,7 @@ export const skills: SkillEvidence[] = [
     name: "nGrinder",
     mark: "LOAD",
     summary: "조건을 명시한 조회 API 전후 부하 비교",
-    evidence: "Ait의 개인 검증 환경에서 Vuser 50, 1분 부하 실험으로 조회 API의 전후 성능을 비교했습니다. 기존 커서 기반 채팅 조회의 조인 전략을 조정한 뒤 평균 응답 시간 1,804.71ms → 131.59ms를 기록했고 댓글 조회의 복합 인덱스 적용 전후 비교에서는 TPS 28.90 → 368.13을 확인했습니다.",
+    evidence: "Ait의 개인 검증 환경에서 Vuser 50, 1분 부하 실험으로 조회 API의 전후 성능을 비교했습니다. 기존 커서 기반 채팅 조회의 조인 전략을 조정한 뒤 평균 응답 시간이 1,804.71ms에서 131.59ms로 줄어든 것을 기록했고 댓글 조회의 복합 인덱스 적용 전후 비교에서는 TPS가 28.90에서 368.13으로 변한 것을 확인했습니다.",
     projects: [{ ...ait, section: 'benchmarks' }],
   },
   {

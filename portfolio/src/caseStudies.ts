@@ -2,6 +2,7 @@ import { aiFeedback } from './aiCapabilities'
 import type { ProjectId } from './content'
 
 export type CaseStudy = {
+  id?: string
   title: string
   problem: string
   decision: string
@@ -91,6 +92,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         note: '여러 변경을 함께 적용한 결과입니다. LIKE 검색 조건을 제외한 실험은 병목을 진단하기 위한 비교이며, 검색 기능을 유지한 개선 결과로 제시하지 않습니다.',
       },
       {
+        id: 'concurrency',
         title: '프로젝트 종료 후 좋아요 수 정합성 개선',
         problem: '팀 프로젝트 종료 후 개인 부하 테스트에서 같은 게시글의 좋아요 수가 정확히 증가하지 않는 문제를 확인했습니다. 별도 개인 브랜치에서 동시 갱신 처리를 개선했습니다.',
         decision: '좋아요 추가하거나 취소할 때 게시글을 비관적 쓰기 락으로 조회하도록 변경했습니다. 사용자 100명의 요청을 32개 작업 스레드로 실행하는 통합 테스트를 작성했습니다.',
@@ -123,7 +125,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       title: 'MediaMTX로 중계하고 WebRTC로 재생',
       background: 'RTSP 카메라 영상을 브라우저에서 실시간으로 보여주는 중계 서버가 필요했습니다. MediaMTX는 RTSP 입력, WebRTC 재생, 설비별 스트림 구분과 녹화를 비교적 단순한 구성으로 충족할 수 있어 프로젝트에 적합했습니다.',
       implementation: '영상 인코딩은 FFmpeg, 중계는 MediaMTX, 최종 재생은 브라우저가 맡습니다. WebGL에서는 Unity의 설비 CCTV 버튼이 JavaScript 브릿지를 호출하고, 같은 웹페이지에 겹쳐 놓은 HTML 영상 창에서 재생합니다.',
-      pipeline: '웹캠 → FFmpeg(H.264) → RTSP → MediaMTX → WebRTC/WHEP → 웹페이지 영상 창',
+      pipeline: '웹캠 영상을 FFmpeg(H.264)로 인코딩해 RTSP로 송출하고, MediaMTX에서 WebRTC/WHEP로 중계해 웹페이지 영상 창에서 재생합니다.',
       selectionReasons: [
         { title: 'RTSP 입력에서 브라우저 재생까지 연결', description: 'RTSP 입력과 WebRTC 출력을 함께 지원하므로 중계 기능을 직접 개발하는 범위를 줄일 수 있었습니다. 코덱을 바꿔야 할 때는 MediaMTX에 FFmpeg나 GStreamer를 함께 사용해야 합니다.', reference: { label: 'MediaMTX의 재인코딩 설명', url: 'https://mediamtx.org/docs/features/remuxing-reencoding-compression' } },
         { title: 'Docker와 YAML로 실행 구성', description: 'MediaMTX는 별도 런타임 의존성이 없는 단일 실행 파일로 제공됩니다. 프로젝트에서는 Docker와 YAML 설정으로 실행해 로컬에서도 같은 영상 전달 경로를 구성했습니다.' },
@@ -170,7 +172,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         title: '카메라에서 관제 화면까지 영상 전달',
         problem: '카메라 영상을 브라우저와 Unity 디지털 트윈에서 확인할 수 있도록 연결해야 했습니다. 제 담당 범위는 영상 송출 경로와 카메라 관제 API였습니다.',
         decision: 'RTSP 송출 스크립트와 MediaMTX를 구성하고 WebRTC WHEP로 뷰어에 전달하도록 구현했습니다. Spring Boot 카메라 API와 테스트 뷰어도 작성했습니다.',
-        outcome: '카메라 송출, 스트림 중계와 관제 조회에 필요한 구성 요소를 구현했습니다. RTSP → MediaMTX → WebRTC WHEP 경로를 문서로 남겼습니다.',
+        outcome: '카메라 송출, 스트림 중계와 관제 조회에 필요한 구성 요소를 구현했습니다. RTSP 입력, MediaMTX 중계와 WebRTC WHEP 재생 경로를 문서로 남겼습니다.',
         note: '팀의 3D 디지털 트윈과 전체 데이터 처리 파이프라인을 모두 개인 기여로 제시하지 않습니다. 영상 지연시간은 직접 측정하지 않았습니다.',
       },
       {

@@ -1,24 +1,20 @@
 import type { ReactNode } from 'react'
 import { aiFeedback, aiLearning, aiPractice, aiPresentation } from './aiCapabilities'
 import './ai-capabilities.css'
-
-function DisclosureChevron() {
-  return <svg className="ai-disclosure-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m7 10 5 5 5-5" /></svg>
-}
+import ProcessSteps from './ProcessSteps'
+import Chevron from './Chevron'
 
 function CaseDisclosure({ label, children }: { label: string; children: ReactNode }) {
   return <details className="ai-case-details">
-    <summary><span>{label}</span><DisclosureChevron /></summary>
+    <summary><span>{label}</span><Chevron className="ai-disclosure-icon" /></summary>
     <div className="ai-case-explanation">{children}</div>
   </details>
 }
 
 function FeedbackFlow() {
   return <figure className="ai-case-visual ai-feedback-visual" aria-label="피드백을 저장한 뒤 AI로 분류하고 중요도에 따라 알림을 나누는 흐름">
-    <ol className="ai-feedback-stages">
-      {aiPresentation.feedbackStages.map(stage => <li key={stage.title}><strong>{stage.title}</strong><span>{stage.note}</span></li>)}
-    </ol>
-    <dl className="ai-feedback-branches">
+    <ProcessSteps steps={aiPresentation.feedbackStages} label="피드백 처리 순서" className="ai-feedback-stages" />
+    <dl className="ai-feedback-branches" aria-label="AI 분류 결과별 알림">
       {aiPresentation.branches.map(branch => <div key={branch.priority}>
         <dt>{branch.priority}</dt>
         <dd><strong>{branch.title}</strong><span>{branch.note}</span></dd>
@@ -29,9 +25,7 @@ function FeedbackFlow() {
 
 function LearningTimeline() {
   return <figure className="ai-case-visual ai-learning-visual" aria-label="직접 풀이, AI 리뷰, 기록 이후의 복습 일정">
-    <ol className="ai-learning-stages">
-      {aiPresentation.learningStages.map(stage => <li key={stage.title}><strong>{stage.title}</strong><span>{stage.note}</span></li>)}
-    </ol>
+    <ProcessSteps steps={aiPresentation.learningStages} label="학습 진행 순서" className="ai-learning-stages" />
     <div className="ai-review-schedule">
       <p>{aiPresentation.scheduleOrigin}</p>
       <ol className="ai-review-timeline" aria-label="풀이 완료일을 기준으로 한 복습 시점">
@@ -82,11 +76,9 @@ export default function AiCapabilitiesSection() {
       <p>{aiPractice.intro}</p>
     </header>
     <ul className="ai-review-criteria">
-      {aiPractice.reviews.map((review, index) => <li key={review.title}>
-        <details className="ai-criterion">
-          <summary><span>{aiPresentation.reviewLabels[index]}</span><DisclosureChevron /></summary>
-          <p>{review.description}</p>
-        </details>
+      {aiPractice.reviews.map((review, index) => <li className="ai-criterion" key={review.title}>
+        <h4>{aiPresentation.reviewLabels[index]}</h4>
+        <p>{review.description}</p>
       </li>)}
     </ul>
     <div className="ai-cases"><FeedbackCase /><LearningCase /></div>

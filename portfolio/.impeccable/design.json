@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-16T14:52:05.9383358+09:00",
+  "generatedAt": "2026-10-19T08:52:01.932Z",
   "title": "Design System: 김민범 포트폴리오",
   "extensions": {
     "colorMeta": {
@@ -253,6 +253,14 @@
       "island-mobile-label": {
         "purpose": "모바일 아일랜드 메뉴의 13px 글자.",
         "displayName": "모바일 메뉴"
+      },
+      "work-title": {
+        "displayName": "작업 방식 제목",
+        "purpose": "PC 24px, 모바일 22px. 행의 설명과 관련 근거를 짝짓는 제목."
+      },
+      "work-body": {
+        "displayName": "작업 방식 본문",
+        "purpose": "PC 18px, 모바일 16px, 줄높이 1.85. 코드와 조건은 14px이며 근거 값은 Manrope 36px."
       }
     },
     "shadows": [
@@ -268,7 +276,11 @@
       }
     ],
     "motion": [
-      {"name":"project-expand","value":"project-expand 220ms cubic-bezier(.16, 1, .3, 1)","purpose":"상세 모달을 scale(.94)·opacity .6에서 scale(1)·opacity 1로 연다. reduced motion에서는 animation 없음."},
+      {
+        "name": "project-expand",
+        "value": "project-expand 220ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "상세 모달을 scale(.94)·opacity .6에서 scale(1)·opacity 1로 연다. reduced motion에서는 animation 없음."
+      },
       {
         "name": "control-transition",
         "value": "background-color 160ms ease, color 160ms ease, border-color 160ms ease",
@@ -291,11 +303,11 @@
         "value": "600px"
       },
       {
-        "name": "stacked-about-max",
+        "name": "stacked-about-and-project-previews-max",
         "value": "820px"
       },
       {
-        "name": "stacked-projects-and-case-nav-max",
+        "name": "stacked-case-nav-max",
         "value": "960px"
       },
       {
@@ -305,6 +317,10 @@
       {
         "name": "wide-desktop-min",
         "value": "1600px"
+      },
+      {
+        "name": "wide-project-card-min",
+        "value": "1500px"
       }
     ]
   },
@@ -341,11 +357,12 @@
       "css": ".ds-island{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:348px;max-width:calc(100% - 40px);height:60px;padding:6px;box-sizing:border-box;border-radius:999px;background:var(--ink,#262626);color:var(--inverse-muted,#d4d4d4);box-shadow:0 12px 28px rgba(0,0,0,.14);font-family:\"Noto Sans KR Variable\",sans-serif;isolation:isolate}.ds-island a{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 12px;box-sizing:border-box;border-radius:999px;font-size:14px;font-weight:550;color:inherit;text-decoration:none;white-space:nowrap}.ds-island a[aria-current]{color:var(--ink,#262626);font-weight:650}.ds-island a:hover{color:var(--inverse,#ffffff)}.ds-island a[aria-current]:hover{color:var(--ink,#262626)}.ds-island a:focus-visible{outline:2px solid var(--inverse,#ffffff);outline-offset:3px}.ds-indicator{position:absolute;inset:6px auto 6px 6px;width:calc((100% - 12px)/3);border-radius:999px;background:var(--paper,#ffffff);transition:transform 240ms cubic-bezier(.22,1,.36,1),opacity 160ms ease}@media(max-width:600px){.ds-island{width:310px;height:56px}.ds-island a{min-height:44px;padding:8px;font-size:13px}}@media(prefers-reduced-motion:reduce){.ds-indicator{transition:none}}"
     },
     {
-      "name": "Project Tile",
+      "name": "Unified Project Card",
       "kind": "card",
-      "description": "184px 정사각 로고·이름 링크. 중간 폭 164px·모바일 최대 160px로 줄이며 선택하면 기존 상세 모달을 연다.",
-      "html": "<a class=\"ds-project-tile\" href=\"#project/steamfolder\" aria-label=\"SteamFolder 자세히 보기\" aria-haspopup=\"dialog\"><svg width=\"52\" height=\"52\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 7V5a2 2 0 0 1 2-2h5l3 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/></svg><h3>SteamFolder</h3></a>",
-      "css": ".ds-project-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;width:184px;max-width:100%;aspect-ratio:1;padding:24px 12px;border:1px solid var(--line,#d5d5d5);border-radius:14px;background:var(--paper,#ffffff);color:var(--ink,#262626);text-align:center;text-decoration:none;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease}.ds-project-tile h3{margin:0;font-family:var(--numeric,'Manrope Variable','Noto Sans KR Variable',sans-serif);font-size:18px;font-weight:750;line-height:1.5;letter-spacing:-.025em}.ds-project-tile:hover{background:var(--pale,#ebebeb);border-color:var(--control-line,#8a8a8a)}.ds-project-tile:focus-visible{outline:2px solid var(--ink,#262626);outline-offset:5px}@media(max-width:1100px){.ds-project-tile{width:164px;padding-block:20px;gap:16px}}@media(max-width:600px){.ds-project-tile{width:160px;gap:12px;padding:14px 8px;border-radius:12px}.ds-project-tile h3{font-size:16px}}@media(prefers-reduced-motion:reduce){.ds-project-tile{transition:none}}"
+      "description": "홈 전체와 같은 중간 너비의 단일 카드. 사진 전체와 기존 크기를 보존하고 늘어난 폭을 왼쪽, 가운데와 오른쪽 여백에 고르게 나눈다. 좁은 화면에서는 최대 606px의 한 열을 가운데 정렬하며 어디를 눌러도 같은 상세 모달이 열린다.",
+      "html": "<main id=\"main\"><section class=\"projects-section container\" aria-label=\"프로젝트\"><a class=\"project-showcase-card\" href=\"#project/ait\" aria-label=\"Ait 자세히 보기\" aria-describedby=\"ds-project-overview\" aria-haspopup=\"dialog\"><div class=\"project-tile\"><span class=\"project-tile-mark\" aria-hidden=\"true\"><img class=\"project-tile-logo\" src=\"/assets/projects/ait-logo.png\" alt=\"\" width=\"512\" height=\"512\"></span><div class=\"project-tile-copy\"><h3>Ait</h3><p class=\"project-tile-description\" id=\"ds-project-overview\">AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼입니다.</p></div></div><div class=\"project-preview\"><img src=\"/assets/projects/ait-landing.png\" width=\"2830\" height=\"1446\" alt=\"Ait 랜딩페이지\"></div></a></section></main>",
+      "css": ":root{\n  --max-width: 1120px;\n  --page-inset: 112px;\n  --compact-project-width: 900px;\n  --home-max-width: calc((min(clamp(1120px, 75vw, 1600px), calc(100% - var(--page-inset))) + min(var(--compact-project-width), calc(100% - var(--page-inset)))) / 2);\n}\n.container { max-width: var(--max-width); width: calc(100% - var(--page-inset)); margin-inline: auto; }\n#main > .container, .approach-section > .container, .site-footer { max-width: var(--home-max-width); }\n.project-showcase-card { display: flex; justify-content: space-evenly; gap: 16px; padding: 12px 16px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }\r\n.project-showcase-card:hover { border-color: var(--control-line); }\r\n.project-tile { display: flex; flex: 0 1 calc(850px / 3); flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-width: 0; padding-block: 4px; text-align: center; }\r\n.project-tile-mark { display: flex; align-items: center; justify-content: center; width: 112px; max-width: 100%; height: 64px; color: var(--ink); }\r\n.project-tile-logo { width: 64px; height: 64px; object-fit: contain; }\r\n.project-tile-logo-onework { width: 112px; max-width: 100%; }\r\n.project-tile-copy { width: 100%; }\r\n.project-tile-description { max-width: 30ch; margin: 8px auto 0; color: var(--muted); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }\r\n.project-tile h3 { font-family: var(--numeric); font-size: 20px; font-weight: 750; line-height: 1.5; letter-spacing: -.025em; }\r\n.project-preview { flex: 0 1 calc(1700px / 3); min-width: 0; align-self: center; }\r\n.project-preview img { display: block; width: 100%; height: auto; object-fit: contain; }\r\n\n@media (min-width: 1500px) {\n  .project-tile-mark { width: 128px; height: 80px; }\n  .project-tile-logo { width: 80px; height: 80px; }\n  .project-tile-logo-onework { width: 128px; }\n  .project-tile h3 { font-size: 22px; }\n  .project-tile-description { max-width: 34ch; font-size: 16px; }\n}\n@media (max-width: 1100px) {\n  :root { --page-inset: 80px; }\n}\n@media (max-width: 820px) {\n  :root { --page-inset: 48px; --compact-project-width: 640px; }\n  .project-preview-image { height: 300px; }\n  .project-showcase-card { display: grid; grid-template-columns: minmax(0, 606px); justify-content: center; padding: 16px; }\n  .project-tile { display: grid; grid-template-columns: 80px minmax(0, 1fr); padding: 0; text-align: left; }\n  .project-tile-mark { width: 80px; }\n  .project-tile-description { max-width: 44ch; margin: 8px 0 0; }\n}\n@media (max-width: 600px) {\n  :root { --page-inset: 40px; }\n  .project-showcase-card { border-radius: 12px; }\n  .project-tile { grid-template-columns: 60px minmax(0, 1fr); gap: 12px; }\n  .project-tile-mark { width: 60px; height: 48px; }\n  .project-tile-logo { width: 48px; height: 48px; }\n  .project-tile-logo-onework { width: 60px; }\n  .project-tile-copy { display: contents; }\n  .project-tile h3 { grid-column: 2; grid-row: 1; font-size: 20px; }\n  .project-tile-description { grid-column: 1 / -1; margin: 0; max-width: none; }\n  .project-preview-image { height: auto; max-height: 320px; }\n}\n.project-showcase-card{font-family:\"Noto Sans KR Variable\",sans-serif;color:var(--ink,#262626);text-decoration:none}.project-showcase-card:focus-visible{outline:2px solid var(--ink,#262626);outline-offset:5px}",
+      "refersTo": "project-overview-card"
     },
     {
       "name": "Detail Callout",
@@ -353,6 +370,20 @@
       "description": "실험의 해석 조건을 설명하는 상세 주석.",
       "html": "<aside class=\"ds-callout\"><h3>LIKE 검색은 병목을 확인한 대조 실험</h3><p>기능 자체를 제외한 비교로, 검색 기능을 유지한 상태의 개선 결과와 구분합니다.</p></aside>",
       "css": ".ds-callout{padding:22px 24px;background:#e7e7e7;border-radius:10px;color:var(--ink,#262626);font-family:'Noto Sans KR Variable',sans-serif;line-height:1.8}.ds-callout h3{margin:0 0 8px;font-size:16px;font-weight:650;line-height:1.5;letter-spacing:-.02em}.ds-callout p{margin:8px 0 0;color:var(--muted,#595959);font-size:15px;line-height:1.95;word-break:keep-all;overflow-wrap:anywhere}@media(max-width:600px){.ds-callout{padding:20px}.ds-callout p{font-size:14px;line-height:1.9}}"
+    },
+    {
+      "name": "Work Evidence Row",
+      "kind": "section",
+      "description": "현재 검증과 협업 두 행. 검증에는 nGrinder와 개인 개선 브랜치의 동시성 검증을 함께 표시한다. 실제 사용자 피드백 개선은 배포 후 추가한다.",
+      "html": "<div class=\"approach-grid\">\r\n          <article>\r\n            <div class=\"approach-copy\"><h3>테스트로 결과를 확인합니다</h3>\r\n            <p>조회 성능은 nGrinder로 비교하고, 동시 요청의 데이터 정합성은 통합 테스트로 확인했습니다. 변경 전후의 결과와 검증 조건을 함께 남겼습니다.</p></div>\r\n            <div class=\"approach-evidence\">\r\n              <div class=\"approach-test\"><h4>채팅 조회 응답 시간</h4>\r\n                <dl class=\"approach-measure\" aria-label=\"채팅 조회 평균 응답 시간 비교\">\r\n                  <div><dt>개선 전</dt><dd>1,804.71 <span>ms</span></dd></div>\r\n                  <div><dt>개선 후</dt><dd>131.59 <span>ms</span></dd></div>\r\n                </dl>\r\n                <p class=\"approach-note\">개인 검증 환경, Vuser 50, 1분</p>\r\n                <a class=\"approach-link\" href=\"#project/ait/benchmarks\">측정 조건과 결과 보기</a>\r\n              </div>\r\n              <div class=\"approach-test\"><h4>좋아요 동시 갱신 통합 테스트</h4>\r\n                <dl class=\"approach-test-conditions\" aria-label=\"좋아요 동시 갱신 검증 결과\">\r\n                  <div><dt>실행 조건</dt><dd>요청 100건 / 작업 스레드 32개</dd></div>\r\n                  <div><dt>확인 결과</dt><dd>최종 좋아요 100개</dd></div>\r\n                </dl>\r\n                <p class=\"approach-note\">프로젝트 종료 후 개인 개선 / 팀 배포 미반영</p>\r\n                <a class=\"approach-link\" href=\"#project/ait/concurrency\">동시성 검증 기록 보기</a>\r\n              </div>\r\n            </div>\r\n          </article></div>",
+      "css": "#main > .container, .approach-section > .container, .site-footer { max-width: var(--home-max-width); }\n.approach-section { background: var(--pale); min-height: 600px; padding-block: 80px 88px; }\n.approach-section .section-heading { margin-bottom: 32px; }\n.approach-grid { display: grid; grid-template-columns: 1fr; }\n.approach-grid > article { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 48px; min-width: 0; padding-block: 32px; border-top: 1px solid var(--line); }\n.approach-copy { min-width: 0; }\n.approach-grid h3 { font-size: 24px; font-weight: 650; letter-spacing: -.025em; line-height: 1.5; word-break: keep-all; }\n.approach-copy > p { max-width: 52ch; margin-top: 16px; color: var(--muted); font-size: 18px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }\n.approach-evidence { min-width: 0; width: 100%; }\n.approach-test + .approach-test { margin-top: 28px; }\n.approach-test > h4 { margin-bottom: 12px; font-size: 16px; font-weight: 600; line-height: 1.6; }\n.approach-test-conditions { display: grid; gap: 8px; }\n.approach-test-conditions > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: baseline; gap: 16px; }\n.approach-test-conditions dt { color: var(--muted); font-size: 14px; }\n.approach-test-conditions dd { font-size: 16px; font-weight: 600; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; }\n.approach-measure { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }\n.approach-measure dt { color: var(--muted); font-size: 14px; line-height: 1.6; }\n.approach-measure dd { margin-top: 8px; font-family: var(--numeric); font-size: 36px; font-weight: 650; letter-spacing: -.025em; line-height: 1.25; white-space: nowrap; font-variant-numeric: tabular-nums; }\n.approach-measure dd > span { font-size: 14px; font-weight: 500; letter-spacing: 0; }\n.approach-evidence .approach-note { margin-top: 16px; color: var(--quiet); font-size: 14px; line-height: 1.75; word-break: keep-all; }\n.approach-code { margin: 0; max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.9; color: var(--ink); }\n.approach-code code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }\n.approach-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 20px; padding-block: 8px; font-size: 16px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; }\n.approach-link:hover { color: var(--muted); }\n@media (max-width: 960px) {\r\n  .approach-section { min-height: 0; padding-block: 72px; }\r\n  .approach-grid > article { grid-template-columns: 1fr; gap: 24px; }\r\n  .approach-evidence { max-width: 480px; }\r\n}\n@media (max-width: 600px) {\r\n  .approach-section { padding-block: 64px; }\r\n  .approach-section .section-heading { margin-bottom: 28px; }\r\n  .approach-grid > article { padding-block: 28px; }\r\n  .approach-grid h3 { font-size: 22px; }\r\n  .approach-copy > p { font-size: 16px; }\r\n  .approach-measure dd { font-size: 32px; }\r\n}\n@media (max-width: 360px) {\r\n  .approach-measure dd { font-size: 28px; }\r\n  .approach-measure dd > span { display: block; margin-top: 4px; }\r\n}"
+    },
+    {
+      "name": "Process Steps",
+      "kind": "section",
+      "description": "실제 처리 순서에만 번호를 붙이는 목록. 조건 분기나 기능 역할은 별도 정의 목록으로 구분하며 연결선과 화살표는 사용하지 않는다.",
+      "html": "<ol class=\"process-steps\" aria-label=\"피드백 처리 순서\" role=\"list\"><li><span class=\"process-step-index\" aria-hidden=\"true\">1</span><div class=\"process-step-copy\"><strong>피드백 저장</strong><p>MySQL</p></div></li><li><span class=\"process-step-index\" aria-hidden=\"true\">2</span><div class=\"process-step-copy\"><strong>AI 분류</strong><p>커밋 후 비동기</p></div></li></ol>",
+      "css": ".process-steps { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }\n.process-steps > li { display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: baseline; gap: 12px; min-width: 0; }\n.process-step-index { color: var(--process-muted, var(--muted)); font-family: var(--numeric); font-size: 14px; font-weight: 600; line-height: 1.8; font-variant-numeric: tabular-nums; }\n.process-step-copy { min-width: 0; }\n.process-steps .process-step-copy > strong { display: block; color: inherit; font-size: 16px; font-weight: 650; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }\n.process-steps .process-step-copy > p { max-width: 72ch; margin-top: 4px; color: var(--process-muted, var(--muted)); font-size: 14px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }\n"
     }
   ],
   "narrative": {

@@ -1,0 +1,6 @@
+.process-steps { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.process-steps > li { display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: baseline; gap: 12px; min-width: 0; }
+.process-step-index { color: var(--process-muted, var(--muted)); font-family: var(--numeric); font-size: 14px; font-weight: 600; line-height: 1.8; font-variant-numeric: tabular-nums; }
+.process-step-copy { min-width: 0; }
+.process-steps .process-step-copy > strong { display: block; color: inherit; font-size: 16px; font-weight: 650; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+.process-steps .process-step-copy > p { max-width: 72ch; margin-top: 4px; color: var(--process-muted, var(--muted)); font-size: 14px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }

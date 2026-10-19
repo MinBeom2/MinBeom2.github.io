@@ -31,7 +31,7 @@
 .skill-copy > strong { font-family: var(--numeric); font-size: 16px; font-weight: 750; line-height: 1.5; }
 .skill-copy > span { font-size: 13px; color: var(--muted); line-height: 1.8; word-break: keep-all; }
 .skill-level { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 28px; padding: 2px 7px; background: var(--pale); color: var(--ink); font-size: 12px; font-weight: 600; border-radius: 4px; white-space: nowrap; }
-.skill-chevron { width: 100%; max-width: 18px; color: var(--quiet); transition: transform 180ms ease; }
+.skill-chevron { width: 16px; color: var(--quiet); transition: transform 180ms ease; }
 .skill-row[open] .skill-chevron { transform: rotate(180deg); }
 .skill-row[open] { background: var(--paper); }
 .skill-row[open] > summary { border-radius: 0; }

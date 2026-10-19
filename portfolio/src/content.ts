@@ -30,7 +30,7 @@ export const projects: Project[] = [
     id: 'ait',
     name: 'Ait',
     subtitle: 'AI 모의 면접과 화상 스터디를 한곳에',
-    overview: 'AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼입니다.',
+    overview: 'AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼',
     description: '이력서, 자기소개서, GitHub 자료를 활용한 면접 준비 플랫폼. 스터디 운영, 커뮤니티와 알림 백엔드를 담당했습니다.',
     period: '2026.07.06 – 08.10',
     team: 'SSAFY 6인 팀',
@@ -53,13 +53,13 @@ export const projects: Project[] = [
     id: 'onework',
     name: 'ONEWORK',
     subtitle: '예지보전과 품질 관제에 필요한 영상 연결',
-    overview: '설비 상태와 카메라 영상을 함께 확인하는 스마트 팩토리 관제 플랫폼입니다.',
+    overview: '설비 상태와 카메라 영상을 함께 확인하는 스마트 팩토리 관제 플랫폼',
     description: '스마트 팩토리 관제 플랫폼의 MediaMTX 중심 백엔드. RTSP 영상 송출, 카메라 API와 실행과 녹화 설정을 구현했습니다.',
     period: '2026.08.18 – 09.28',
     team: 'SSAFY 6인 팀',
     role: 'MediaMTX 중심 백엔드',
     tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
-    summary: ['RTSP → MediaMTX → WebRTC WHEP 영상 흐름 구성', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
+    summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
     problem: '설비의 상태와 카메라 영상을 브라우저 및 Unity 디지털 트윈에서 함께 확인하는 프로젝트입니다. 영상이 관제 화면에 전달되도록 송출 경로와 카메라 관리 API를 구성했습니다.',
     contributions: [
       { title: '영상 송출과 카메라 API', description: '웹캠이나 CCTV의 RTSP 영상을 MediaMTX로 받아 WebRTC WHEP로 전달하는 흐름을 구성했습니다. 송출 스크립트, MediaMTX 설정과 Spring Boot 카메라 API를 구현했습니다.' },
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     id: 'steamfolder',
     name: 'SteamFolder',
     subtitle: '내 게임 라이브러리를 정리하고 공유하기',
-    overview: '보유한 Steam 게임을 폴더로 정리하고 링크로 공유하는 서비스입니다.',
+    overview: '보유한 Steam 게임을 폴더로 정리하고 링크로 공유하는 서비스',
     description: '보유 게임을 폴더로 정리하고 쇼케이스 링크로 공유하는 개인 서비스. 프론트엔드와 백엔드를 함께 개발하고 있습니다.',
     period: '로컬 개발 중',
     team: '개인 프로젝트',
@@ -97,10 +97,10 @@ export const projects: Project[] = [
 ]
 
 export const benchmarks = [
-  { name: '알림 비동기 처리', condition: 'Vuser 150 / 외부 호출 0.5초 지연 가정', before: '1,402', after: '856', tps: '103 → 183' },
-  { name: '게시글 목록', condition: '게시글 7만 건 / Vuser 50', before: '26,010', after: '463.55', tps: '3.1 → 114.3' },
-  { name: '채팅 이력', condition: '채팅 5만 건 / Vuser 50', before: '1,804.71', after: '131.59', tps: '27.5 → 389.9' },
-  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613', after: '134', tps: '28.9 → 368.1' },
+  { name: '알림 비동기 처리', condition: 'Vuser 150 / 외부 호출 0.5초 지연 가정', before: '1,402', after: '856', tpsBefore: '103', tpsAfter: '183' },
+  { name: '게시글 목록', condition: '게시글 7만 건 / Vuser 50', before: '26,010', after: '463.55', tpsBefore: '3.1', tpsAfter: '114.3' },
+  { name: '채팅 이력', condition: '채팅 5만 건 / Vuser 50', before: '1,804.71', after: '131.59', tpsBefore: '27.5', tpsAfter: '389.9' },
+  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613', after: '134', tpsBefore: '28.9', tpsAfter: '368.1' },
 ]
 
 export const skillGroups = [
