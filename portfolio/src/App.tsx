@@ -114,6 +114,28 @@ function SteamAiFeedbackSection() {
 }
 
 function HomePage() {
+  useEffect(() => {
+    let transitionTimer = 0
+    const handleWheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0 || event.ctrlKey || window.scrollY > 4 || document.querySelector('.project-modal[open]')) return
+      const projects = document.getElementById('projects')
+      if (!projects) return
+
+      event.preventDefault()
+      if (transitionTimer) return
+
+      transitionTimer = window.setTimeout(() => { transitionTimer = 0 }, 900)
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+      projects.scrollIntoView({ block: 'start', behavior })
+    }
+
+    window.addEventListener('wheel', handleWheel, { passive: false })
+    return () => {
+      window.removeEventListener('wheel', handleWheel)
+      window.clearTimeout(transitionTimer)
+    }
+  }, [])
+
   return <>
     <section className="hero container" aria-labelledby="hero-title">
       <div className="hero-copy">
