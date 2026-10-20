@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { benchmarks, profile, projects } from './content'
 import SkillsSection from './SkillsSection'
-import type { Project } from './content'
+import type { Project, SourceLink } from './content'
 import { projectDetails } from './caseStudies'
 import type { ProjectDetail, TechnologyComparison } from './caseStudies'
 import { aiFeedback } from './aiCapabilities'
@@ -49,6 +49,11 @@ function Icon({ name, size = 20, className = '' }: { name: IconName; size?: numb
 
 function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}<Icon name="external" size={16} /><span className="sr-only"> (새 탭)</span></a>
+}
+
+function CaseSources({ links }: { links?: SourceLink[] }) {
+  if (!links?.length) return null
+  return <ul className="case-sources" aria-label="관련 자료">{links.map(link => <li key={link.url}><ExternalLink href={link.url}>{link.label}</ExternalLink></li>)}</ul>
 }
 
 function ProjectLogo({ project, className = 'project-logo' }: { project: Project; className?: string }) {
@@ -110,32 +115,11 @@ function SteamAiFeedbackSection() {
     <h2 id="ai-feedback-title">{aiFeedback.title}</h2>
     <p>{aiFeedback.intro}</p>
     <dl className="feedback-priority">{aiFeedback.priorities.map(priority => <div key={priority.name}><dt>{priority.name}</dt><dd>{priority.description}</dd></div>)}</dl>
+    <CaseSources links={[{ label: '피드백 AI 분류와 알림 구현', url: 'https://github.com/MinBeom2/SteamFolder' }]} />
   </section>
 }
 
 function HomePage() {
-  useEffect(() => {
-    let transitionTimer = 0
-    const handleWheel = (event: WheelEvent) => {
-      if (event.deltaY <= 0 || event.ctrlKey || window.scrollY > 4 || document.querySelector('.project-modal[open]')) return
-      const projects = document.getElementById('projects')
-      if (!projects) return
-
-      event.preventDefault()
-      if (transitionTimer) return
-
-      transitionTimer = window.setTimeout(() => { transitionTimer = 0 }, 900)
-      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
-      projects.scrollIntoView({ block: 'start', behavior })
-    }
-
-    window.addEventListener('wheel', handleWheel, { passive: false })
-    return () => {
-      window.removeEventListener('wheel', handleWheel)
-      window.clearTimeout(transitionTimer)
-    }
-  }, [])
-
   return <>
     <section className="hero container" aria-labelledby="hero-title">
       <div className="hero-copy">
@@ -165,7 +149,7 @@ function HomePage() {
                 <a className="approach-link" href="#project/ait/benchmarks">측정 조건과 결과 보기</a>
               </div>
               <div className="approach-test"><h4>좋아요 동시 갱신 통합 테스트</h4>
-                <dl className="approach-test-conditions" aria-label="좋아요 동시 갱신 검증 결과">
+                <dl className="approach-facts" aria-label="좋아요 동시 갱신 검증 결과">
                   <div><dt>실행 조건</dt><dd>요청 100건 / 작업 스레드 32개</dd></div>
                   <div><dt>확인 결과</dt><dd>최종 좋아요 100개</dd></div>
                 </dl>
@@ -175,12 +159,18 @@ function HomePage() {
             </div>
           </article>
           <article>
-            <div className="approach-copy"><h3>팀이 따라 할 수 있게 씁니다</h3>
-            <p>Git Flow를 제안하고, Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p></div>
+            <div className="approach-copy"><h3>팀의 진행 상황을 함께 점검합니다</h3>
+            <p>스크럼 마스터로서 매주 KPT 회고를 진행했습니다. 번다운 차트로 진행 상황을 함께 점검했습니다.</p>
+            <p>Git Flow를 제안하고 Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p></div>
             <div className="approach-evidence">
+              <dl className="approach-facts approach-collaboration" aria-label="스크럼 마스터로 진행한 협업 활동">
+                <div><dt>맡은 역할</dt><dd>스크럼 마스터</dd></div>
+                <div><dt>주간 회고</dt><dd>KPT</dd></div>
+                <div><dt>진행 점검</dt><dd>번다운 차트</dd></div>
+              </dl>
               <pre className="approach-code" aria-label="Git 작업 가이드의 브랜치 시작 예시"><code>{'git switch develop\ngit pull origin develop\ngit checkout -b feature/기능이름'}</code></pre>
               <p className="approach-note">공유한 가이드의 작업 시작 순서</p>
-              <a className="approach-link" href="#project/ait/evidence">협업 가이드 근거 보기</a>
+              <a className="approach-link" href="#project/ait/collaboration">협업 가이드 근거 보기</a>
             </div>
           </article>
         </div>
@@ -198,15 +188,15 @@ function HomePage() {
 function BenchmarkSection() {
   return <section className="detail-section" id="case-benchmarks" aria-labelledby="benchmarks-title">
     <h2 id="benchmarks-title">nGrinder 성능 측정 기록</h2>
-    <p>개발 및 검증 환경에서 기록한 전후 결과입니다. 조건별 수치와 적용한 변경을 함께 읽을 수 있도록 정리했습니다.</p>
+    <p>각 실험은 1분 동안 진행했습니다. 아래 수치는 개발 및 검증 환경의 HTTP API 응답 기록이며 실제 운영 트래픽이나 팀 배포 버전의 성능을 뜻하지 않습니다.</p>
     <div className="benchmark-wrap" tabIndex={0} role="region" aria-label="nGrinder 결과 표, 좁은 화면에서 가로 스크롤 가능">
       <table className="benchmark-table"><caption>Ait의 개발 및 검증 환경 측정</caption><colgroup><col /></colgroup><colgroup span={2} /><colgroup span={2} /><thead>
         <tr><th scope="col" rowSpan={2}>대상 / 기록된 조건</th><th scope="colgroup" colSpan={2}>평균 응답 시간 (ms)</th><th scope="colgroup" colSpan={2}>TPS</th></tr>
         <tr><th scope="col">변경 전</th><th scope="col">변경 후</th><th scope="col">변경 전</th><th scope="col">변경 후</th></tr>
       </thead><tbody>{benchmarks.map(row => <tr key={row.name}><th scope="row">{row.name}<small>{row.condition}</small></th><td>{row.before}</td><td><strong>{row.after}</strong></td><td>{row.tpsBefore}</td><td><strong>{row.tpsAfter}</strong></td></tr>)}</tbody></table>
     </div>
-    <p className="detail-note">여러 설정과 쿼리를 함께 조정한 결과입니다. 특정 변경 하나의 효과나 실제 운영 트래픽이나 팀 배포 버전의 성능으로 해석하지 않습니다.</p>
-    <div className="detail-callout"><h3>LIKE 검색은 병목을 확인한 대조 실험</h3><p>LIKE 검색 조건을 일시적으로 제외했을 때 TPS는 129.3에서 1,276.1로, 평균 응답 시간은 407ms에서 38ms로 변했습니다. 기능 자체를 제외한 비교로, 검색 기능을 유지한 상태의 개선 결과와 구분합니다.</p></div>
+    <dl className="benchmark-notes">{benchmarks.map(row => <div key={row.name}><dt>{row.name}</dt><dd>{row.note}</dd></div>)}</dl>
+    <CaseSources links={[{ label: '측정 조건과 원본 검증 기록', url: profile.troubleshooting }]} />
   </section>
 }
 
@@ -223,7 +213,7 @@ function TechnologyComparisonDetails({ comparison }: { comparison: TechnologyCom
           <td>{alternative.difference}{alternative.reference && <div className="technology-reference"><ExternalLink href={alternative.reference.url}>{alternative.reference.label}</ExternalLink></div>}</td>
         </tr>)}</tbody>
       </table>
-      <div className="technology-reference"><ExternalLink href={comparison.reference.url}>{comparison.reference.label}</ExternalLink></div>
+      {comparison.reference && <div className="technology-reference"><ExternalLink href={comparison.reference.url}>{comparison.reference.label}</ExternalLink></div>}
     </div>
   </details>
 }
@@ -252,6 +242,44 @@ function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
 }
 
 function ProjectPage({ project }: { project: Project }) {
+  const pageRef = useRef<HTMLElement>(null)
+  const [activeSection, setActiveSection] = useState('overview')
+
+  useEffect(() => {
+    const page = pageRef.current
+    const scrollArea = page?.closest<HTMLElement>('.modal-scroll')
+    if (!page || !scrollArea) return
+    const targets = [...page.querySelectorAll<HTMLElement>('.case-content > .detail-section[id]')]
+    if (!targets.length) return
+
+    let frame = 0
+    const measure = () => {
+      frame = 0
+      const readingLine = scrollArea.getBoundingClientRect().top + Math.min(120, scrollArea.clientHeight * .25)
+      let current = targets[0]
+      for (const target of targets) {
+        if (target.getBoundingClientRect().top > readingLine) break
+        current = target
+      }
+      if (scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight - 2) {
+        current = targets[targets.length - 1]
+      }
+      setActiveSection(current.id.slice('case-'.length))
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(measure) }
+    const resizeObserver = new ResizeObserver(schedule)
+    resizeObserver.observe(page)
+    resizeObserver.observe(scrollArea)
+    scrollArea.addEventListener('scroll', schedule, { passive: true })
+    schedule()
+
+    return () => {
+      cancelAnimationFrame(frame)
+      resizeObserver.disconnect()
+      scrollArea.removeEventListener('scroll', schedule)
+    }
+  }, [project.id])
+
   const detail = projectDetails[project.id]
   const sections = [
     { id: 'overview', label: '문제와 목표' },
@@ -261,9 +289,8 @@ function ProjectPage({ project }: { project: Project }) {
     { id: 'troubleshooting', label: '문제 해결' },
     ...(project.id === 'ait' ? [{ id: 'benchmarks', label: '성능 측정' }] : []),
     { id: 'results', label: '결과와 현재 상태' },
-    { id: 'evidence', label: '코드와 근거' },
   ]
-  return <article className="container case-page">
+  return <article ref={pageRef} className="container case-page">
     <header className="case-header detail-header">
       <div className="case-title-row"><ProjectLogo project={project} className="case-logo" /><h1 id="case-title" tabIndex={-1}>{project.name}</h1></div>
       <p className="detail-subtitle">{project.subtitle}</p>
@@ -271,17 +298,16 @@ function ProjectPage({ project }: { project: Project }) {
       <ul className="tags" aria-label="사용 기술">{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
     </header>
     <div className="case-layout">
-      <nav className="case-nav" aria-label={project.name + ' 상세 목차'}><h2>이 프로젝트의 기록</h2><ul className="case-nav-list">{sections.map(section => <li key={section.id}><a href={'#project/' + project.id + '/' + section.id}>{section.label}</a></li>)}</ul><a className="text-link" href="#projects">전체 프로젝트로 돌아가기</a></nav>
+      <nav className="case-nav" aria-label={project.name + ' 상세 목차'}><h2>이 프로젝트의 기록</h2><ul className="case-nav-list">{sections.map(section => <li key={section.id}><a href={'#project/' + project.id + '/' + section.id} aria-current={activeSection === section.id ? 'location' : undefined}>{section.label}</a></li>)}</ul></nav>
       <div className="case-content">
         {project.id === 'onework' && <figure className="case-cover"><img src={assets.oneworkOverview} width="2558" height="1266" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /><figcaption><span>ONEWORK 서비스 화면. 제 담당은 카메라 연동과 API입니다.</span><ExternalLink href={assets.oneworkOverview}>화면 크게 보기</ExternalLink></figcaption></figure>}
-        <section className="detail-section" id="case-overview" aria-labelledby="overview-title"><h2 id="overview-title">문제와 목표</h2><p>{project.problem}</p></section>
-        <section className="detail-section" id="case-scope" aria-labelledby="scope-title"><h2 id="scope-title">직접 구현한 범위</h2><div className="contributions">{project.contributions.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>)}</div></section>
+        <section className="detail-section" id="case-overview" aria-labelledby="overview-title"><h2 id="overview-title">문제와 목표</h2><p>{project.problem}</p><CaseSources links={project.links.filter(link => link.url !== profile.troubleshooting)} /></section>
+        <section className="detail-section" id="case-scope" aria-labelledby="scope-title"><h2 id="scope-title">직접 구현한 범위</h2><div className="contributions">{project.contributions.map(item => <div id={item.id ? 'case-' + item.id : undefined} className="case-contribution" key={item.title}><h3>{item.title}</h3><p>{item.description}</p><CaseSources links={item.sources} /></div>)}</div></section>
         <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} />{project.id === 'ait' ? <AitVisual /> : project.id === 'onework' ? <StreamDiagram /> : <SteamVisual />}</section>
         {project.id === 'steamfolder' && <SteamAiFeedbackSection />}
-        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
+        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}<CaseSources links={study.sources} /></article>)}</div></section>
         {project.id === 'ait' && <BenchmarkSection />}
         <section className="detail-section" id="case-results" aria-labelledby="results-title"><h2 id="results-title">결과와 현재 상태</h2><ul className="case-result-list">{detail.results.map(result => <li key={result}><Icon name="check" size={18} /><span>{result}</span></li>)}</ul></section>
-        <section className="detail-section detail-links" id="case-evidence" aria-labelledby="evidence-title"><h2 id="evidence-title">코드와 근거</h2><dl className="case-evidence-list">{detail.evidence.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.detail}</dd></div>)}</dl>{project.links.map(link => <ExternalLink key={link.url} href={link.url}>{link.label}</ExternalLink>)}</section>
       </div>
     </div>
     <section className="case-next" aria-labelledby="next-title"><h2 id="next-title">다른 프로젝트도 살펴보기</h2><div className="case-next-grid">{projects.filter(item => item.id !== project.id).map(item => <a className="next-project-link" key={item.id} href={'#project/' + item.id}><strong>{item.name}</strong><span>{item.subtitle}</span></a>)}</div></section>
@@ -420,7 +446,8 @@ function ProjectModal({ route, onClose }: { route: Exclude<Route, { kind: 'home'
     const frame = requestAnimationFrame(() => {
       const anchor = route.kind === 'project' ? route.anchor : ''
       if (anchor && anchor !== 'main') {
-        const target = document.getElementById('case-' + anchor)
+        const section = anchor === 'evidence' ? 'scope' : anchor === 'test-validation' ? 'troubleshooting' : anchor
+        const target = document.getElementById('case-' + section)
         if (target) {
           const heading = target.querySelector<HTMLElement>('h2, h3') ?? target
           heading.tabIndex = -1

@@ -1,4 +1,5 @@
 export type ProjectId = 'ait' | 'onework' | 'steamfolder'
+export type SourceLink = { label: string; url: string }
 
 export type Project = {
   id: ProjectId
@@ -12,8 +13,8 @@ export type Project = {
   tags: string[]
   summary: string[]
   problem: string
-  contributions: { title: string; description: string }[]
-  links: { label: string; url: string }[]
+  contributions: { id?: string; title: string; description: string; sources?: SourceLink[] }[]
+  links: SourceLink[]
 }
 
 export const profile = {
@@ -37,11 +38,12 @@ export const projects: Project[] = [
     role: '스터디, 커뮤니티, 알림 백엔드',
     tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE', 'nGrinder'],
     summary: ['JWT와 그룹 멤버 권한을 검증하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
-    problem: '면접 준비에 필요한 모집, 일정, 대화와 피드백을 하나의 흐름으로 연결하는 서비스입니다. 제 담당 범위에서는 스터디 운영과 커뮤니티, 알림이 함께 동작하도록 API와 실시간 연결을 구현했습니다.',
+    problem: '면접 준비에 필요한 모집, 모의 면접과 피드백을 하나의 흐름으로 연결하는 서비스입니다. 저는 스터디 운영과 커뮤니티, 알림이 함께 동작하도록 API와 실시간 연결을 구현했습니다.',
     contributions: [
       { title: '스터디 운영과 그룹 채팅', description: '스터디 그룹 조회와 생성, 신청 승인과 거절, 일정 API를 구현했습니다. STOMP/WebSocket 연결에서 JWT를 검증하고, 메시지 저장 전 그룹 멤버 여부를 확인했습니다. 채팅 이력은 메시지 ID 커서와 Slice로 조회합니다.' },
       { title: '커뮤니티와 알림', description: '게시글, 댓글, 좋아요, 스크랩, 알림 목록과 읽음 처리 API를 담당했습니다. Vercel 배포 후 알림 수신 문제에 대응해 8초 heartbeat와 emitter 정리를 추가했습니다. 이후 알림 수신을 확인했습니다. 연결 중단의 단일 원인은 확정하지 않았고, 개선 폭도 수치로 측정하지 않았습니다.' },
-      { title: '데이터 조회와 부하 검증', description: 'nGrinder로 알림, 게시글 목록, 채팅 이력과 댓글 조회를 검증했습니다. SQL 실행 계획, 정렬 인덱스와 연관 조회를 살피며 커서 조회, 제한된 Count, 조인 분리와 배치 조회를 적용했습니다.' },
+      { title: '데이터 조회와 부하 검증', description: 'nGrinder로 알림, 게시글 목록, 채팅 이력과 댓글 조회를 검증했습니다. 게시글에는 제한된 Count와 ID 기반 배치 조회를 적용했습니다. 채팅은 기존 ID 커서와 정렬을 유지하면서 작성자 조인을 분리했습니다. 댓글은 복합 인덱스 적용 전후를 비교했습니다.' },
+      { id: 'collaboration', title: '브랜치 작업 가이드 공유', description: 'Git Flow 기반 브랜치 작업을 제안했습니다. Git에 익숙하지 않은 팀원이 따라 할 수 있도록 develop과 feature 브랜치의 작업 순서와 명령어를 정리해 공유했습니다.', sources: [{ label: '팀에 공유한 브랜치 가이드', url: 'https://lab.ssafy.com/s15-webmobile1-sub1/S15P11D202/-/commit/b2dc022' }] },
     ],
     links: [
       { label: '프로젝트 저장소', url: 'https://lab.ssafy.com/s15-webmobile1-sub1/S15P11D202' },
@@ -97,10 +99,10 @@ export const projects: Project[] = [
 ]
 
 export const benchmarks = [
-  { name: '알림 비동기 처리', condition: 'Vuser 150 / 외부 호출 0.5초 지연 가정', before: '1,402', after: '856', tpsBefore: '103', tpsAfter: '183' },
-  { name: '게시글 목록', condition: '게시글 7만 건 / Vuser 50', before: '26,010', after: '463.55', tpsBefore: '3.1', tpsAfter: '114.3' },
-  { name: '채팅 이력', condition: '채팅 5만 건 / Vuser 50', before: '1,804.71', after: '131.59', tpsBefore: '27.5', tpsAfter: '389.9' },
-  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613', after: '134', tpsBefore: '28.9', tpsAfter: '368.1' },
+  { name: '알림 비동기 처리', condition: 'Vuser 148 / 500ms 지연 가정', before: '1,402.93', after: '856.72', tpsBefore: '103.86', tpsAfter: '183.93', note: '알림은 HTTP API 응답만 측정했습니다. 알림 완료 시간과 실제 선택된 Executor는 확인하지 못했습니다.' },
+  { name: '게시글 목록', condition: '게시글 7만 건 / Vuser 50', before: '26,010.99', after: '463.55', tpsBefore: '3.11', tpsAfter: '114.25', note: '게시글 목록은 전체 건수 반환 규칙도 바뀐 비교입니다. 조인 분리와 배치 조회 등 여러 변경을 함께 적용했습니다.' },
+  { name: '채팅 이력', condition: '채팅 5만 건 / Vuser 50', before: '1,804.71', after: '131.59', tpsBefore: '27.49', tpsAfter: '389.85', note: '채팅은 기존 ID 커서와 정렬을 유지한 최신 50건 조회입니다. 깊은 커서 구간은 측정하지 않았습니다.' },
+  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613.27', after: '134.69', tpsBefore: '28.90', tpsAfter: '368.13', note: '댓글은 복합 인덱스 적용 전후를 비교했습니다. 보관된 자료에는 DDL과 실행 계획이 없어 정렬 비용만의 효과로 단정하지 않습니다.' },
 ]
 
 export const skillGroups = [

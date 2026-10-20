@@ -148,7 +148,7 @@ export const skills: SkillEvidence[] = [
     logo: "git.svg",
     summary: "팀 브랜치 작업 방식과 명령어 가이드 공유",
     evidence: "팀 프로젝트에서 Git Flow 기반 브랜치 작업을 제안했습니다. Git 사용에 익숙하지 않은 팀원을 위해 develop, feature 브랜치의 작업 순서와 명령어 가이드를 작성해 공유했습니다.",
-    projects: [{ ...ait, section: 'evidence' }],
+    projects: [{ ...ait, section: 'collaboration' }],
   },
   {
     id: "react",

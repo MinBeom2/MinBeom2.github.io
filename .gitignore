@@ -1,4 +1,8 @@
 /.codex/
+/_workspace/
+/.ngrinder/
+/.ngrinder_agent/
+/.ngrinder_ex/
 /프로젝트_정리_초안.md
 **/node_modules/
 **/dist/
