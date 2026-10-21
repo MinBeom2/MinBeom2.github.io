@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { benchmarks, profile, projects } from './content'
 import SkillsSection from './SkillsSection'
 import type { Project, SourceLink } from './content'
@@ -123,9 +123,9 @@ function HomePage() {
   return <>
     <section className="hero container" aria-labelledby="hero-title">
       <div className="hero-copy">
-        <h1 id="hero-title" tabIndex={-1}><span>필요한 기능을 만들고,</span><span>근거로 개선합니다.</span></h1>
-        <p className="hero-person">{profile.name} / {profile.role}</p>
-        <p className="hero-description">사용자의 흐름을 API로 연결합니다.<br />동시성, 실시간 연결, 데이터 조회의 문제를<br className="desktop-break" /> 코드와 테스트로 좁혀갑니다.</p>
+        <h1 id="hero-title" tabIndex={-1}><span> 구현을 넘어,</span><span>더 나은 동작까지.</span></h1>
+        <p className="hero-person">{profile.role} {profile.name}</p>
+        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. Java와 Spring Boot로 API를 만들고, nGrinder로 응답 성능을 측정했습니다. 앞으로는 직접 만든 서비스를 배포하고 사용자 피드백을 반영하면서, 운영 중 생기는 문제까지 해결하는 경험을 쌓고 싶습니다.</p>
       </div>
     </section>
     <section className="projects-section container section-space" id="projects" aria-labelledby="projects-title">
@@ -178,10 +178,31 @@ function HomePage() {
       </div>
     </section>
     <section className="about-section container section-space" id="about" aria-labelledby="about-title">
-      <div className="about-intro"><img className="profile-portrait" src={assets.portrait} alt="김민범 프로필 사진" width="569" height="759" loading="lazy" decoding="async" /><h2 id="about-title">백엔드를 중심으로,<br />필요한 연결까지.</h2><p>API와 데이터를 다루고,<br />실시간 연결과 화면 구현으로<br />서비스의 흐름을 이해합니다.</p></div>
-      <div className="about-content"><SkillsSection /><div className="background"><h3>학력과 활동</h3><div className="background-item"><span>2026.01 –</span><div><strong>삼성청년SW AI 아카데미 15기</strong><p>SSAFY 교육 및 팀 프로젝트</p></div></div><div className="background-item"><span><time dateTime="2020-02">2020.02 입학</time><br /><time dateTime="2026-02">2026.02 졸업</time></span><div><strong>국립금오공과대학교</strong><p>컴퓨터공학과 학사</p></div></div><div className="certifications"><span>자격</span><p>SQLD (<time dateTime="2026-03">2026.03</time>)<br />정보처리기사 (<time dateTime="2025-12">2025.12</time>)</p></div></div></div>
+      <div className="about-intro"><img className="profile-portrait" src={assets.portrait} alt="김민범 프로필 사진" width="569" height="759" loading="lazy" decoding="async" /><h2 id="about-title">구현한 뒤에도,<br />동작을 다듬습니다.</h2><p>API를 구현하고 응답 성능과 데이터 정합성을 테스트로 확인합니다. 검증 결과를 바탕으로 코드를 개선합니다.</p></div>
+      <div className="about-content"><SkillsSection /><div className="background" id="background" aria-labelledby="background-title">
+        <h3 id="background-title">학력과 활동</h3>
+        <section className="background-group" aria-labelledby="education-title"><h4 id="education-title">학력</h4>
+          <div className="background-item"><span className="background-period"><time dateTime="2020-02">2020.02</time> ~ <time dateTime="2026-02">2026.02</time></span><div><strong>국립금오공과대학교</strong><p>컴퓨터공학과 학사</p></div></div>
+        </section>
+        <section className="background-group" aria-labelledby="activity-title"><h4 id="activity-title">활동</h4>
+          <div className="background-item"><span>2026.01 –</span><div><strong>삼성청년SW·AI아카데미 (JAVA TRACK)</strong></div></div>
+        </section>
+        <section className="background-group" aria-labelledby="credentials-title"><h4 id="credentials-title">자격 및 어학</h4>
+          <div className="background-item"><span><time dateTime="2026-03">2026.03</time></span><div><strong>SQLD</strong></div></div>
+          <div className="background-item"><span><time dateTime="2025-12">2025.12</time></span><div><strong>정보처리기사</strong></div></div>
+          <div className="background-item"><span><time dateTime="2025-11">2025.11</time></span><div><strong>TOEIC Speaking IH (140)</strong></div></div>
+        </section>
+      </div></div>
     </section>
-    <section className="contact-section container" aria-labelledby="contact-title"><div className="contact-panel"><div><h2 id="contact-title">함께 만들 서비스에 대해<br />이야기하고 싶습니다.</h2></div><div className="contact-links"><a href={'mailto:' + profile.email}><Icon name="mail" size={22} /><span>{profile.email}</span></a><ExternalLink href={profile.github}><Icon name="github" size={21} /> GitHub</ExternalLink></div></div></section>
+    <section className="contact-section container" aria-labelledby="contact-title">
+      <div className="contact-panel">
+        <h2 id="contact-title">함께 만들고 싶습니다.</h2>
+        <div className="contact-links">
+          <a className="contact-email" href={'mailto:' + profile.email}>{profile.email}</a>
+          <a className="contact-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><Icon name="github" size={23} /></a>
+        </div>
+      </div>
+    </section>
   </>
 }
 
@@ -373,11 +394,12 @@ function useRoute() {
   return { route, closeProject }
 }
 
-type HomeSection = 'projects' | 'approach' | 'about'
-const homeSections: { id: HomeSection; label: string }[] = [
+type HomeSection = 'projects' | 'approach' | 'skills' | 'background'
+const homeSections: { id: HomeSection; label: string; startId?: string }[] = [
   { id: 'projects', label: '프로젝트' },
   { id: 'approach', label: '작업 방식' },
-  { id: 'about', label: '소개' },
+  { id: 'skills', label: '기술', startId: 'about' },
+  { id: 'background', label: '학력 활동' },
 ]
 
 function SiteHeader({ modalOpen }: { modalOpen: boolean }) {
@@ -387,27 +409,37 @@ function SiteHeader({ modalOpen }: { modalOpen: boolean }) {
     let frame = 0
     const measure = () => {
       frame = 0
-      const line = Math.max(112, Math.min(window.innerHeight * .25, 240))
+      // Match the anchor landing position, including fractional scroll offsets.
+      const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 112
+      const line = scrollPadding + 2
       let current: HomeSection | null = null
       for (const section of homeSections) {
-        if ((document.getElementById(section.id)?.getBoundingClientRect().top ?? Infinity) <= line) current = section.id
+        if ((document.getElementById(section.startId ?? section.id)?.getBoundingClientRect().top ?? Infinity) <= line) current = section.id
       }
       setVisibleSection(current)
     }
     const schedule = () => { if (!frame) frame = requestAnimationFrame(measure) }
+    const resizeObserver = new ResizeObserver(schedule)
+    const main = document.getElementById('main')
+    if (main) resizeObserver.observe(main)
     schedule()
     window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('scrollend', schedule)
+    window.addEventListener('hashchange', schedule)
     window.addEventListener('resize', schedule)
     return () => {
       cancelAnimationFrame(frame)
+      resizeObserver.disconnect()
       window.removeEventListener('scroll', schedule)
+      window.removeEventListener('scrollend', schedule)
+      window.removeEventListener('hashchange', schedule)
       window.removeEventListener('resize', schedule)
     }
   }, [modalOpen])
   const activeSection = modalOpen ? 'projects' : visibleSection
   const activeIndex = homeSections.findIndex(section => section.id === activeSection)
   return <header className="site-header">
-    <nav className="site-nav island-nav" aria-label="주요 메뉴">
+    <nav className="site-nav island-nav" aria-label="주요 메뉴" style={{ '--nav-items': homeSections.length } as CSSProperties}>
       <span className={'island-indicator' + (activeIndex < 0 ? ' is-hidden' : '')} aria-hidden="true" style={{ transform: `translateX(${Math.max(0, activeIndex) * 100}%)` }} />
       {homeSections.map(section => <a key={section.id} href={'#' + section.id} aria-current={activeSection === section.id ? 'location' : undefined} className={activeSection === section.id ? 'is-current' : ''} onClick={() => {
         if (window.location.hash === '#' + section.id) document.getElementById(section.id)?.scrollIntoView({ block: 'start' })
@@ -494,7 +526,6 @@ export default function App() {
     <a className="skip-link" href="#main">본문으로 이동</a>
     <SiteHeader modalOpen={modalOpen} />
     <main id="main" tabIndex={-1}><HomePage /></main>
-    <footer className="container site-footer"><span>© {new Date().getFullYear()} {profile.name}</span><span>만들고, 확인하고, 기록합니다.</span><a href="#" onClick={event => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }) }}>맨 위로</a></footer>
     {route.kind !== 'home' && <ProjectModal route={route} onClose={closeProject} />}
   </>
 }

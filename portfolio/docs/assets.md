@@ -52,3 +52,16 @@ ONEWORK 화면은 팀 서비스의 모습이며 개인 기여는 카메라 연�
 | React | public/assets/skills/react.svg | react_original_wordmark_logo_icon_146375.svg |
 
 공식 배포처 URL은 아직 제공되지 않았으며 사용자 제공 파일이라는 출처로 기록합니다. 나머지 기술은 로고를 새로 만들지 않고 기술명 약칭을 텍스트로 표시합니다.
+
+## 2026-10-21 Spring과 Hibernate 로고 교체
+
+사용자가 루트에 제공한 두 파일을 아래 위치로 이름 변경해 이동했다. 재인코딩 없이 원본 파일을 보관하며 이동 전후 SHA-256이 일치한다.
+
+| 용도 | 배포 경로 | 제공된 원본 | SHA-256 |
+| --- | --- | --- | --- |
+| Spring Boot | public/assets/skills/spring.png | spring 변경 logo.png | 138335168DD9917F1926613B2BCFBD162550B4F37F24F3B1242A810B0BCE23EE |
+| JPA / Hibernate | public/assets/skills/hibernate.webp | Hibernate_logo.svg.webp | B10B2843574F3BC0CEF511A5A3CBD1FA934178B66ACD5499DE8387CC664DB91B |
+
+Spring PNG는 447×447 심볼이다. Hibernate WebP는 1280×214 가로형으로, 목록에서는 object-fit: cover와 object-position: left center를 사용해 왼쪽 심볼을 42×42로 표시한다. 배포 파일 자체에는 전체 로고가 유지된다. 기존 JPA 약칭 표시를 이 로고로 교체하고 기술 이름은 JPA / Hibernate로 쓴다. 위의 기존 spring.svg 사용 기록은 교체 전 자료다.
+
+후속 요청으로 흰 배경의 spring.png를 삭제하고 기존 spring.svg로 되돌렸다. Spring Boot에는 기존 투명 SVG를 사용하며 Hibernate 로고는 유지한다. 위 Spring PNG 기록은 삭제 전 이력이다.

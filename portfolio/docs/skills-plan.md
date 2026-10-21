@@ -1,5 +1,9 @@
 # 기술 숙련도·근거 구성안
 
+## 현재 기준: 2026-10-21
+
+기술 목록은 Java, Spring Boot, JPA / Hibernate, MySQL, Redis, Git 여섯 개다. 사용자 이메일과 일치하는 커밋 diff 및 소스, 작성한 테스트를 확인한 뒤 등급과 설명을 정리했다. Java와 Spring Boot는 상중, JPA / Hibernate와 MySQL, Git은 중, Redis는 중하다. 상세 판단은 [기술 평가 근거](skills-evidence-review.md)에 기록했다. 아래의 예시 등급과 세 분류 구성은 2026-10-14~16 디자인 시안 당시의 이력이며 현재 평가가 아니다.
+
 최초 작성일: 2026-10-14. 시안 구현: 2026-10-16.
 
 ## 새 기기에서 이어 진행한 시안

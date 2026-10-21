@@ -1,7 +1,6 @@
 .about-content { min-width: 0; }
 .skills-heading { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 16px; }
 .skills-heading h3 { font-size: 22px; font-weight: 700; letter-spacing: -.025em; line-height: 1.5; }
-.skills-heading > p { grid-column: 1 / -1; margin-top: 2px; color: var(--muted); font-size: 14px; word-break: keep-all; }
 .skill-level-guide { position: static; }
 .skill-level-guide > summary { display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-height: 44px; font-size: 12px; font-weight: 550; color: var(--muted); cursor: pointer; list-style: none; }
 .skill-level-guide > summary::-webkit-details-marker, .skill-row > summary::-webkit-details-marker { display: none; }
@@ -12,9 +11,7 @@
 .skill-guide-content dl > div { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: baseline; font-size: 12px; }
 .skill-guide-content dt { font-weight: 650; }
 .skill-guide-content dd { color: var(--muted); word-break: keep-all; }
-.skill-preview-note { color: var(--quiet); font-size: 12px; word-break: keep-all; }
-.skill-list-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 16px 4px; }
-.skill-list-toolbar > p { color: var(--quiet); font-size: 12px; }
+.skill-list-toolbar { display: flex; justify-content: flex-end; align-items: center; padding-block: 8px 4px; }
 .skill-list-toolbar > button { display: flex; align-items: center; justify-content: flex-end; gap: 5px; min-height: 44px; padding: 6px 0 6px 8px; border: 0; background: transparent; color: var(--ink); font-size: 12px; white-space: nowrap; }
 .skill-list-toolbar > button:hover { text-decoration: underline; text-underline-offset: .25em; }
 .skill-list-toolbar .is-open { transform: rotate(180deg); }
@@ -26,6 +23,7 @@
 .skill-logo { display: flex; align-items: center; justify-content: center; width: 64px; min-height: 44px; }
 .skill-logo img { display: block; width: 100%; height: 42px; object-fit: contain; }
 .skill-logo img[src$='/java.svg'] { height: 44px; }
+.skill-logo img[src$='/hibernate.webp'] { width: 42px; height: 42px; object-fit: cover; object-position: left center; }
 .skill-text-mark { font-family: var(--numeric); color: var(--muted); font-size: 17px; font-weight: 750; letter-spacing: -.025em; }
 .skill-copy { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .skill-copy > strong { font-family: var(--numeric); font-size: 16px; font-weight: 750; line-height: 1.5; }
@@ -36,7 +34,9 @@
 .skill-row[open] { background: var(--paper); }
 .skill-row[open] > summary { border-radius: 0; }
 .skill-detail { padding: 0 28px 22px 86px; }
-.skill-detail > p { color: var(--muted); font-size: 14px; line-height: 1.9; max-width: 65ch; word-break: keep-all; }
+.skill-detail > p { max-width: 65ch; word-break: keep-all; overflow-wrap: anywhere; }
+.skill-highlight { color: var(--ink); font-size: 15px; font-weight: 650; line-height: 1.7; }
+.skill-support { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .skill-project-links { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 16px; margin-top: 11px; }
 .skill-project-links > span { color: var(--quiet); font-size: 12px; }
 .skill-project-links > a { display: inline-flex; align-items: center; gap: 3px; min-height: 44px; font-family: var(--numeric); font-size: 12px; font-weight: 700; }
@@ -48,15 +48,13 @@
 }
 .about-intro h2 { word-break: keep-all; }
 @media (max-width: 600px) {
-  .skills-heading > p { font-size: 13px; }
-  .skill-list-toolbar { gap: 6px; }
-  .skill-list-toolbar > p { flex: 1; min-width: 0; }
   .skill-row > summary { grid-template-columns: 52px minmax(0, 1fr) 34px 16px; gap: 10px; padding: 16px 0; }
   .skill-logo { width: 52px; }
   .skill-copy > strong { font-size: 15px; }
   .skill-copy > span { font-size: 12px; }
   .skill-level { min-width: 34px; padding-inline: 4px; }
-  .skill-detail { padding: 0 16px 20px 62px; }
+  .skill-detail { padding: 0 8px 16px; }
+  .skill-highlight { font-size: 14px; }
   .skill-project-links { gap: 2px 12px; }
   .skill-project-links > span { flex-basis: 100%; }
 }
