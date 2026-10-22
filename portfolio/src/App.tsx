@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { benchmarks, profile, projects } from './content'
 import SkillsSection from './SkillsSection'
-import type { Project, SourceLink } from './content'
+import type { Project } from './content'
 import { projectDetails } from './caseStudies'
 import type { ProjectDetail, TechnologyComparison } from './caseStudies'
 import { aiFeedback } from './aiCapabilities'
 import AiCapabilitiesSection from './AiCapabilitiesSection'
-import ProcessSteps from './ProcessSteps'
 import Chevron from './Chevron'
 
 const asset = (path: string) => import.meta.env.BASE_URL + 'assets/' + path
@@ -51,50 +50,9 @@ function ExternalLink({ href, children, className = '' }: { href: string; childr
   return <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}<Icon name="external" size={16} /><span className="sr-only"> (새 탭)</span></a>
 }
 
-function CaseSources({ links }: { links?: SourceLink[] }) {
-  if (!links?.length) return null
-  return <ul className="case-sources" aria-label="관련 자료">{links.map(link => <li key={link.url}><ExternalLink href={link.url}>{link.label}</ExternalLink></li>)}</ul>
-}
-
 function ProjectLogo({ project, className = 'project-logo' }: { project: Project; className?: string }) {
   if (project.id === 'steamfolder') return null
   return <img className={className + ' project-logo-' + project.id} src={project.id === 'ait' ? assets.aitLogo : assets.oneworkLogo} alt={project.name + ' 로고'} width={project.id === 'ait' ? 512 : 584} height={project.id === 'ait' ? 234 : 284} decoding="async" />
-}
-
-function AitVisual() {
-  return <div className="project-visual ait-visual" aria-label="Ait의 담당 기능과 역할">
-    <div className="visual-heading"><div className="project-brand"><ProjectLogo project={projects[0]} /><span className="ait-wordmark">Ait</span></div><span>스터디를 연결하는 백엔드</span></div>
-    <dl className="ait-capabilities">
-      <div><dt>스터디 채팅</dt><dd>STOMP / WebSocket 연결 인증과 그룹 멤버 권한 확인</dd></div>
-      <div><dt>서비스 API</dt><dd>Spring Boot로 스터디와 커뮤니티 기능 구현</dd></div>
-      <div><dt>실시간 알림</dt><dd>SSE 알림 전송과 heartbeat 연결 관리</dd></div>
-    </dl>
-    <div className="visual-caption"><span>담당 기능과 역할</span><span>스터디, 커뮤니티, 알림</span></div>
-  </div>
-}
-
-function StreamDiagram() {
-  return <div className="project-visual onework-visual" aria-label="RTSP 카메라에서 MediaMTX를 거쳐 WebRTC WHEP로 영상 전달">
-    <ProcessSteps label="영상 전달 순서" className="stream-steps" steps={[
-      { title: '카메라', note: 'RTSP 영상 송출' },
-      { title: 'MediaMTX', note: 'WebRTC WHEP로 중계' },
-      { title: '관제 화면', note: 'HTML 영상 창에서 재생' },
-    ]} />
-    <div className="visual-caption"><span>영상 전달 구조</span><span>HTTPS 통합 문제는 미해결</span></div>
-  </div>
-}
-
-function SteamVisual() {
-  return <div className="steam-visual" aria-label="게임 라이브러리를 폴더로 정리해 공유하는 서비스 개념도">
-    <div className="folder-tree">
-      <ul className="library-tree" aria-label="폴더 구성 예시"><li>
-        <div className="tree-root"><span className="folder-shape" /><strong>내 게임 라이브러리</strong></div>
-        <ul className="tree-children"><li><Icon name="folder" /> 함께 할 게임</li><li><Icon name="folder" /> 다음에 할 게임</li></ul>
-      </li></ul>
-      <p className="tree-share">쇼케이스 링크로 공유</p>
-    </div>
-    <span className="steam-visual-caption">서비스 개념도</span>
-  </div>
 }
 
 function ProjectTile({ project }: { project: Project }) {
@@ -115,7 +73,6 @@ function SteamAiFeedbackSection() {
     <h2 id="ai-feedback-title">{aiFeedback.title}</h2>
     <p>{aiFeedback.intro}</p>
     <dl className="feedback-priority">{aiFeedback.priorities.map(priority => <div key={priority.name}><dt>{priority.name}</dt><dd>{priority.description}</dd></div>)}</dl>
-    <CaseSources links={[{ label: '피드백 AI 분류와 알림 구현', url: 'https://github.com/MinBeom2/SteamFolder' }]} />
   </section>
 }
 
@@ -125,7 +82,7 @@ function HomePage() {
       <div className="hero-copy">
         <h1 id="hero-title" tabIndex={-1}><span> 구현을 넘어,</span><span>더 나은 동작까지.</span></h1>
         <p className="hero-person">{profile.role} {profile.name}</p>
-        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. Java와 Spring Boot로 API를 만들고, nGrinder로 응답 성능을 측정했습니다. 앞으로는 직접 만든 서비스를 배포하고 사용자 피드백을 반영하면서, 운영 중 생기는 문제까지 해결하는 경험을 쌓고 싶습니다.</p>
+        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. API를 설계하고 구현한 뒤, nGrinder로 응답 성능을 측정했습니다. 앞으로는 직접 만든 서비스를 배포하고 사용자 피드백을 반영하면서, 운영 중 생기는 문제까지 해결하겠습니다.</p>
       </div>
     </section>
     <section className="projects-section container section-space" id="projects" aria-labelledby="projects-title">
@@ -158,20 +115,12 @@ function HomePage() {
               </div>
             </div>
           </article>
-          <article>
-            <div className="approach-copy"><h3>팀의 진행 상황을 함께 점검합니다</h3>
-            <p>스크럼 마스터로서 매주 KPT 회고를 진행했습니다. 번다운 차트로 진행 상황을 함께 점검했습니다.</p>
-            <p>Git Flow를 제안하고 Git에 익숙하지 않은 팀원을 위해 브랜치 작업 순서와 명령어 가이드를 작성해 공유했습니다.</p></div>
-            <div className="approach-evidence">
-              <dl className="approach-facts approach-collaboration" aria-label="스크럼 마스터로 진행한 협업 활동">
-                <div><dt>맡은 역할</dt><dd>스크럼 마스터</dd></div>
-                <div><dt>주간 회고</dt><dd>KPT</dd></div>
-                <div><dt>진행 점검</dt><dd>번다운 차트</dd></div>
-              </dl>
-              <pre className="approach-code" aria-label="Git 작업 가이드의 브랜치 시작 예시"><code>{'git switch develop\ngit pull origin develop\ngit checkout -b feature/기능이름'}</code></pre>
-              <p className="approach-note">공유한 가이드의 작업 시작 순서</p>
-              <a className="approach-link" href="#project/ait/collaboration">협업 가이드 근거 보기</a>
-            </div>
+          <article className="approach-collaboration" aria-labelledby="collaboration-title">
+            <h3 id="collaboration-title">협업</h3>
+            <div className="approach-copy"><h4>버전 관리 담당</h4>
+            <p>Git Flow를 제안하고 브랜치별 역할, 최신 코드 반영과 병합 순서를 문서로 공유했습니다. 팀원이 막힐 때 작업 방법을 설명하고 충돌 해결을 도왔습니다.</p></div>
+            <div className="approach-copy"><h4>스크럼 마스터</h4>
+            <p>스크럼 마스터로서 매주 KPT 회고를 진행하고 번다운 차트와 팀원 의견을 함께 살폈습니다.</p></div>
           </article>
         </div>
         <AiCapabilitiesSection />
@@ -180,12 +129,10 @@ function HomePage() {
     <section className="about-section container section-space" id="about" aria-labelledby="about-title">
       <div className="about-intro"><img className="profile-portrait" src={assets.portrait} alt="김민범 프로필 사진" width="569" height="759" loading="lazy" decoding="async" /><h2 id="about-title">구현한 뒤에도,<br />동작을 다듬습니다.</h2><p>API를 구현하고 응답 성능과 데이터 정합성을 테스트로 확인합니다. 검증 결과를 바탕으로 코드를 개선합니다.</p></div>
       <div className="about-content"><SkillsSection /><div className="background" id="background" aria-labelledby="background-title">
-        <h3 id="background-title">학력과 활동</h3>
-        <section className="background-group" aria-labelledby="education-title"><h4 id="education-title">학력</h4>
+        <h3 id="background-title">이력</h3>
+        <section className="background-group" aria-labelledby="education-title"><h4 id="education-title">학력 및 활동</h4>
+          <div className="background-item"><span><time dateTime="2026-01">2026.01</time> ~</span><div><strong>삼성청년SW·AI아카데미 (JAVA TRACK)</strong></div></div>
           <div className="background-item"><span className="background-period"><time dateTime="2020-02">2020.02</time> ~ <time dateTime="2026-02">2026.02</time></span><div><strong>국립금오공과대학교</strong><p>컴퓨터공학과 학사</p></div></div>
-        </section>
-        <section className="background-group" aria-labelledby="activity-title"><h4 id="activity-title">활동</h4>
-          <div className="background-item"><span>2026.01 –</span><div><strong>삼성청년SW·AI아카데미 (JAVA TRACK)</strong></div></div>
         </section>
         <section className="background-group" aria-labelledby="credentials-title"><h4 id="credentials-title">자격 및 어학</h4>
           <div className="background-item"><span><time dateTime="2026-03">2026.03</time></span><div><strong>SQLD</strong></div></div>
@@ -217,7 +164,6 @@ function BenchmarkSection() {
       </thead><tbody>{benchmarks.map(row => <tr key={row.name}><th scope="row">{row.name}<small>{row.condition}</small></th><td>{row.before}</td><td><strong>{row.after}</strong></td><td>{row.tpsBefore}</td><td><strong>{row.tpsAfter}</strong></td></tr>)}</tbody></table>
     </div>
     <dl className="benchmark-notes">{benchmarks.map(row => <div key={row.name}><dt>{row.name}</dt><dd>{row.note}</dd></div>)}</dl>
-    <CaseSources links={[{ label: '측정 조건과 원본 검증 기록', url: profile.troubleshooting }]} />
   </section>
 }
 
@@ -245,7 +191,6 @@ function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
     <h3 className="technology-choice-title">{decision.title}</h3>
     <p className="technology-choice-background">{decision.background}</p>
     <p className="technology-choice-implementation">{decision.implementation}</p>
-    {decision.pipeline && <p className="technology-pipeline" aria-label="영상 전달 경로">{decision.pipeline}</p>}
     {decision.selectionReasons && <details className="technology-disclosure">
       <summary>선택 이유 자세히 보기<Chevron /></summary>
       <dl className="technology-reasons">{decision.selectionReasons.map(reason => <div key={reason.title}>
@@ -254,12 +199,61 @@ function TechnologyChoices({ detail }: { detail: ProjectDetail }) {
     </details>}
     <TechnologyComparisonDetails comparison={decision} />
     {decision.additionalComparisons?.map(comparison => <TechnologyComparisonDetails key={comparison.comparisonTitle} comparison={comparison} />)}
-    <p className="technology-choice-limitation"><strong>한계와 확인 범위</strong>{decision.limitation}</p>
+    {decision.limitation && <p className="technology-choice-limitation"><strong>한계와 확인 범위</strong>{decision.limitation}</p>}
     <details className="technology-disclosure technology-implementation">
       <summary>사용 기술과 적용 내용<Chevron /></summary>
       <dl className="case-technology-list">{detail.techChoices.map(choice => <div key={choice.technology}><dt>{choice.technology}</dt><dd>{choice.use}</dd></div>)}</dl>
     </details>
   </div>
+}
+
+function ProjectIntroduction({ project }: { project: Project }) {
+  const { goal, background, features } = project.introduction
+  return <section className="detail-section" id="case-overview" aria-labelledby="overview-title">
+    <h2 id="overview-title">프로젝트 소개</h2>
+    <div className="project-introduction">
+      <div className="project-intro-block"><h3>목표</h3><p>{goal}</p></div>
+      <div className="project-intro-block"><h3>배경</h3><p>{background}</p></div>
+      <div className="project-intro-block"><h3>주요 기능</h3>
+        <ul className="project-intro-features" role="list">{features.map(feature => <li key={feature.title}>
+          <strong>{feature.title}</strong><p>{feature.description}</p>
+        </li>)}</ul>
+      </div>
+    </div>
+  </section>
+}
+
+function ProjectRole({ project }: { project: Project }) {
+  return <section className="detail-section project-role" id="case-scope" aria-labelledby="scope-title">
+    <h2 id="scope-title">나의 역할</h2>
+    <p className="project-role-summary">{project.roleSummary}</p>
+    <div className="project-role-group">
+      <h3>핵심 기여</h3>
+      <ul className="project-role-contributions" role="list">{project.contributions.map(item => <li key={item.title}>
+        <strong>{item.title}</strong><p>{item.description}</p>
+      </li>)}</ul>
+    </div>
+    <div className="project-role-group" id="case-results">
+      <h3>결과</h3>
+      <ul className="project-role-results">{projectDetails[project.id].results.map(result => <li key={result}>{result}</li>)}</ul>
+    </div>
+    <div className="project-role-group" id="case-collaboration">
+      <h3>{project.id === 'steamfolder' ? '개인 프로젝트 담당 범위' : '팀 내 역할 분담'}</h3>
+      <dl className="project-role-team">{project.teamDivision.map(item => <div key={item.role}>
+        <dt>{item.role}</dt><dd>{item.description}</dd>
+      </div>)}</dl>
+    </div>
+  </section>
+}
+
+function ProjectRepositories({ project }: { project: Project }) {
+  if (!project.repositories.length) return null
+  return <nav className="project-repositories" aria-label={project.name + ' GitHub 저장소'}>
+    {project.repositories.map(repository => <a key={repository.url} href={repository.url} target="_blank" rel="noopener noreferrer"
+      aria-label={project.name + ' ' + repository.label + ' GitHub 저장소 (새 탭)'} title={repository.label + ' GitHub 저장소 (새 탭)'}>
+      <Icon name="github" size={23} />{project.repositories.length > 1 && <span>{repository.label}</span>}
+    </a>)}
+  </nav>
 }
 
 function ProjectPage({ project }: { project: Project }) {
@@ -303,35 +297,32 @@ function ProjectPage({ project }: { project: Project }) {
 
   const detail = projectDetails[project.id]
   const sections = [
-    { id: 'overview', label: '문제와 목표' },
-    { id: 'scope', label: '담당 구현' },
+    { id: 'overview', label: '프로젝트 소개' },
+    { id: 'scope', label: '나의 역할' },
     { id: 'technology', label: '기술 선택' },
     ...(project.id === 'steamfolder' ? [{ id: 'ai-feedback', label: 'AI 연동' }] : []),
     { id: 'troubleshooting', label: '문제 해결' },
     ...(project.id === 'ait' ? [{ id: 'benchmarks', label: '성능 측정' }] : []),
-    { id: 'results', label: '결과와 현재 상태' },
   ]
   return <article ref={pageRef} className="container case-page">
     <header className="case-header detail-header">
       <div className="case-title-row"><ProjectLogo project={project} className="case-logo" /><h1 id="case-title" tabIndex={-1}>{project.name}</h1></div>
       <p className="detail-subtitle">{project.subtitle}</p>
-      <dl className="detail-facts"><div><dt>기간 / 상태</dt><dd>{project.period}</dd></div><div><dt>프로젝트 구성</dt><dd>{project.team}</dd></div><div><dt>담당 역할</dt><dd>{project.role}</dd></div></dl>
+      <dl className="detail-facts"><div><dt>기간</dt><dd>{project.period}</dd></div><div><dt>프로젝트 구성</dt><dd>{project.team}</dd></div><div><dt>담당 역할</dt><dd>{project.role}</dd></div></dl>
       <ul className="tags" aria-label="사용 기술">{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
     </header>
     <div className="case-layout">
       <nav className="case-nav" aria-label={project.name + ' 상세 목차'}><h2>이 프로젝트의 기록</h2><ul className="case-nav-list">{sections.map(section => <li key={section.id}><a href={'#project/' + project.id + '/' + section.id} aria-current={activeSection === section.id ? 'location' : undefined}>{section.label}</a></li>)}</ul></nav>
       <div className="case-content">
         {project.id === 'onework' && <figure className="case-cover"><img src={assets.oneworkOverview} width="2558" height="1266" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /><figcaption><span>ONEWORK 서비스 화면. 제 담당은 카메라 연동과 API입니다.</span><ExternalLink href={assets.oneworkOverview}>화면 크게 보기</ExternalLink></figcaption></figure>}
-        <section className="detail-section" id="case-overview" aria-labelledby="overview-title"><h2 id="overview-title">문제와 목표</h2><p>{project.problem}</p><CaseSources links={project.links.filter(link => link.url !== profile.troubleshooting)} /></section>
-        <section className="detail-section" id="case-scope" aria-labelledby="scope-title"><h2 id="scope-title">직접 구현한 범위</h2><div className="contributions">{project.contributions.map(item => <div id={item.id ? 'case-' + item.id : undefined} className="case-contribution" key={item.title}><h3>{item.title}</h3><p>{item.description}</p><CaseSources links={item.sources} /></div>)}</div></section>
-        <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} />{project.id === 'ait' ? <AitVisual /> : project.id === 'onework' ? <StreamDiagram /> : <SteamVisual />}</section>
+        <ProjectIntroduction project={project} />
+        <ProjectRole project={project} />
+        <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} /></section>
         {project.id === 'steamfolder' && <SteamAiFeedbackSection />}
-        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}<CaseSources links={study.sources} /></article>)}</div></section>
+        <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
         {project.id === 'ait' && <BenchmarkSection />}
-        <section className="detail-section" id="case-results" aria-labelledby="results-title"><h2 id="results-title">결과와 현재 상태</h2><ul className="case-result-list">{detail.results.map(result => <li key={result}><Icon name="check" size={18} /><span>{result}</span></li>)}</ul></section>
       </div>
     </div>
-    <section className="case-next" aria-labelledby="next-title"><h2 id="next-title">다른 프로젝트도 살펴보기</h2><div className="case-next-grid">{projects.filter(item => item.id !== project.id).map(item => <a className="next-project-link" key={item.id} href={'#project/' + item.id}><strong>{item.name}</strong><span>{item.subtitle}</span></a>)}</div></section>
   </article>
 }
 
@@ -399,7 +390,7 @@ const homeSections: { id: HomeSection; label: string; startId?: string }[] = [
   { id: 'projects', label: '프로젝트' },
   { id: 'approach', label: '작업 방식' },
   { id: 'skills', label: '기술', startId: 'about' },
-  { id: 'background', label: '학력 활동' },
+  { id: 'background', label: '이력' },
 ]
 
 function SiteHeader({ modalOpen }: { modalOpen: boolean }) {
@@ -415,6 +406,12 @@ function SiteHeader({ modalOpen }: { modalOpen: boolean }) {
       let current: HomeSection | null = null
       for (const section of homeSections) {
         if ((document.getElementById(section.startId ?? section.id)?.getBoundingClientRect().top ?? Infinity) <= line) current = section.id
+      }
+      // A short final section can reach the page bottom before its heading reaches the reading line.
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        const lastSection = homeSections[homeSections.length - 1]
+        const lastTarget = document.getElementById(lastSection.startId ?? lastSection.id)
+        if (lastTarget && lastTarget.getBoundingClientRect().top < window.innerHeight) current = lastSection.id
       }
       setVisibleSection(current)
     }
@@ -512,7 +509,10 @@ function ProjectModal({ route, onClose }: { route: Exclude<Route, { kind: 'home'
       onClose()
     }
   }}>
-    <div className="modal-toolbar"><button className="modal-close" type="button" onClick={onClose} aria-label="프로젝트 상세 닫기"><Icon name="close" size={19} /><span>닫기</span></button></div>
+    <div className="modal-toolbar">
+      {route.kind === 'project' && <ProjectRepositories project={route.project} />}
+      <button className="modal-close" type="button" onClick={onClose} aria-label="프로젝트 상세 닫기"><Icon name="close" size={19} /><span>닫기</span></button>
+    </div>
     <div ref={scrollRef} className="modal-scroll">
       {route.kind === 'project' ? <ProjectPage project={route.project} /> : <section className="container page-not-found"><h1 id="not-found-title" tabIndex={-1}>프로젝트를 찾을 수 없습니다.</h1><p>주소를 확인하거나 프로젝트 목록에서 다시 선택해 주세요.</p><a className="button primary" href="#projects">프로젝트 목록 보기</a></section>}
     </div>

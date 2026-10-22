@@ -11,13 +11,18 @@
 .case-study dt { color: var(--ink); font-size: 13px; font-weight: 600; padding-top: 3px; }
 .case-study dd { color: var(--muted); font-size: 15px; line-height: 1.95; word-break: keep-all; }
 .detail-section > h2 { font-size: 25px; line-height: 1.5; letter-spacing: -.025em; margin-bottom: 18px; }
-.contributions h3 { font-size: 17px; line-height: 1.6; margin-bottom: 7px; }
-.case-contribution { scroll-margin-top: 20px; }
-.case-sources { display: flex; flex-wrap: wrap; gap: 0 20px; list-style: none; padding: 0; margin: 12px 0 0; }
-.case-sources li { min-width: 0; max-width: 100%; }
-.case-sources a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; max-width: 100%; color: var(--muted); font-size: 13px; line-height: 1.7; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
-.case-sources a:hover { color: var(--ink); }
-.case-sources svg { flex-shrink: 0; }
+.project-role .project-role-summary { color: var(--ink); }
+.project-role-group { margin-top: 32px; scroll-margin-top: 28px; }
+.project-role-group > h3 { font-size: 18px; margin-bottom: 14px; }
+.project-role-contributions { display: grid; gap: 20px; }
+.project-role-contributions strong { display: block; margin-bottom: 4px; font-size: 16px; line-height: 1.6; font-weight: 600; }
+.project-role-results { display: grid; gap: 12px; padding-left: 20px; list-style: disc; }
+.project-role-results li { color: var(--muted); font-size: 16px; line-height: 1.95; word-break: keep-all; overflow-wrap: anywhere; }
+.project-role-results li::marker { color: var(--quiet); }
+.project-role-team { display: grid; gap: 16px; }
+.project-role-team > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; }
+.project-role-team dt { color: var(--ink); font-size: 14px; font-weight: 600; line-height: 1.85; }
+.project-role-team dd { color: var(--muted); font-size: 15px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
 .benchmark-notes { display: grid; gap: 18px; margin-top: 24px; }
 .benchmark-notes dt { color: var(--ink); font-size: 13px; font-weight: 600; line-height: 1.7; margin-bottom: 5px; }
 .benchmark-notes dd { color: var(--muted); font-size: 14px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
@@ -31,26 +36,26 @@
   .case-study h3 { font-size: 18px; }
   .case-study dd, .case-technology-list dd { font-size: 14px; }
   .detail-section > h2 { font-size: 22px; }
-  .contributions h3 { font-size: 16px; }
+  .project-role-group { margin-top: 28px; scroll-margin-top: 20px; }
+  .project-role-group > h3 { font-size: 17px; }
+  .project-role-contributions strong, .project-role-results li { font-size: 15px; }
+  .project-role-team > div { grid-template-columns: 1fr; gap: 4px; }
+  .project-role-team dd { font-size: 14px; }
 }
 
 figure { margin: 0; }
-.visual-heading .project-brand { margin-top: 0; }
-.onework-image-visual .onework-wordmark { color: var(--ink); }
-.case-result-list { padding-left: 0; list-style: none; }
-.case-result-list li { display: flex; align-items: flex-start; gap: 12px; padding-left: 0; }
-.case-result-list li > svg { margin-top: 6px; }
-.case-next-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
-.next-project-link { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; border-bottom: 1px solid var(--line); padding-block: 18px; }
-@media (max-width: 600px) { .case-next-grid { grid-template-columns: 1fr; gap: 12px; } }
 
 /* Project details keep the home page in place behind a native modal. */
 .project-modal { width: min(960px, calc(100% - 64px)); max-width: none; height: min(920px, calc(100dvh - 64px)); max-height: calc(100dvh - 64px); margin: auto; padding: 0; border: 0; border-radius: 16px; background: var(--surface); color: var(--ink); box-shadow: 0 24px 72px rgba(0, 0, 0, .24); overflow: hidden; overflow: clip; }
 .project-modal[open] { display: flex; flex-direction: column; animation: project-expand 220ms cubic-bezier(.16, 1, .3, 1); }
 @keyframes project-expand { from { transform: scale(.94); opacity: .6; } to { transform: scale(1); opacity: 1; } }
 .project-modal::backdrop { background: rgba(0, 0, 0, .46); }
-.modal-toolbar { display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; min-height: 64px; padding: 10px 24px; background: var(--surface); }
-.modal-close { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 0; border-radius: 8px; color: var(--ink); background: var(--pale); font-size: 14px; font-weight: 550; }
+.modal-toolbar { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; gap: 8px; min-height: 64px; padding: 10px 24px; background: var(--surface); }
+.project-repositories { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
+.project-repositories a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px; border-radius: 8px; color: var(--ink); font-size: 13px; font-weight: 550; line-height: 1.5; }
+.project-repositories a:hover { background: var(--pale); }
+.project-repositories svg { flex-shrink: 0; }
+.modal-close { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; margin-left: auto; min-height: 44px; padding: 8px 14px; border: 0; border-radius: 8px; color: var(--ink); background: var(--pale); font-size: 14px; font-weight: 550; }
 .modal-close:hover { background: #dedede; }
 .modal-scroll { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; scroll-behavior: smooth; }
 .project-modal .case-page { width: calc(100% - 80px); }
@@ -58,7 +63,6 @@ figure { margin: 0; }
 .project-modal .case-layout { grid-template-columns: 172px minmax(0, 1fr); gap: 40px; }
 .project-modal .case-nav { top: 24px; }
 .project-modal .detail-section { scroll-margin-top: 28px; }
-.project-modal .case-next { margin-bottom: 44px; }
 .project-modal .page-not-found { min-height: 380px; }
 @media (max-width: 960px) {
   .project-modal { width: min(704px, calc(100% - 40px)); height: calc(100dvh - 40px); max-height: calc(100dvh - 40px); }
@@ -72,6 +76,7 @@ figure { margin: 0; }
   .project-modal { width: calc(100% - 16px); height: calc(100dvh - 24px); max-height: calc(100dvh - 24px); border-radius: 14px; }
   .modal-toolbar { min-height: 60px; padding: 8px 14px; }
   .modal-close { font-size: 13px; }
+  .project-repositories a { gap: 4px; padding-inline: 4px; font-size: 12px; }
   .project-modal .case-page { width: calc(100% - 40px); }
   .project-modal .case-header { padding-block: 12px 24px; }
   .project-modal .case-title-row h1 { font-size: 30px; }
@@ -101,7 +106,7 @@ figure { margin: 0; }
 
 
 /* Technology decisions: the reason stays visible; comparisons open in place. */
-.technology-choices { margin-block: 28px 30px; }
+.technology-choices { margin-top: 28px; }
 .technology-choices .technology-choice-title { font-size: 20px; margin-bottom: 14px; }
 .technology-choices .technology-choice-background { color: var(--ink); font-size: 16px; }
 .technology-choices .technology-choice-implementation { font-size: 15px; margin-top: 12px; }
@@ -145,7 +150,6 @@ figure { margin: 0; }
 
 
 /* ONEWORK: relay-server choices and playback protocols remain separate. */
-.technology-choices .technology-pipeline { margin-top: 18px; font-size: 14px; line-height: 1.85; color: var(--ink); }
 .technology-reasons { margin: 0; padding-block: 2px 8px; }
 .technology-reasons > div { padding-block: 16px; }
 .technology-reasons > div + div { border-top: 1px solid var(--line); }

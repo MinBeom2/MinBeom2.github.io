@@ -1,4 +1,4 @@
-import type { ProjectId, SourceLink } from './content'
+import type { ProjectId } from './content'
 
 export type CaseStudy = {
   id?: string
@@ -7,7 +7,6 @@ export type CaseStudy = {
   decision: string
   outcome: string
   note?: string
-  sources?: SourceLink[]
 }
 
 type TechnologyReference = { label: string; url: string }
@@ -23,10 +22,9 @@ export type TechnologyDecision = TechnologyComparison & {
   title: string
   background: string
   implementation: string
-  pipeline?: string
   selectionReasons?: { title: string; description: string; reference?: TechnologyReference }[]
   additionalComparisons?: TechnologyComparison[]
-  limitation: string
+  limitation?: string
 }
 
 export type ProjectDetail = {
@@ -35,11 +33,6 @@ export type ProjectDetail = {
   cases: CaseStudy[]
   results: string[]
 }
-
-const aitCommit = (id: string) => 'https://lab.ssafy.com/s15-webmobile1-sub1/S15P11D202/-/commit/' + id
-const oneworkCommit = (id: string) => 'https://lab.ssafy.com/s15-bigdata-dist-sub1/S15P21D202/-/commit/' + id
-const steamCommit = (id: string) => 'https://github.com/MinBeom2/SteamFolder/commit/' + id
-const performanceRecord = 'https://app.notion.com/p/3eb5498d25a980f5b79de6a29503bada'
 
 export const projectDetails: Record<ProjectId, ProjectDetail> = {
   ait: {
@@ -62,7 +55,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       },
       {
         technology: 'JPA / Slice / 커서 조회',
-        use: '메시지 ID를 기준으로 다음 채팅 이력을 가져오도록 구현했습니다. 다른 조회에서는 Count 범위, 연관 조회와 배치 조회를 조정했습니다.',
+        use: '메시지 ID를 기준으로 다음 채팅 이력을 가져오도록 구현했습니다. 작성자 정보는 별도로 조회하도록 조정했습니다.',
       },
       {
         technology: 'SSE',
@@ -79,7 +72,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         problem: '그룹 채팅에는 로그인한 사용자와 해당 그룹의 멤버를 확인하는 과정이 필요했습니다.',
         decision: 'STOMP 연결에서 JWT를 검증하고 메시지 저장 전 그룹 멤버 여부를 확인했습니다.',
         outcome: '권한을 확인한 뒤 그룹별 메시지를 저장하고 전달하도록 구현했습니다. 채팅 이력은 메시지 ID 커서와 Slice로 조회하도록 구성했습니다.',
-        sources: [{ label: '스터디 신청 API 구현', url: aitCommit('8721f55') }, { label: '일정 API 구현', url: aitCommit('71f0c5f') }, { label: '채팅 구현', url: aitCommit('8fdf2ae') }, { label: '채팅 권한과 조회 보완', url: aitCommit('736cc1d') }],
       },
       {
         title: 'Vercel 배포 후 알림 수신 문제와 heartbeat',
@@ -87,38 +79,32 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         decision: 'Spring 백엔드에서 8초마다 heartbeat 주석을 보내도록 추가했습니다. 연결 완료, timeout, 오류가 발생한 emitter도 정리하도록 보완했습니다.',
         outcome: '변경 후 배포 환경에서 알림이 다시 수신되는 것을 확인했습니다. 기능 구현뿐 아니라 배포 환경의 연결 유지도 살펴야 한다는 점을 배웠습니다.',
         note: '연결 중단의 단일 원인은 확정하지 않았으며, 연결 유지 시간이나 끊김 감소 정도를 수치로 측정하지는 않았습니다.',
-        sources: [{ label: 'heartbeat와 연결 정리 구현', url: aitCommit('1a23e0c') }],
       },
       {
-        title: '조회 방식에 따라 달라지는 병목 확인',
-        problem: '게시글 목록, 채팅 이력과 댓글 조회를 부하 테스트하며 쿼리와 연관 데이터 조회 방식을 살펴봤습니다.',
-        decision: '게시글에는 제한된 Count와 ID 기반 배치 조회를 적용했습니다. 채팅은 기존 ID 커서와 정렬을 유지하면서 작성자 조인을 분리했습니다. 댓글은 복합 인덱스 적용 전후를 비교했습니다.',
-        outcome: '개발 및 검증 환경에서 변경 전후의 응답 시간과 TPS를 기록했습니다. 게시글 목록은 정확한 전체 건수 대신 현재 페이지 블록의 상한을 반환하도록 바뀌어 응답 규칙도 달라졌습니다.',
-        note: '여러 변경을 함께 적용한 실험이므로 특정 변경 하나의 효과로 단정하지 않습니다. 채팅 측정은 최신 50건 조회이며 깊은 커서 구간까지 검증한 결과는 아닙니다.',
-        sources: [{ label: '측정 조건과 검증 기록', url: performanceRecord }],
+        title: '채팅과 댓글 조회 방식 개선',
+        problem: '채팅 이력과 댓글 조회를 부하 테스트하며 쿼리와 연관 데이터 조회 방식을 살펴봤습니다.',
+        decision: '채팅은 기존 ID 커서와 정렬을 유지하면서 작성자 조인을 분리했습니다. 댓글은 복합 인덱스 적용 전후를 비교했습니다.',
+        outcome: '개발 및 검증 환경에서 조회 방식과 인덱스 변경 전후의 응답 시간과 TPS를 비교했습니다.',
       },
       {
         id: 'concurrency',
         title: '프로젝트 종료 후 좋아요 수 정합성 개선',
-        problem: '팀 프로젝트 종료 후 개인 부하 테스트에서 같은 게시글의 좋아요 수가 정확히 증가하지 않는 문제를 확인했습니다. 별도 개인 브랜치에서 동시 갱신 처리를 개선했습니다.',
-        decision: '좋아요 추가하거나 취소할 때 게시글을 비관적 쓰기 락으로 조회하도록 변경했습니다. 사용자 100명의 요청을 32개 작업 스레드로 실행하는 통합 테스트를 작성했습니다.',
-        outcome: '총 100건의 좋아요 요청 후 최종 좋아요 수가 100인지 검증했습니다. 처리량이나 응답 시간 향상보다 카운트 정합성을 확인한 작업입니다.',
-        note: '개인 개선 브랜치의 작업이며 팀 master 브랜치와 배포 버전에는 반영되지 않았습니다. 이 변경만의 전후 처리량과 응답 시간은 측정하지 않았습니다.',
-        sources: [{ label: '개인 브랜치의 락 적용과 통합 테스트', url: aitCommit('2adfa5d') }],
+        problem: '팀 프로젝트 종료 후 추가 부하 테스트에서 같은 게시글의 좋아요 수가 정확히 증가하지 않는 문제를 확인했습니다.',
+        decision: '좋아요를 추가하거나 취소할 때 게시글을 비관적 쓰기 락으로 조회하도록 변경했습니다. 좋아요 요청 100건을 32개 작업 스레드로 실행하는 통합 테스트를 작성했습니다.',
+        outcome: '총 100건의 좋아요 요청 후 최종 좋아요 수가 100인지 확인했습니다.',
       },
     ],
     results: [
-      '스터디 그룹 신청, 승인, 거절과 일정 API, 커뮤니티와 알림 API를 구현했습니다.',
-      '채팅 인증과 멤버 권한 확인과 커서 이력 조회를 구현하고, 알림 SSE에 heartbeat와 연결 정리를 추가했습니다.',
-      '개발 및 검증 환경의 조회 실험과 프로젝트 종료 후 개인 브랜치의 좋아요 정합성 검증을 기록했습니다.',
+      'heartbeat와 연결 정리를 추가한 뒤 배포 환경에서 알림이 다시 수신되는 것을 확인했습니다.',
+      '개인 검증 환경에서 채팅 5만 건의 최신 50건을 조회한 평균 응답 시간이 1,804.71ms에서 131.59ms로 줄었습니다. Vuser 50으로 1분간 측정한 결과입니다.',
+      '프로젝트 종료 후 좋아요 요청 100건을 32개 스레드로 실행해 최종 좋아요 수가 100인지 확인했습니다. 팀 배포 버전에는 반영하지 않은 추가 검증입니다.',
     ],
   },
   onework: {
     technologyDecision: {
       title: 'MediaMTX로 중계하고 WebRTC로 재생',
       background: 'RTSP 카메라 영상을 브라우저에서 실시간으로 보여주는 중계 서버가 필요했습니다. MediaMTX는 RTSP 입력, WebRTC 재생, 설비별 스트림 구분과 녹화를 비교적 단순한 구성으로 충족할 수 있어 프로젝트에 적합했습니다.',
-      implementation: '영상 인코딩은 FFmpeg, 중계는 MediaMTX, 최종 재생은 브라우저가 맡습니다. WebGL에서는 Unity의 설비 CCTV 버튼이 JavaScript 브릿지를 호출하고, 같은 웹페이지에 겹쳐 놓은 HTML 영상 창에서 재생합니다.',
-      pipeline: '웹캠 영상을 FFmpeg(H.264)로 인코딩해 RTSP로 송출하고, MediaMTX에서 WebRTC/WHEP로 중계해 웹페이지 영상 창에서 재생합니다.',
+      implementation: 'FFmpeg로 웹캠 영상을 H.264로 인코딩해 RTSP로 송출하고 MediaMTX에서 WebRTC WHEP로 중계합니다. Unity WebGL의 CCTV 버튼을 누르면 JavaScript 브릿지를 통해 같은 페이지에 겹쳐 놓은 HTML 영상 창에서 재생합니다.',
       selectionReasons: [
         { title: 'RTSP 입력에서 브라우저 재생까지 연결', description: 'RTSP 입력과 WebRTC 출력을 함께 지원하므로 중계 기능을 직접 개발하는 범위를 줄일 수 있었습니다. 코덱을 바꿔야 할 때는 MediaMTX에 FFmpeg나 GStreamer를 함께 사용해야 합니다.', reference: { label: 'MediaMTX의 재인코딩 설명', url: 'https://mediamtx.org/docs/features/remuxing-reencoding-compression' } },
         { title: 'Docker와 YAML로 실행 구성', description: 'MediaMTX는 별도 런타임 의존성이 없는 단일 실행 파일로 제공됩니다. 프로젝트에서는 Docker와 YAML 설정으로 실행해 로컬에서도 같은 영상 전달 경로를 구성했습니다.' },
@@ -144,7 +130,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
           reference: { label: 'MediaMTX의 브라우저 재생 설명', url: 'https://mediamtx.org/docs/read/web-browsers' },
         },
       ],
-      limitation: '영상 지연시간은 직접 측정하지 않았습니다. WebGL의 localhost 요청 주소는 수정했지만, HTTPS 화면의 HTTP API와 WHEP 요청 차단 문제는 해결하지 못했습니다.',
     },
     techChoices: [
       {
@@ -167,14 +152,12 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         decision: 'RTSP 송출 스크립트와 MediaMTX를 구성하고 WebRTC WHEP로 뷰어에 전달하도록 구현했습니다. Spring Boot 카메라 API와 테스트 뷰어도 작성했습니다.',
         outcome: '카메라 송출, 스트림 중계와 관제 조회에 필요한 구성 요소를 구현했습니다. RTSP 입력, MediaMTX 중계와 WebRTC WHEP 재생 경로를 문서로 남겼습니다.',
         note: '팀의 3D 디지털 트윈과 전체 데이터 처리 파이프라인을 모두 개인 기여로 제시하지 않습니다. 영상 지연시간은 직접 측정하지 않았습니다.',
-        sources: [{ label: '송출, 중계와 카메라 API 구현', url: oneworkCommit('f2a358c') }],
       },
       {
         title: '실행과 녹화 설정과 설비별 스트림 매핑',
         problem: '카메라 구성을 로컬 실행과 배포 환경에 연결하는 작업이 필요했습니다. 관제 화면에서 설비에 해당하는 영상과 녹화 설정을 함께 관리하도록 보완했습니다.',
         decision: '로컬 Compose와 배포 구성을 연결하고 fMP4 녹화 경로와 보관 설정을 추가했습니다. 원격 송출 스크립트와 설비 ID와 카메라 스트림의 매핑을 보완했습니다.',
         outcome: '송출, 중계, 녹화 구성을 코드와 설정으로 정리했습니다. 설비 ID를 기준으로 해당 카메라 스트림을 조회하는 연결을 구현했습니다.',
-        sources: [{ label: '로컬 실행 구성', url: oneworkCommit('d8244af') }, { label: '배포 연결', url: oneworkCommit('f4572be') }, { label: '녹화 설정', url: oneworkCommit('42870b7') }, { label: '원격 송출', url: oneworkCommit('2817d1a') }, { label: '설비별 스트림 매핑', url: oneworkCommit('a9bb3c7') }],
       },
       {
         title: 'WebGL 배포 주소 수정과 HTTPS 연동의 한계',
@@ -182,13 +165,12 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         decision: 'WebGL 페이지 주소에서 카메라 API 호스트를 계산하도록 수정했습니다. Unity WebGL의 HTTP 요청 허용 설정도 추가했습니다.',
         outcome: 'localhost를 향하던 카메라 API 요청 주소를 수정했습니다. HTTPS 화면에서 HTTP 요청이 차단되는 통합 문제는 해결하지 못했습니다.',
         note: 'HTTPS 환경의 영상 재생이 정상화되었다고 제시하지 않습니다. 구현한 범위와 남은 연동 문제를 함께 기록했습니다.',
-        sources: [{ label: 'API 호스트 수정', url: oneworkCommit('d9262fb') }, { label: 'WebGL HTTP 요청 설정', url: oneworkCommit('e1c91b4') }],
       },
     ],
     results: [
       'RTSP 송출, MediaMTX 구성과 Spring Boot 카메라 관제 API를 구현했습니다.',
       'Compose 실행과 배포 연결, 녹화 설정과 설비별 스트림 매핑을 보완했습니다.',
-      'WebGL의 localhost 요청 주소를 수정했고, HTTPS 혼합 콘텐츠 차단 문제는 미해결로 기록했습니다.',
+      'WebGL의 localhost 요청 주소를 수정했고 HTTPS 혼합 콘텐츠 차단 문제는 미해결로 기록했습니다.',
     ],
   },
   steamfolder: {
@@ -224,14 +206,12 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         problem: '보유 게임을 폴더로 정리하려면 Steam 계정과 게임 정보를 서비스에 연결해야 했습니다. 인증과 동기화 API를 프론트엔드와 함께 직접 개발했습니다.',
         decision: 'Steam OpenID 로그인, JWT 재발급과 보유 게임 동기화를 구현했습니다. 동기화 요청에는 쿨다운을 적용했습니다.',
         outcome: 'Steam 계정 인증부터 보유 게임을 가져오는 기능을 로컬 개발 단계에서 구현했습니다. 프론트엔드와 백엔드 두 저장소가 하나의 서비스를 구성합니다.',
-        sources: [{ label: 'Steam 인증 구현', url: steamCommit('cfe1e7f') }, { label: '게임 동기화 구현', url: steamCommit('fe54a27') }],
       },
       {
         title: '최대 5단계 폴더와 2D 게임 배치',
         problem: 'Steam 라이브러리 화면까지 여러 단계를 거치지 않고 원하는 게임 목록을 보여주고 싶었습니다. 사용자가 기준을 정해 폴더로 정리하는 화면을 만들었습니다.',
         decision: '최대 5단계의 계층형 폴더와 2D 좌표 모델을 구현했습니다. React와 TypeScript의 데스크톱 화면에서 폴더와 게임을 배치하도록 연결했습니다.',
         outcome: '계층형 폴더와 게임 배치 화면을 로컬에서 구현했습니다. 정리한 게임 목록을 공개 쇼케이스 링크로 공유하는 기능을 연결했습니다.',
-        sources: [{ label: '폴더 구조 구현', url: steamCommit('3d4f68f') }, { label: '폴더 규칙 보완', url: steamCommit('4d954dd') }, { label: '폴더 화면 구현', url: 'https://github.com/MinBeom2/SteamFolder-front/commit/2b3366e' }],
       },
       {
         title: '쇼케이스 상호작용과 요청 수 제한',
@@ -239,13 +219,11 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         decision: '쇼케이스 좋아요와 랭킹, 커서 기반 목록 조회를 구현했습니다. Redis 기반 API 속도 제한과 관련 테스트 코드를 추가했습니다.',
         outcome: '공유 화면과 상호작용 API, 요청 수 제한을 로컬 개발 단계에서 구현했습니다. 외부에 배포하기 전인 개인 프로젝트로 정리했습니다.',
         note: '운영 트래픽이나 외부 배포의 성과 수치는 제시하지 않습니다. Redis의 제한 상태 공유를 실제 다중 서버 환경에서 검증하지는 않았습니다.',
-        sources: [{ label: '좋아요 구현', url: steamCommit('c21750c') }, { label: '랭킹과 커서 조회 구현', url: steamCommit('2663b70') }, { label: 'Redis 요청 제한 구현', url: steamCommit('afa5909') }, { label: '요청 제한 검증', url: steamCommit('83323a6') }],
       },
     ],
     results: [
-      '개인적으로 문제를 정의하고 Steam 인증과 동기화부터 폴더와 공유 화면까지 개발했습니다.',
-      '최대 5단계 폴더, 2D 게임 배치와 공개 쇼케이스 기능을 구현했습니다.',
-      '좋아요, 랭킹, 커서 조회와 Redis 속도 제한을 구현했으며, 현재 로컬 개발 중입니다.',
+      'Steam 로그인부터 보유 게임 정리와 쇼케이스 공유까지 화면과 API를 함께 구현했습니다.',
+      '현재 로컬에서 개발하고 있습니다. 외부 배포 후 사용자 피드백을 받을 계획이며 운영 성과는 아직 없습니다.',
     ],
   },
 }

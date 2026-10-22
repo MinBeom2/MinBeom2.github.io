@@ -60,4 +60,4 @@ Pages 활성화 요청이 `Your current plan does not support GitHub Pages for t
 
 본인 사진, Ait 로고, ONEWORK 로고·프로젝트 화면은 실제 제공 자료입니다. 원래 로고의 색상을 바꾸거나 사진을 생성·변형하지 않았습니다. 자산 출처와 추가할 자료는 `portfolio/docs/assets.md`에 기록합니다. Ait 화면 캡처와 공개 데모는 사용자 확인 후 보충합니다.
 
-nGrinder 수치는 개발·검증 환경의 기록이며 운영 성능이 아닙니다. LIKE 검색 제외 실험, 종료 후 개인 브랜치의 좋아요 개선, ONEWORK HTTPS 미해결, SteamFolder 로컬 개발 상태를 구분합니다.
+nGrinder 수치는 개발·검증 환경의 기록이며 운영 성능이 아닙니다. 오류 응답이 포함된 게시글 조회 실험은 성과에서 제외합니다. 종료 후 좋아요 추가 검증, ONEWORK HTTPS 미해결, SteamFolder 로컬 개발 상태를 구분합니다.
