@@ -93,7 +93,7 @@ function HomePage() {
       <div className="container">
         <div className="section-heading"><div><h2 id="approach-title">이렇게 일합니다</h2><p>구현에서 멈추지 않고, 확인한 결과를 남깁니다.</p></div></div>
         <div className="approach-grid">
-          <article>
+          <article className="approach-validation">
             <div className="approach-copy"><h3>테스트로 결과를 확인합니다</h3>
             <p>조회 성능은 nGrinder로 비교하고, 동시 요청의 데이터 정합성은 통합 테스트로 확인했습니다. 변경 전후의 결과와 검증 조건을 함께 남겼습니다.</p></div>
             <div className="approach-evidence">

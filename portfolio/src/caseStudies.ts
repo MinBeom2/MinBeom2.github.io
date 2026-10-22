@@ -81,6 +81,13 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         note: '연결 중단의 단일 원인은 확정하지 않았으며, 연결 유지 시간이나 끊김 감소 정도를 수치로 측정하지는 않았습니다.',
       },
       {
+        id: 'github-webhook',
+        title: 'ngrok으로 GitHub 웹훅을 로컬에서 검증',
+        problem: '프론트엔드의 GitHub 연동 화면이 준비되기 전에 저장소 접근 권한 변경과 앱 삭제 이벤트를 처리하는 백엔드를 검증해야 했습니다.',
+        decision: 'ngrok으로 로컬 Spring Boot 서버에 접근할 수 있는 공개 주소를 만들고 GitHub App의 Webhook URL로 연결했습니다. 수신한 요청은 HMAC SHA-256으로 서명을 검증한 뒤, 이벤트에 따라 저장소 목록을 재동기화하거나 앱 연동 정보를 삭제하도록 구현했습니다.',
+        outcome: '실제 GitHub 이벤트를 로컬 서버로 받아 테스트했습니다. MySQL을 직접 조회해 연동 데이터가 추가되고 삭제되는 것까지 확인했습니다.',
+      },
+      {
         title: '채팅과 댓글 조회 방식 개선',
         problem: '채팅 이력과 댓글 조회를 부하 테스트하며 쿼리와 연관 데이터 조회 방식을 살펴봤습니다.',
         decision: '채팅은 기존 ID 커서와 정렬을 유지하면서 작성자 조인을 분리했습니다. 댓글은 복합 인덱스 적용 전후를 비교했습니다.',
