@@ -523,7 +523,6 @@ export default function App() {
   const { route, closeProject } = useRoute()
   const modalOpen = route.kind !== 'home'
   return <>
-    <a className="skip-link" href="#main">본문으로 이동</a>
     <SiteHeader modalOpen={modalOpen} />
     <main id="main" tabIndex={-1}><HomePage /></main>
     {route.kind !== 'home' && <ProjectModal route={route} onClose={closeProject} />}

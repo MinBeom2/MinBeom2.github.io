@@ -40,8 +40,6 @@ img { height: auto; }
 .container { max-width: var(--max-width); width: calc(100% - var(--page-inset)); margin-inline: auto; }
 #main > .container, .approach-section > .container { max-width: var(--home-max-width); }
 .section-space { padding-block: 72px; }
-.skip-link { position: fixed; top: -90px; left: 16px; z-index: 20; display: inline-flex; align-items: center; min-height: 48px; padding: 10px 20px; background: var(--ink); color: var(--inverse); border-radius: 8px; }
-.skip-link:focus { top: 12px; outline-color: var(--inverse); }
 
 .site-header { position: sticky; top: 16px; z-index: 10; height: 64px; margin-top: 16px; display: flex; justify-content: center; pointer-events: none; }
 .island-nav { position: relative; display: grid; grid-template-columns: repeat(var(--nav-items, 4), minmax(0, 1fr)); width: calc(var(--nav-items, 4) * 100px); max-width: calc(100% - 40px); height: 60px; padding: 6px; border-radius: 999px; background: var(--ink); color: var(--inverse-muted); pointer-events: auto; isolation: isolate; }
@@ -245,10 +243,17 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .about-section { grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr); }
 }
 
+/* Keep the opening readable on laptops, including shorter browser windows. */
+@media (min-width: 601px) and (max-width: 1999px) {
+  .hero { padding-block: clamp(24px, 4svh, 48px); }
+  .hero-copy { gap: clamp(28px, 4svh, 48px); }
+  .hero h1 { font-size: clamp(44px, min(6vw, 8svh), 96px); }
+  .hero-person, .hero-description { font-size: clamp(20px, calc(2vw - 16px), 24px); }
+  .hero-description { line-height: 1.8; }
+}
+
 @media (min-width: 1101px) and (max-width: 1999px) {
   .island-nav > a { font-size: 15px; }
-  .hero h1 { font-size: clamp(80px, 6vw, 96px); }
-  .hero-person, .hero-description { font-size: 24px; }
 }
 
 /* Wide desktop composition starts above the FHD viewport range. */
