@@ -58,9 +58,9 @@ img { height: auto; }
 .hero h1 { font-size: clamp(44px, 6vw, 80px); letter-spacing: -.03em; font-weight: 740; line-height: 1.3; word-break: keep-all; text-wrap: balance; }
 .hero h1 > span { display: block; }
 .hero-person { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 600; color: var(--ink); }
-.hero-github { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; color: var(--muted); }
-.hero-github svg { width: 1.2em; height: 1.2em; }
-.hero-github:hover { color: var(--ink); background: var(--pale); }
+.hero-github { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; color: var(--ink); }
+.hero-github svg { width: 1.4em; height: 1.4em; }
+.hero-github:hover { background: var(--pale); }
 .hero-description { max-width: 68ch; font-size: 20px; line-height: 1.9; color: var(--muted); word-break: keep-all; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; min-height: 48px; }
 .button.primary { background: var(--ink); color: var(--inverse); }
