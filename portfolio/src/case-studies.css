@@ -91,6 +91,10 @@ figure { margin: 0; }
   .project-modal .case-layout { gap: 24px; }
   .project-modal .detail-section { scroll-margin-top: 20px; }
 }
+/* Wide desktops: scale the laptop-sized modal as a whole so text, spacing and tables keep their proportions. */
+@media (min-width: 2000px) {
+  .project-modal { zoom: 1.25; width: min(960px, calc((100vw - 160px) / 1.25)); height: min(920px, calc((100dvh - 96px) / 1.25)); max-height: calc((100dvh - 96px) / 1.25); }
+}
 @media (prefers-reduced-motion: reduce) {
   .project-modal[open] { animation: none; }
   .island-nav > a, .island-indicator { transition: none; }
