@@ -16,6 +16,7 @@ export type SkillEvidence = {
 const ait = { id: 'ait', name: 'Ait', section: 'technology' } as const
 const onework = { id: 'onework', name: 'ONEWORK', section: 'technology' } as const
 const steam = { id: 'steamfolder', name: 'SteamFolder', section: 'technology' } as const
+const nyamnyam = { id: 'nyamnyam', name: '냠냠취미', section: 'rate-limit' } as const
 
 export const skills: SkillEvidence[] = [
   {
@@ -66,7 +67,7 @@ export const skills: SkillEvidence[] = [
     summary: "사용자와 IP별 요청 제한, 장애 시 처리 정책",
     highlight: "Lettuce로 Redis를 연결해 사용자와 IP별 요청을 제한했습니다.",
     evidence: "429와 Retry-After를 반환하고, Redis 장애 시 통과 또는 차단 정책을 API별로 나눴습니다.",
-    projects: [steam],
+    projects: [nyamnyam, steam],
   },
   {
     id: "git",

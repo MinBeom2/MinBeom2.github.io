@@ -29,7 +29,7 @@ npm run preview
 - `portfolio/src/styles.css`, `portfolio/src/case-studies.css`: 디자인
 - `portfolio/public/assets/`: 사용자가 제공한 실제 사진·로고·프로젝트 화면
 
-프로젝트 모달 직접 주소: `/#project/ait`, `/#project/onework`, `/#project/steamfolder`. 링크 직접 접근과 새로고침을 지원합니다.
+프로젝트 모달 직접 주소: `/#project/ait`, `/#project/onework`, `/#project/nyamnyam`, `/#project/steamfolder`. 링크 직접 접근과 새로고침을 지원합니다.
 
 ## GitHub Pages 배포
 

@@ -81,7 +81,7 @@ figure { margin: 0; }
   .project-modal .case-header { padding-block: 12px 24px; }
   .project-modal .case-title-row h1 { font-size: 30px; }
   .project-modal .case-logo { width: 44px; height: 44px; }
-  .project-modal .case-logo.project-logo-ait { width: 96px; height: auto; }
+  .project-modal .case-logo.project-logo-ait, .project-modal .case-logo.project-logo-nyamnyam { width: 96px; height: auto; }
   .project-modal .detail-subtitle { font-size: 18px; margin-top: 10px; }
   .project-modal .detail-facts dt { font-size: 12px; }
   .project-modal .detail-facts dd { font-size: 13px; }
@@ -103,6 +103,13 @@ figure { margin: 0; }
 .feedback-priority dt { font-family: var(--numeric); font-size: 22px; line-height: 1.5; font-weight: 700; }
 .feedback-priority dd { margin-top: 10px; font-size: 16px; line-height: 1.85; color: var(--muted); word-break: keep-all; overflow-wrap: anywhere; }
 @media (max-width: 600px) { .feedback-priority { grid-template-columns: 1fr; gap: 24px; } }
+.feedback-subtitle { margin-top: 44px; font-size: 18px; line-height: 1.6; word-break: keep-all; }
+.feedback-timeline { margin: 16px 0 0; padding: 0; list-style: none; }
+.feedback-timeline > li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-top: 1px solid var(--line); }
+.feedback-timeline time { font-family: var(--numeric); font-size: 15px; font-weight: 700; line-height: 1.85; color: var(--ink); }
+.feedback-timeline strong { display: block; font-size: 16px; line-height: 1.85; }
+.feedback-timeline p { margin-top: 4px; font-size: 15px; line-height: 1.85; color: var(--muted); word-break: keep-all; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .feedback-timeline > li { grid-template-columns: 1fr; gap: 2px; } }
 
 
 /* Technology decisions: the reason stays visible; comparisons open in place. */

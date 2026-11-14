@@ -1,4 +1,4 @@
-export type ProjectId = 'ait' | 'onework' | 'steamfolder'
+export type ProjectId = 'ait' | 'onework' | 'nyamnyam' | 'steamfolder'
 export type SourceLink = { label: string; url: string }
 
 export type Project = {
@@ -97,6 +97,40 @@ export const projects: Project[] = [
       { title: 'Unity WebGL 연동', description: '설비 CCTV 버튼과 브라우저 영상 창을 연결했습니다. 배포본이 localhost로 API를 요청하던 문제는 페이지 주소에서 API 호스트를 계산하도록 수정했습니다.' },
     ],
     repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/OneWork' }],
+  },
+  {
+    id: 'nyamnyam',
+    name: '냠냠취미',
+    subtitle: '숏폼으로 맛보고 고르는 새 취미',
+    overview: '숏폼 영상에 남긴 반응으로 취향을 파악해 새 취미를 추천하는 서비스',
+    description: '숏폼 반응으로 취미를 추천하고 첫 활동까지 안내하는 서비스. 숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 처리 백엔드를 담당했습니다.',
+    period: '2026.10.13 – 11.18',
+    team: 'SSAFY 7인 팀',
+    role: '숏폼 수집, 요청 제한, 커뮤니티와 신고 백엔드',
+    roleSummary: '백엔드 4명 중 한 명으로 숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 처리를 맡았습니다. 영상 판별과 신고 검토에는 LLM을 썼고, 신뢰도가 기준에 못 미치는 결과는 사람이 확인하도록 나눴습니다.',
+    teamDivision: [
+      { role: '백엔드 4명', description: '팀장이 인프라를 함께 맡았습니다. 저는 숏폼 수집, 요청 제한, 커뮤니티와 신고를 구현했습니다.' },
+      { role: '프론트엔드 2명', description: 'React 기반 서비스 화면과 API 연동을 담당했습니다.' },
+      { role: 'PM 1명', description: '기능 요구사항과 프로젝트 명세서를 작성했습니다.' },
+    ],
+    tags: ['Spring Boot', 'PostgreSQL', 'Redis', 'LLM API', 'Mattermost'],
+    summary: ['신고 1차 검토에 LLM과 신뢰도 기준 0.95 적용', 'YouTube 숏폼 수집 배치와 API 요청 제한'],
+    introduction: {
+      goal: '숏폼 영상으로 여러 취미를 가볍게 맛보고, 마음에 드는 취미를 골라 첫 활동까지 이어 가도록 돕는 서비스를 목표로 했습니다.',
+      background: '여가에 불만족하는 이유로 비용과 시간 부담이 가장 많이 꼽혔고, 유튜브 쇼츠 이용률은 2023년 58.1%에서 2025년 78.9%로 올랐습니다. 기존 서비스는 예약과 모임에 강하지만, 취미를 정하기 전의 탐색과 시작 준비를 잇는 경험은 부족하다고 봤습니다.',
+      features: [
+        { title: '숏폼 탐색과 반응', description: '취미 영상에 좋아요, 별로예요, 관련 없음으로 반응하고 시청 시간도 함께 기록합니다.' },
+        { title: '맞춤 취미 추천', description: '반응을 바탕으로 관심 취미와 연관 취미를 추천하고 시간, 비용, 난이도를 비교합니다.' },
+        { title: '주차별 TODO', description: '시작한 취미의 주차별 활동을 완료하며 진행률을 쌓습니다.' },
+        { title: '장소, 정보와 커뮤니티', description: '취미별 활동 장소와 행사·클래스 정보를 보고 게시판에서 경험을 나눕니다.' },
+      ],
+    },
+    contributions: [
+      { title: '숏폼 수집 배치', description: '취미별 키워드로 YouTube 숏폼을 검색하고, 길이와 퍼가기 허용 여부를 거른 뒤 LLM으로 취미 영상인지 판별했습니다. 통과한 영상은 후보로 쌓았다가 매주 목요일에 서비스에 반영합니다. 하루 할당량 상한을 9,000단위로 두고 실행 기록을 DB에 남겼습니다.' },
+      { title: 'API 요청 제한', description: 'Redis와 Bucket4j로 API 그룹 7개에 토큰 버킷을 적용했습니다. 로그인 사용자는 ID로, 비로그인 사용자와 인증 API는 IP로 셉니다. 한도를 넘으면 429와 Retry-After를 반환합니다.' },
+      { title: '커뮤니티와 신고 처리', description: '게시글, 댓글과 답글, 좋아요, 이미지 업로드 API를 만들었습니다. 신고 API와 Mattermost 처리 버튼, 신고 AI 1차 검토를 구현하고 게시글·댓글 신고 모달을 API에 연결했습니다.' },
+    ],
+    repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/NyamNyamHobby' }],
   },
   {
     id: 'steamfolder',

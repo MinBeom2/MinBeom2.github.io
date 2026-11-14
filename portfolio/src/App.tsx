@@ -15,11 +15,13 @@ const assets = {
   aitLogo: asset('projects/ait-logo.png'),
   oneworkLogo: asset('projects/onework-logo.png'),
   oneworkOverview: asset('projects/onework-overview.png'),
+  nyamnyamLogo: asset('projects/nyamnyam-logo.png'),
 }
 
 const projectPreviews = {
   ait: { src: asset('projects/ait-landing.png'), width: 2830, height: 1446, alt: 'Ait 랜딩페이지의 면접 연습 소개와 AI 모의면접 미리보기' },
   onework: { src: assets.oneworkOverview, width: 2558, height: 1266, alt: 'ONEWORK 디지털 트윈과 CCTV 영상 관제 화면' },
+  nyamnyam: { src: asset('projects/nyamnyam-home.png'), width: 2820, height: 1430, alt: '냠냠취미 홈 화면의 숏폼 추천 안내와 맞춤 추천 취미 목록' },
   steamfolder: { src: asset('projects/steamfolder-landing.png'), width: 2879, height: 1440, alt: 'SteamFolder 랜딩페이지의 게임 라이브러리 소개와 로그인 화면' },
 }
 
@@ -52,7 +54,8 @@ function ExternalLink({ href, children, className = '' }: { href: string; childr
 
 function ProjectLogo({ project, className = 'project-logo' }: { project: Project; className?: string }) {
   if (project.id === 'steamfolder') return null
-  return <img className={className + ' project-logo-' + project.id} src={project.id === 'ait' ? assets.aitLogo : assets.oneworkLogo} alt={project.name + ' 로고'} width={project.id === 'ait' ? 512 : 584} height={project.id === 'ait' ? 234 : 284} decoding="async" />
+  const logo = { ait: { src: assets.aitLogo, width: 512, height: 234 }, onework: { src: assets.oneworkLogo, width: 584, height: 284 }, nyamnyam: { src: assets.nyamnyamLogo, width: 600, height: 203 } }[project.id]
+  return <img className={className + ' project-logo-' + project.id} src={logo.src} alt={project.name + ' 로고'} width={logo.width} height={logo.height} decoding="async" />
 }
 
 function ProjectTile({ project }: { project: Project }) {
@@ -73,6 +76,11 @@ function SteamAiFeedbackSection() {
     <h2 id="ai-feedback-title">{aiFeedback.title}</h2>
     <p>{aiFeedback.intro}</p>
     <dl className="feedback-priority">{aiFeedback.priorities.map(priority => <div key={priority.name}><dt>{priority.name}</dt><dd>{priority.description}</dd></div>)}</dl>
+    <h3 className="feedback-subtitle">{aiFeedback.timelineTitle}</h3>
+    <ol className="feedback-timeline" role="list">{aiFeedback.timeline.map(step => <li key={step.dateTime}><time dateTime={step.dateTime}>{step.date}</time><div><strong>{step.title}</strong><p>{step.description}</p></div></li>)}</ol>
+    <h3 className="feedback-subtitle">{aiFeedback.decisionTitle}</h3>
+    <p>{aiFeedback.decision}</p>
+    <p className="detail-note">{aiFeedback.note}</p>
   </section>
 }
 
@@ -81,7 +89,7 @@ function HomePage() {
     <section className="hero container" aria-labelledby="hero-title">
       <div className="hero-copy">
         <h1 id="hero-title" tabIndex={-1}><span> 구현을 넘어,</span><span>더 나은 동작까지.</span></h1>
-        <p className="hero-person">{profile.role} {profile.name}</p>
+        <div className="hero-person"><p>{profile.role} {profile.name}</p><a className="hero-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><Icon name="github" size={24} /></a></div>
         <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. API를 설계하고 구현한 뒤, nGrinder로 응답 성능을 측정했습니다. 앞으로는 직접 만든 서비스를 배포하고 사용자 피드백을 반영하면서, 운영 중 생기는 문제까지 해결하겠습니다.</p>
       </div>
     </section>
@@ -360,7 +368,7 @@ function useRoute() {
     const returningFromModal = previousKind.current !== null && previousKind.current !== 'home'
     previousKind.current = route.kind
     document.title = route.kind === 'project' ? route.project.name + ' | 김민범 포트폴리오' : '김민범 | 백엔드 개발자'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', route.kind === 'project' ? route.project.description : '백엔드 개발자 김민범의 구현과 문제 해결 기록. Ait, ONEWORK와 개인 프로젝트 SteamFolder를 소개합니다.')
+    document.querySelector('meta[name="description"]')?.setAttribute('content', route.kind === 'project' ? route.project.description : '백엔드 개발자 김민범의 구현과 문제 해결 기록. Ait, ONEWORK, 냠냠취미와 개인 프로젝트 SteamFolder를 소개합니다.')
     if (route.kind !== 'home' || returningFromModal) return
     const frame = requestAnimationFrame(() => {
       if (route.anchor) {

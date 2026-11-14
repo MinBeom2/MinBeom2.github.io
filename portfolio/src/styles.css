@@ -57,7 +57,10 @@ img { height: auto; }
 .hero-copy { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 48px; width: 100%; min-width: 0; max-width: 1040px; }
 .hero h1 { font-size: clamp(44px, 6vw, 80px); letter-spacing: -.03em; font-weight: 740; line-height: 1.3; word-break: keep-all; text-wrap: balance; }
 .hero h1 > span { display: block; }
-.hero-person { font-size: 20px; font-weight: 600; color: var(--ink); }
+.hero-person { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 600; color: var(--ink); }
+.hero-github { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; color: var(--muted); }
+.hero-github svg { width: 1.2em; height: 1.2em; }
+.hero-github:hover { color: var(--ink); background: var(--pale); }
 .hero-description { max-width: 68ch; font-size: 20px; line-height: 1.9; color: var(--muted); word-break: keep-all; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; min-height: 48px; }
 .button.primary { background: var(--ink); color: var(--inverse); }
@@ -84,7 +87,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .project-tile { display: flex; flex: 0 1 calc(850px / 3); flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-width: 0; padding-block: 4px; text-align: center; }
 .project-tile-mark { display: flex; align-items: center; justify-content: center; width: 112px; max-width: 100%; height: 64px; color: var(--ink); }
 .project-tile-logo { width: 64px; height: 64px; object-fit: contain; }
-.project-tile-logo-ait { width: 112px; max-width: 100%; height: auto; }
+.project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 112px; max-width: 100%; height: auto; }
 .project-tile-logo-onework { width: 112px; max-width: 100%; }
 .project-tile-copy { width: 100%; }
 .project-tile-description { max-width: 30ch; margin: 8px auto 0; color: var(--muted); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }
@@ -97,7 +100,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .project-meta span:last-child { font-family: var(--numeric); }
 .project-brand { display: flex; align-items: center; gap: 13px; margin-top: 17px; }
 .project-logo { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
-.project-logo.project-logo-ait { width: 96px; height: auto; }
+.project-logo.project-logo-ait, .project-logo.project-logo-nyamnyam { width: 96px; height: auto; }
 .project-card h3 { font-family: var(--numeric); font-size: 30px; letter-spacing: -.025em; line-height: 1.4; font-weight: 750; margin-top: 17px; }
 .project-brand h3 { margin: 0; }
 .project-subtitle { font-size: 16px; font-weight: 550; letter-spacing: -.015em; margin-top: 8px; }
@@ -183,7 +186,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 .case-title-row { display: flex; align-items: center; gap: 20px; }
 .case-title-row h1 { font-family: var(--numeric); font-size: clamp(38px, 4vw, 56px); line-height: 1.3; font-weight: 750; letter-spacing: -.03em; word-break: keep-all; }
 .case-logo { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
-.project-modal .case-logo.project-logo-ait { width: 140px; height: auto; }
+.project-modal .case-logo.project-logo-ait, .project-modal .case-logo.project-logo-nyamnyam { width: 140px; height: auto; }
 .case-header > p { max-width: 70ch; color: var(--muted); }
 .case-header .detail-subtitle { margin-top: 16px; font-size: 22px; color: var(--ink); line-height: 1.6; }
 .case-header .project-description { max-width: 70ch; font-size: 16px; }
@@ -234,7 +237,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
 @media (min-width: 1500px) {
   .project-tile-mark { width: 128px; height: 80px; }
   .project-tile-logo { width: 80px; height: 80px; }
-  .project-tile-logo-ait { width: 128px; height: auto; }
+  .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 128px; height: auto; }
   .project-tile-logo-onework { width: 128px; }
   .project-tile h3 { font-size: 22px; }
   .project-tile-description { max-width: 34ch; font-size: 16px; }
@@ -264,7 +267,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-showcase-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: center; gap: 64px; padding: 32px 48px; }
   .project-tile-mark { width: 144px; height: 80px; }
   .project-tile-logo { width: 80px; height: 80px; }
-  .project-tile-logo-ait { width: 144px; height: auto; }
+  .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 144px; height: auto; }
   .project-tile-logo-onework { width: 144px; }
   .project-tile-mark > svg { width: 60px; height: 60px; }
   .project-tile h3 { font-size: 24px; }
@@ -312,7 +315,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-showcase-card { display: grid; grid-template-columns: minmax(0, 606px); justify-content: center; padding: 16px; }
   .project-tile { display: grid; grid-template-columns: 80px minmax(0, 1fr); padding: 0; text-align: left; }
   .project-tile-mark { width: 80px; }
-  .project-tile-logo-ait { width: 80px; }
+  .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 80px; }
   .project-tile-description { max-width: 44ch; margin: 8px 0 0; }
   .about-section { grid-template-columns: 1fr; gap: 36px; }
   .about-intro { position: static; display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 28px; }
@@ -331,7 +334,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-tile { grid-template-columns: 60px minmax(0, 1fr); gap: 12px; }
   .project-tile-mark { width: 60px; height: 48px; }
   .project-tile-logo { width: 48px; height: 48px; }
-  .project-tile-logo-ait { width: 60px; height: auto; }
+  .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 60px; height: auto; }
   .project-tile-logo-onework { width: 60px; }
   .project-tile-copy { display: contents; }
   .project-tile h3 { grid-column: 2; grid-row: 1; font-size: 20px; }
