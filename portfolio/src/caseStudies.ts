@@ -322,7 +322,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
     ],
     results: [
       'Steam 로그인부터 보유 게임 정리와 쇼케이스 공유까지 화면과 API를 함께 구현했습니다.',
-      '로컬 개발 단계에서 개발을 잠시 멈췄습니다. 외부에 배포하지 않아 운영 성과는 없습니다.',
+      '로컬 개발 단계입니다. 외부에 배포하지 않아 운영 성과는 없습니다.',
     ],
   },
 }
