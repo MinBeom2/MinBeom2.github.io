@@ -133,7 +133,9 @@ function HomePage() {
             <div className="approach-copy"><h4>버전 관리 담당</h4>
             <p>Git Flow를 제안하고 브랜치별 역할, 최신 코드 반영과 병합 순서를 문서로 공유했습니다. 팀원이 막힐 때 작업 방법을 설명하고 충돌 해결을 도왔습니다.</p></div>
             <div className="approach-copy"><h4>스크럼 마스터</h4>
-            <p>스크럼 마스터로서 매주 KPT 회고를 진행하고 번다운 차트와 팀원 의견을 함께 살폈습니다.</p></div>
+            <p>Ait에서 매주 KPT 회고를 진행하고 번다운 차트를 함께 봤습니다. 끝낸 작업을 Jira에 한꺼번에 반영해 차트가 실제 진행과 달랐습니다. 작업을 끝낼 때마다 반영하자고 제안했고, 이후 팀이 그렇게 진행했습니다.</p></div>
+            <div className="approach-copy"><h4>AI로 Jira 관리</h4>
+            <p>냠냠취미에서는 Claude를 Jira에 연결했습니다. 이슈를 직접 옮기지 않고 AI로 생성하고 확인했습니다.</p></div>
           </article>
         </div>
         <AiCapabilitiesSection />
