@@ -274,6 +274,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-tile-description { max-width: 30ch; font-size: 18px; }
   .approach-grid > .approach-validation { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .approach-validation > .approach-evidence { display: contents; }
+  .approach-validation > .approach-copy { grid-row: span 2; }
   .approach-validation .approach-test + .approach-test { margin-top: 0; }
 }
 

@@ -17,6 +17,7 @@ const ait = { id: 'ait', name: 'Ait', section: 'technology' } as const
 const onework = { id: 'onework', name: 'ONEWORK', section: 'technology' } as const
 const steam = { id: 'steamfolder', name: 'SteamFolder', section: 'technology' } as const
 const nyamnyam = { id: 'nyamnyam', name: '냠냠취미', section: 'rate-limit' } as const
+const nyamnyamData = { id: 'nyamnyam', name: '냠냠취미', section: 'short-filter' } as const
 
 export const skills: SkillEvidence[] = [
   {
@@ -58,6 +59,16 @@ export const skills: SkillEvidence[] = [
     highlight: "중복 저장과 좋아요 수의 갱신 유실을 막도록 설계했습니다.",
     evidence: "유니크 제약과 DB 증감 쿼리를 적용하고, H2의 MySQL 모드로 동시 요청 테스트를 작성했습니다.",
     projects: [ait, steam],
+  },
+  {
+    id: "postgresql",
+    name: "PostgreSQL",
+    logo: "postgresql.svg",
+    level: "중하",
+    summary: "Flyway 마이그레이션, 충돌 처리로 중복 방지",
+    highlight: "스키마와 데이터 변경을 Flyway 마이그레이션으로 관리했습니다.",
+    evidence: "개발용 시드 데이터 정리와 판별 기준 변경에 따른 삭제를 마이그레이션으로 남겼습니다. 좋아요 중복은 INSERT ON CONFLICT로 막았습니다.",
+    projects: [nyamnyamData],
   },
   {
     id: "redis",

@@ -61,7 +61,7 @@ export const projects: Project[] = [
     contributions: [
       { title: '스터디 운영과 채팅', description: '그룹 생성, 가입 승인과 거절, 일정 API를 구현했습니다. STOMP/WebSocket 연결의 JWT 인증과 메시지 전송 전 멤버 권한 확인을 나누고 채팅 이력에 ID 커서와 Slice 조회를 적용했습니다.' },
       { title: '커뮤니티와 실시간 알림', description: '게시글, 댓글, 좋아요와 스크랩 API를 개발했습니다. 알림 목록과 읽음 처리, SSE 전송을 구현하고 배포 후 수신 문제에 대응해 8초 heartbeat와 연결 정리를 추가했습니다.' },
-      { title: '조회 성능과 데이터 정합성 검증', description: 'nGrinder로 채팅 이력과 댓글 조회의 변경 전후 응답 시간을 비교했습니다. 프로젝트 종료 후에는 좋아요 수의 갱신 유실을 막도록 비관적 락을 적용했습니다. 요청 100건을 32개 스레드로 실행해 최종 좋아요 수가 100인지 확인했습니다.' },
+      { title: '조회 성능과 데이터 정합성 검증', description: '프로젝트 기간에는 구현까지 마쳤고, 끝난 뒤 nGrinder로 채팅 이력과 댓글 조회의 변경 전후 응답 시간을 비교했습니다. 이때 좋아요 수의 갱신 유실도 확인해 비관적 락을 적용했습니다. 요청 100건을 32개 스레드로 실행해 최종 좋아요 수가 100인지 확인했습니다.' },
     ],
     repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/Ait' }],
   },
@@ -77,7 +77,9 @@ export const projects: Project[] = [
     roleSummary: '카메라 영상을 관제 화면으로 전달하는 백엔드를 맡았습니다. RTSP 송출부터 MediaMTX 중계, 카메라 조회 API와 녹화 설정까지 구현했습니다.',
     teamDivision: [
       { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
-      { role: '다른 팀원', description: '설비 데이터 처리와 분석, 3D 디지털 트윈과 서비스 화면을 분담했습니다.' },
+      { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
+      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
+      { role: '전류 모델과 문서', description: '전류 신호 기반 탐지 모델 실험, 프로젝트 문서와 발표 자료를 담당했습니다.' },
     ],
     tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
     summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],

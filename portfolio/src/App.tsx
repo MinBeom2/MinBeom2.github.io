@@ -95,7 +95,7 @@ function HomePage() {
       <div className="hero-copy">
         <h1 id="hero-title" tabIndex={-1}><span> 구현을 넘어,</span><span>더 나은 동작까지.</span></h1>
         <div className="hero-person"><p>{profile.role} {profile.name}</p><a className="hero-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><GithubMark /></a></div>
-        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. API를 설계하고 구현한 뒤, nGrinder로 응답 성능을 측정했습니다. 앞으로는 직접 만든 서비스를 배포하고 사용자 피드백을 반영하면서, 운영 중 생기는 문제까지 해결하겠습니다.</p>
+        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. 부하 테스트로 조회 응답 시간을 측정해 줄였고, 신고 글을 거르는 LLM은 금칙어 필터와 비교해 기준을 정했습니다.</p>
       </div>
     </section>
     <section className="projects-section container section-space" id="projects" aria-labelledby="projects-title">
@@ -108,7 +108,7 @@ function HomePage() {
         <div className="approach-grid">
           <article className="approach-validation">
             <div className="approach-copy"><h3>테스트로 결과를 확인합니다</h3>
-            <p>조회 성능은 nGrinder로 비교하고, 동시 요청의 데이터 정합성은 통합 테스트로 확인했습니다. 변경 전후의 결과와 검증 조건을 함께 남겼습니다.</p></div>
+            <p>조회 성능은 nGrinder로 비교하고, 동시 요청의 데이터 정합성은 통합 테스트로 확인했습니다. LLM의 판단은 금칙어 필터와 같은 데이터로 비교했습니다. 결과와 검증 조건을 함께 남겼습니다.</p></div>
             <div className="approach-evidence">
               <div className="approach-test"><h4>채팅 조회 응답 시간</h4>
                 <dl className="approach-measure" aria-label="채팅 조회 평균 응답 시간 비교">
@@ -125,6 +125,14 @@ function HomePage() {
                 </dl>
                 <p className="approach-note">프로젝트 종료 후 개인 개선 / 팀 배포 미반영</p>
                 <a className="approach-link" href="#project/ait/concurrency">동시성 검증 기록 보기</a>
+              </div>
+              <div className="approach-test"><h4>신고 글 판별 정밀도</h4>
+                <dl className="approach-measure" aria-label="신고 글 판별 정밀도 비교">
+                  <div><dt>금칙어 필터</dt><dd>45.2 <span>%</span></dd></div>
+                  <div><dt>LLM</dt><dd>85.7 <span>%</span></dd></div>
+                </dl>
+                <p className="approach-note">직접 만든 100건, 신뢰도 기준 0.9, 1회 실행</p>
+                <a className="approach-link" href="#project/nyamnyam/technology">비교 조건과 결과 보기</a>
               </div>
             </div>
           </article>
