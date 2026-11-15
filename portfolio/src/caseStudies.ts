@@ -263,14 +263,14 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
   steamfolder: {
     technologyDecision: {
       title: '서버 간 요청 제한 상태를 공유하기 위한 Redis',
-      background: '현재처럼 서버 한 대로 개발할 때는 인메모리 방식으로도 충분합니다. 다만 서버가 여러 대로 늘어나면 각 서버가 요청 횟수를 따로 세는 방식으로는 사용자별 전체 요청량을 제한하기 어렵다고 판단해 Redis를 선택했습니다.',
+      background: '서버 한 대로 개발하는 단계에서는 인메모리 방식으로도 충분합니다. 다만 서버가 여러 대로 늘어나면 각 서버가 요청 횟수를 따로 세는 방식으로는 사용자별 전체 요청량을 제한하기 어렵다고 판단해 Redis를 선택했습니다.',
       implementation: 'Bucket4j와 Redis로 사용자별 요청 제한 상태를 관리합니다. 여러 서버가 같은 제한 상태를 참조할 수 있도록 구성했습니다.',
       comparisonTitle: '인메모리와 Redis 요청 제한 비교',
       alternatives: [
         { method: '인메모리', difference: '별도 저장소 없이 서버 프로세스 안에서 제한 상태를 관리합니다. 단일 서버에서는 간단하지만, 여러 서버의 상태는 각각 나뉩니다.' },
         { method: 'Redis', selected: true, difference: '서버들이 같은 저장소에서 사용자별 제한 상태를 공유할 수 있습니다. 대신 Redis 운영과 네트워크 통신, 저장소 장애 시의 처리까지 고려해야 합니다.' },
       ],
-      limitation: '현재는 로컬의 단일 서버에서 개발하고 있습니다. 여러 서버가 동일한 제한을 적용하는지는 실제 다중 서버 환경에서 아직 검증하지 않았습니다.',
+      limitation: '로컬의 단일 서버에서만 개발했습니다. 여러 서버가 동일한 제한을 적용하는지는 실제 다중 서버 환경에서 아직 검증하지 않았습니다.',
       reference: { label: 'Bucket4j 8.17의 로컬과 분산 버킷 설명', url: 'https://bucket4j.com/8.17.0/toc.html' },
     },
     techChoices: [
@@ -322,7 +322,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
     ],
     results: [
       'Steam 로그인부터 보유 게임 정리와 쇼케이스 공유까지 화면과 API를 함께 구현했습니다.',
-      '현재 로컬에서 개발하고 있습니다. 외부 배포 후 사용자 피드백을 받을 계획이며 운영 성과는 아직 없습니다.',
+      '로컬 개발 단계에서 개발을 잠시 멈췄습니다. 외부에 배포하지 않아 운영 성과는 없습니다.',
     ],
   },
 }

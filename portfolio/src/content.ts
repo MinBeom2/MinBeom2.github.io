@@ -137,11 +137,11 @@ export const projects: Project[] = [
     name: 'SteamFolder',
     subtitle: '내 게임 라이브러리를 정리하고 공유하기',
     overview: '보유한 Steam 게임을 폴더로 정리하고 링크로 공유하는 서비스',
-    description: '보유 게임을 폴더로 정리하고 쇼케이스 링크로 공유하는 개인 서비스. 프론트엔드와 백엔드를 함께 개발하고 있습니다.',
-    period: '2026.08.21 ~ 진행 중',
+    description: '보유 게임을 폴더로 정리하고 쇼케이스 링크로 공유하는 개인 서비스. 프론트엔드와 백엔드를 함께 개발했습니다.',
+    period: '2026.08.21 – 10.05 (개발 일시 중단)',
     team: '개인 프로젝트',
     role: '프론트엔드와 백엔드 전체 개발',
-    roleSummary: '보유 게임을 정리하고 공유하고 싶다는 경험에서 시작한 개인 프로젝트입니다. 기능 기획부터 데이터 구조, API와 React 화면까지 직접 개발하고 있습니다.',
+    roleSummary: '보유 게임을 정리하고 공유하고 싶다는 경험에서 시작한 개인 프로젝트입니다. 기능 기획부터 데이터 구조, API와 React 화면까지 직접 개발했습니다.',
     teamDivision: [
       { role: '기획과 설계 (본인)', description: '게임 분류와 공유 흐름, 폴더 구조와 API를 설계했습니다.' },
       { role: '백엔드 (본인)', description: 'Steam 인증과 동기화, 폴더, 쇼케이스와 요청 제한 API를 개발했습니다.' },
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'Spring Boot', 'Redis'],
     summary: ['Steam 인증과 게임 동기화부터 폴더 화면까지 구현', '최대 5단계 폴더와 쇼케이스 공유'],
     introduction: {
-      goal: '보유한 Steam 게임을 원하는 기준으로 정리하고 링크 하나로 다른 사람에게 보여줄 수 있는 서비스를 만들고 있습니다.',
+      goal: '보유한 Steam 게임을 원하는 기준으로 정리하고 링크 하나로 다른 사람에게 보여줄 수 있는 서비스를 목표로 했습니다.',
       background: '함께 게임할 사람에게 보유 게임을 보여주려면 Steam 라이브러리 화면까지 여러 단계를 거쳐야 했습니다. 원하는 기준으로 목록을 묶어 공유하고 싶어 폴더와 쇼케이스 기능을 만들기 시작했습니다.',
       features: [
         { title: 'Steam 계정 연동', description: 'Steam으로 로그인하고 보유한 게임 목록을 동기화합니다.' },
