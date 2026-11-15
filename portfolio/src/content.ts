@@ -88,7 +88,7 @@ export const projects: Project[] = [
         { title: '설비 이상 감지', description: '설비의 진동 데이터를 분석해 이상 징후를 확인합니다.' },
         { title: '품질 원인 분석', description: '공정 데이터를 분석해 품질 문제의 원인을 살펴봅니다.' },
         { title: '3D 디지털 트윈', description: '공장과 설비를 3D 화면에 표현하고 설비별 상태를 확인합니다.' },
-        { title: '카메라 영상 관제', description: '설비별 카메라 영상 중계와 조회, 녹화 설정을 구현했습니다. HTTPS 환경의 영상 연동은 미해결 상태입니다.' },
+        { title: '카메라 영상 관제', description: '설비별 카메라 영상 중계와 조회, 녹화 설정을 구현했습니다.' },
       ],
     },
     contributions: [

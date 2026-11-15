@@ -167,17 +167,16 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         outcome: '송출, 중계, 녹화 구성을 코드와 설정으로 정리했습니다. 설비 ID를 기준으로 해당 카메라 스트림을 조회하는 연결을 구현했습니다.',
       },
       {
-        title: 'WebGL 배포 주소 수정과 HTTPS 연동의 한계',
-        problem: 'Unity WebGL 배포본이 카메라 API를 localhost로 요청하는 문제를 경험했습니다. 이후 HTTPS로 전환하는 과정에서는 HTTP API와 WHEP 요청이 다시 차단됐습니다.',
+        title: 'WebGL 배포본의 카메라 API 주소 수정',
+        problem: 'Unity WebGL 배포본이 카메라 API를 localhost로 요청하는 문제를 경험했습니다.',
         decision: 'WebGL 페이지 주소에서 카메라 API 호스트를 계산하도록 수정했습니다. Unity WebGL의 HTTP 요청 허용 설정도 추가했습니다.',
-        outcome: 'localhost를 향하던 카메라 API 요청 주소를 수정했습니다. HTTPS 화면에서 HTTP 요청이 차단되는 통합 문제는 해결하지 못했습니다.',
-        note: 'HTTPS 환경의 영상 재생이 정상화되었다고 제시하지 않습니다. 구현한 범위와 남은 연동 문제를 함께 기록했습니다.',
+        outcome: 'localhost를 향하던 카메라 API 요청 주소를 수정했습니다. 배포 주소가 바뀌어도 화면이 접속한 호스트를 기준으로 API를 호출합니다.',
       },
     ],
     results: [
       'RTSP 송출, MediaMTX 구성과 Spring Boot 카메라 관제 API를 구현했습니다.',
       'Compose 실행과 배포 연결, 녹화 설정과 설비별 스트림 매핑을 보완했습니다.',
-      'WebGL의 localhost 요청 주소를 수정했고 HTTPS 혼합 콘텐츠 차단 문제는 미해결로 기록했습니다.',
+      'WebGL 배포본이 localhost로 보내던 카메라 API 요청 주소를 수정했습니다.',
     ],
   },
   nyamnyam: {
