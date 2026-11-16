@@ -72,7 +72,6 @@ function ProjectTile({ project }: { project: Project }) {
         <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
         <div className="project-tile-copy">
           <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
-          <p className="project-tile-meta">{project.team} · {project.roleShort}</p>
           <p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p>
         </div>
       </div>

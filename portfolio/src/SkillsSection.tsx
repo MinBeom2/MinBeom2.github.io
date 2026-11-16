@@ -39,7 +39,7 @@ export default function SkillsSection() {
   return <section id="skills" className="skills-section" aria-labelledby={instanceId + '-title'}>
     <div className="skills-heading"><h3 id={instanceId + '-title'}>사용하는 기술</h3><details className="skill-level-guide"><summary>숙련도 기준<Chevron /></summary><div className="skill-guide-content"><p>프로젝트 코드와 커밋, 작성한 테스트를 기준으로 정리했습니다.</p><dl>
       <div><dt>상</dt><dd>설계부터 구현, 문제 해결과 개선까지 주도</dd></div>
-      <div><dt>상중</dt><dd>복잡한 기능과 외부 연동을 구현하고 테스트로 검증</dd></div>
+      <div><dt>중상</dt><dd>복잡한 기능과 외부 연동을 구현하고 테스트로 검증</dd></div>
       <div><dt>중</dt><dd>일반적인 기능 구현과 문제 해결을 독립적으로 수행</dd></div>
       <div><dt>중하</dt><dd>자료를 참고해 기본 기능을 구현하고 설정을 수정</dd></div>
       <div><dt>하</dt><dd>기본 개념을 이해하고 예제를 따라 사용</dd></div>
