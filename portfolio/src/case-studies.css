@@ -52,7 +52,7 @@ figure { margin: 0; }
 .project-modal::backdrop { background: rgba(0, 0, 0, .46); }
 .modal-toolbar { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; gap: 8px; min-height: 64px; padding: 10px 24px; background: var(--surface); }
 .project-repositories { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
-.project-repositories a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px; border-radius: 8px; color: var(--ink); font-size: 13px; font-weight: 550; line-height: 1.5; }
+.project-repositories a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px 10px; border-radius: 8px; color: var(--ink); font-size: 13px; font-weight: 550; line-height: 1.5; }
 .project-repositories a:hover { background: var(--pale); }
 .project-repositories svg { flex-shrink: 0; }
 .modal-close { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; margin-left: auto; min-height: 44px; padding: 8px 14px; border: 0; border-radius: 8px; color: var(--ink); background: var(--pale); font-size: 14px; font-weight: 550; }
@@ -137,6 +137,10 @@ figure { margin: 0; }
 .technology-comparison td { color: var(--muted); word-break: keep-all; }
 .technology-selected { background: var(--pale); }
 .technology-used { display: block; color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 4px; }
+.technology-metrics { table-layout: auto; }
+.technology-metrics td { color: var(--ink); font-family: var(--numeric); font-variant-numeric: tabular-nums; }
+.technology-metric-notes { display: grid; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; line-height: 1.85; word-break: keep-all; }
+.technology-metric-notes strong { margin-right: 8px; color: var(--ink); font-weight: 600; }
 .technology-reference a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
 .technology-reference { padding: 8px 0 0; }
 .technology-choices .technology-choice-limitation { font-size: 14px; line-height: 1.9; margin-top: 22px; }
@@ -156,6 +160,8 @@ figure { margin: 0; }
   .technology-comparison th, .technology-comparison td { padding: 0; border: 0; }
   .technology-comparison td { margin-top: 7px; }
   .technology-used { display: inline; margin-left: 8px; }
+  .technology-metrics td { display: flex; justify-content: space-between; gap: 12px; }
+  .technology-metrics td::before { content: attr(data-label); color: var(--muted); font-family: var(--sans, inherit); }
 }
 
 

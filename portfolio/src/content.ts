@@ -10,6 +10,8 @@ export type Project = {
   period: string
   team: string
   role: string
+  roleShort: string
+  highlight: string
   roleSummary: string
   teamDivision: { role: string; description: string }[]
   tags: string[]
@@ -32,75 +34,6 @@ export const profile = {
 
 export const projects: Project[] = [
   {
-    id: 'ait',
-    name: 'Ait',
-    subtitle: 'AI 모의 면접과 화상 스터디를 한곳에',
-    overview: 'AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼',
-    description: '이력서, 자기소개서, GitHub 자료를 활용한 면접 준비 플랫폼. 스터디 운영, 커뮤니티와 알림 백엔드를 담당했습니다.',
-    period: '2026.07.06 – 08.10',
-    team: 'SSAFY 6인 팀',
-    role: '스터디 관리, 커뮤니티, 알림 백엔드',
-    roleSummary: '백엔드 3명 중 한 명으로 스터디 운영, 커뮤니티와 알림을 담당했습니다. 그룹 가입부터 일정 관리와 실시간 대화까지 이어지는 API를 구현했습니다.',
-    teamDivision: [
-      { role: '백엔드 3명', description: '서버와 API 개발을 나눠 맡았습니다. 저는 스터디, 채팅, 커뮤니티와 알림을 구현했습니다.' },
-      { role: '프론트엔드 2명', description: 'React 기반 서비스 화면과 API 연동을 담당했습니다.' },
-      { role: 'AI 1명', description: '자료 기반 면접 질문 생성과 답변 평가 등 AI 기능을 담당했습니다.' },
-    ],
-    tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE', 'nGrinder'],
-    summary: ['JWT와 그룹 멤버 권한을 검증하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
-    introduction: {
-      goal: '이력서, 자기소개서와 GitHub 자료를 반영한 AI 모의 면접과 화상 스터디를 한곳에서 제공하는 것을 목표로 했습니다.',
-      background: '스터디 모집, 면접 연습, 평가와 소통이 따로 이루어져 면접 준비의 흐름이 나뉘는 문제에 주목했습니다. 개발자의 GitHub 자료까지 반영한 질문과 반복 연습을 함께 지원하는 서비스를 기획했습니다.',
-      features: [
-        { title: '자료 기반 AI 모의 면접', description: '이력서, 자기소개서와 GitHub 자료로 질문을 생성하고 답변에 따라 꼬리 질문과 피드백을 제공합니다.' },
-        { title: '화상 스터디와 상호 평가', description: '스터디원과 화상으로 면접을 연습하고 서로의 답변을 평가합니다.' },
-        { title: '스터디 운영과 그룹 채팅', description: '스터디 모집과 가입, 일정을 관리하고 그룹별로 대화합니다.' },
-        { title: '커뮤니티와 알림', description: '면접 준비 경험을 게시글과 댓글로 공유하고 서비스 내 소식을 알림으로 받습니다.' },
-      ],
-    },
-    contributions: [
-      { title: '스터디 운영과 채팅', description: '그룹 생성, 가입 승인과 거절, 일정 API를 구현했습니다. STOMP/WebSocket 연결의 JWT 인증과 메시지 전송 전 멤버 권한 확인을 나누고 채팅 이력에 ID 커서와 Slice 조회를 적용했습니다.' },
-      { title: '커뮤니티와 실시간 알림', description: '게시글, 댓글, 좋아요와 스크랩 API를 개발했습니다. 알림 목록과 읽음 처리, SSE 전송을 구현하고 배포 후 수신 문제에 대응해 8초 heartbeat와 연결 정리를 추가했습니다.' },
-      { title: '조회 성능과 데이터 정합성 검증', description: '프로젝트 기간에는 구현까지 마쳤고, 끝난 뒤 nGrinder로 채팅 이력과 댓글 조회의 변경 전후 응답 시간을 비교했습니다. 이때 좋아요 수의 갱신 유실도 확인해 비관적 락을 적용했습니다. 요청 100건을 32개 스레드로 실행해 최종 좋아요 수가 100인지 확인했습니다.' },
-    ],
-    repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/Ait' }],
-  },
-  {
-    id: 'onework',
-    name: 'ONEWORK',
-    subtitle: '예지보전과 품질 관제에 필요한 영상 연결',
-    overview: '설비 상태와 카메라 영상을 함께 확인하는 스마트 팩토리 관제 플랫폼',
-    description: '스마트 팩토리 관제 플랫폼의 MediaMTX 중심 백엔드. RTSP 영상 송출, 카메라 API와 실행과 녹화 설정을 구현했습니다.',
-    period: '2026.08.18 – 09.28',
-    team: 'SSAFY 6인 팀',
-    role: 'MediaMTX 중심 백엔드',
-    roleSummary: '카메라 영상을 관제 화면으로 전달하는 백엔드를 맡았습니다. RTSP 송출부터 MediaMTX 중계, 카메라 조회 API와 녹화 설정까지 구현했습니다.',
-    teamDivision: [
-      { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
-      { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
-      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
-      { role: '전류 모델과 문서', description: '전류 신호 기반 탐지 모델 실험, 프로젝트 문서와 발표 자료를 담당했습니다.' },
-    ],
-    tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
-    summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
-    introduction: {
-      goal: '설비 이상과 공정 품질을 한곳에서 살펴보는 스마트 팩토리 관제 플랫폼을 목표로 했습니다.',
-      background: '예지보전과 품질 관제를 함께 다루면서 센서 데이터의 분석 결과와 실제 설비 상태를 함께 확인해야 했습니다. 이를 위해 3D 디지털 트윈과 카메라 영상을 함께 보는 관제 환경이 필요했습니다.',
-      features: [
-        { title: '설비 이상 감지', description: '설비의 진동 데이터를 분석해 이상 징후를 확인합니다.' },
-        { title: '품질 원인 분석', description: '공정 데이터를 분석해 품질 문제의 원인을 살펴봅니다.' },
-        { title: '3D 디지털 트윈', description: '공장과 설비를 3D 화면에 표현하고 설비별 상태를 확인합니다.' },
-        { title: '카메라 영상 관제', description: '설비별 카메라 영상 중계와 조회, 녹화 설정을 구현했습니다.' },
-      ],
-    },
-    contributions: [
-      { title: '영상 송출과 카메라 API', description: '웹캠과 CCTV의 RTSP 영상을 MediaMTX로 받아 WebRTC WHEP로 전달하도록 구성했습니다. 송출 스크립트와 Spring Boot 카메라 API를 작성하고 설비 ID별 스트림을 연결했습니다.' },
-      { title: '실행과 녹화 설정', description: 'Docker Compose 실행과 배포 구성을 연결했습니다. fMP4 녹화 경로, 보관 설정과 배포 볼륨을 구성하고 원격 설비 송출 스크립트를 보완했습니다.' },
-      { title: 'Unity WebGL 연동', description: '설비 CCTV 버튼과 브라우저 영상 창을 연결했습니다. 배포본이 localhost로 API를 요청하던 문제는 페이지 주소에서 API 호스트를 계산하도록 수정했습니다.' },
-    ],
-    repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/OneWork' }],
-  },
-  {
     id: 'nyamnyam',
     name: '냠냠취미',
     subtitle: '숏폼으로 맛보고 고르는 새 취미',
@@ -109,6 +42,8 @@ export const projects: Project[] = [
     period: '2026.10.13 – 11.18',
     team: 'SSAFY 7인 팀',
     role: '숏폼 수집, 요청 제한, 커뮤니티와 신고 백엔드',
+    roleShort: '백엔드',
+    highlight: '신고 글 판별 정밀도 85.7% (금칙어 필터 45.2%)',
     roleSummary: '백엔드 4명 중 한 명으로 숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 처리를 맡았습니다. 영상 판별과 신고 검토에는 LLM을 썼고, 신뢰도가 기준에 못 미치는 결과는 사람이 확인하도록 나눴습니다.',
     teamDivision: [
       { role: '백엔드 4명', description: '팀장이 인프라를 함께 맡았습니다. 저는 숏폼 수집, 요청 제한, 커뮤니티와 신고를 구현했습니다.' },
@@ -143,6 +78,8 @@ export const projects: Project[] = [
     period: '2026.08.21 ~',
     team: '개인 프로젝트',
     role: '프론트엔드와 백엔드 전체 개발',
+    roleShort: '풀스택',
+    highlight: '30명 동시 좋아요 테스트로 정합성 확인',
     roleSummary: '보유 게임을 정리하고 공유하고 싶다는 경험에서 시작한 개인 프로젝트입니다. 기능 기획부터 데이터 구조, API와 React 화면까지 직접 개발했습니다.',
     teamDivision: [
       { role: '기획과 설계 (본인)', description: '게임 분류와 공유 흐름, 폴더 구조와 API를 설계했습니다.' },
@@ -170,6 +107,79 @@ export const projects: Project[] = [
       { label: '백엔드', url: 'https://github.com/MinBeom2/SteamFolder' },
       { label: '프론트엔드', url: 'https://github.com/MinBeom2/SteamFolder-front' },
     ],
+  },
+  {
+    id: 'onework',
+    name: 'ONEWORK',
+    subtitle: '예지보전과 품질 관제에 필요한 영상 연결',
+    overview: '설비 상태와 카메라 영상을 함께 확인하는 스마트 팩토리 관제 플랫폼',
+    description: '스마트 팩토리 관제 플랫폼의 MediaMTX 중심 백엔드. RTSP 영상 송출, 카메라 API와 실행과 녹화 설정을 구현했습니다.',
+    period: '2026.08.18 – 09.28',
+    team: 'SSAFY 6인 팀',
+    role: 'MediaMTX 중심 백엔드',
+    roleShort: '백엔드',
+    highlight: 'RTSP 영상을 MediaMTX로 중계해 WebRTC로 재생',
+    roleSummary: '카메라 영상을 관제 화면으로 전달하는 백엔드를 맡았습니다. RTSP 송출부터 MediaMTX 중계, 카메라 조회 API와 녹화 설정까지 구현했습니다.',
+    teamDivision: [
+      { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
+      { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
+      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
+      { role: '전류 모델과 문서', description: '전류 신호 기반 탐지 모델 실험, 프로젝트 문서와 발표 자료를 담당했습니다.' },
+    ],
+    tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
+    summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
+    introduction: {
+      goal: '설비 이상과 공정 품질을 한곳에서 살펴보는 스마트 팩토리 관제 플랫폼을 목표로 했습니다.',
+      background: '예지보전과 품질 관제를 함께 다루면서 센서 데이터의 분석 결과와 실제 설비 상태를 함께 확인해야 했습니다. 이를 위해 3D 디지털 트윈과 카메라 영상을 함께 보는 관제 환경이 필요했습니다.',
+      features: [
+        { title: '설비 이상 감지', description: '설비의 진동 데이터를 분석해 이상 징후를 확인합니다.' },
+        { title: '품질 원인 분석', description: '공정 데이터를 분석해 품질 문제의 원인을 살펴봅니다.' },
+        { title: '3D 디지털 트윈', description: '공장과 설비를 3D 화면에 표현하고 설비별 상태를 확인합니다.' },
+        { title: '카메라 영상 관제', description: '설비별 카메라 영상 중계와 조회, 녹화 설정을 구현했습니다.' },
+      ],
+    },
+    contributions: [
+      { title: '영상 송출과 카메라 API', description: '웹캠과 CCTV의 RTSP 영상을 MediaMTX로 받아 WebRTC WHEP로 전달하도록 구성했습니다. 송출 스크립트와 Spring Boot 카메라 API를 작성하고 설비 ID별 스트림을 연결했습니다.' },
+      { title: '실행과 녹화 설정', description: 'Docker Compose 실행과 배포 구성을 연결했습니다. fMP4 녹화 경로, 보관 설정과 배포 볼륨을 구성하고 원격 설비 송출 스크립트를 보완했습니다.' },
+      { title: 'Unity WebGL 연동', description: '설비 CCTV 버튼과 브라우저 영상 창을 연결했습니다. 배포본이 localhost로 API를 요청하던 문제는 페이지 주소에서 API 호스트를 계산하도록 수정했습니다.' },
+    ],
+    repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/OneWork' }],
+  },
+  {
+    id: 'ait',
+    name: 'Ait',
+    subtitle: 'AI 모의 면접과 화상 스터디를 한곳에',
+    overview: 'AI 모의 면접과 화상 스터디를 함께 이용하는 면접 준비 플랫폼',
+    description: '이력서, 자기소개서, GitHub 자료를 활용한 면접 준비 플랫폼. 스터디 운영, 커뮤니티와 알림 백엔드를 담당했습니다.',
+    period: '2026.07.06 – 08.10',
+    team: 'SSAFY 6인 팀',
+    role: '스터디 관리, 커뮤니티, 알림 백엔드',
+    roleShort: '백엔드',
+    highlight: '채팅 조회 평균 1,804ms → 132ms',
+    roleSummary: '백엔드 3명 중 한 명으로 스터디 운영, 커뮤니티와 알림을 담당했습니다. 그룹 가입부터 일정 관리와 실시간 대화까지 이어지는 API를 구현했습니다.',
+    teamDivision: [
+      { role: '백엔드 3명', description: '서버와 API 개발을 나눠 맡았습니다. 저는 스터디, 채팅, 커뮤니티와 알림을 구현했습니다.' },
+      { role: '프론트엔드 2명', description: 'React 기반 서비스 화면과 API 연동을 담당했습니다.' },
+      { role: 'AI 1명', description: '자료 기반 면접 질문 생성과 답변 평가 등 AI 기능을 담당했습니다.' },
+    ],
+    tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE', 'nGrinder'],
+    summary: ['JWT와 그룹 멤버 권한을 검증하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
+    introduction: {
+      goal: '이력서, 자기소개서와 GitHub 자료를 반영한 AI 모의 면접과 화상 스터디를 한곳에서 제공하는 것을 목표로 했습니다.',
+      background: '스터디 모집, 면접 연습, 평가와 소통이 따로 이루어져 면접 준비의 흐름이 나뉘는 문제에 주목했습니다. 개발자의 GitHub 자료까지 반영한 질문과 반복 연습을 함께 지원하는 서비스를 기획했습니다.',
+      features: [
+        { title: '자료 기반 AI 모의 면접', description: '이력서, 자기소개서와 GitHub 자료로 질문을 생성하고 답변에 따라 꼬리 질문과 피드백을 제공합니다.' },
+        { title: '화상 스터디와 상호 평가', description: '스터디원과 화상으로 면접을 연습하고 서로의 답변을 평가합니다.' },
+        { title: '스터디 운영과 그룹 채팅', description: '스터디 모집과 가입, 일정을 관리하고 그룹별로 대화합니다.' },
+        { title: '커뮤니티와 알림', description: '면접 준비 경험을 게시글과 댓글로 공유하고 서비스 내 소식을 알림으로 받습니다.' },
+      ],
+    },
+    contributions: [
+      { title: '스터디 운영과 채팅', description: '그룹 생성, 가입 승인과 거절, 일정 API를 구현했습니다. STOMP/WebSocket 연결의 JWT 인증과 메시지 전송 전 멤버 권한 확인을 나누고 채팅 이력에 ID 커서와 Slice 조회를 적용했습니다.' },
+      { title: '커뮤니티와 실시간 알림', description: '게시글, 댓글, 좋아요와 스크랩 API를 개발했습니다. 알림 목록과 읽음 처리, SSE 전송을 구현하고 배포 후 수신 문제에 대응해 8초 heartbeat와 연결 정리를 추가했습니다.' },
+      { title: '조회 성능과 데이터 정합성 검증', description: '프로젝트 기간에는 구현까지 마쳤고, 끝난 뒤 nGrinder로 채팅 이력과 댓글 조회의 변경 전후 응답 시간을 비교했습니다. 이때 좋아요 수의 갱신 유실도 확인해 비관적 락을 적용했습니다. 요청 100건을 32개 스레드로 실행해 최종 좋아요 수가 100인지 확인했습니다.' },
+    ],
+    repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/Ait' }],
   },
 ]
 

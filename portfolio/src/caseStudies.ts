@@ -14,7 +14,8 @@ type TechnologyReference = { label: string; url: string }
 export type TechnologyComparison = {
   comparisonTitle: string
   comparisonNote?: string
-  alternatives: { method: string; difference: string; selected?: boolean; reference?: TechnologyReference }[]
+  columns?: string[]
+  alternatives: { method: string; difference: string; values?: string[]; selected?: boolean; reference?: TechnologyReference }[]
   reference?: TechnologyReference
 }
 
@@ -193,18 +194,20 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       implementation: '대상의 첫 신고가 들어오면 신고 저장이 끝난 뒤 별도 스레드에서 LLM(gpt-4o)에 판단을 맡깁니다. 스팸이나 욕설로 판단하고 신뢰도가 0.95 이상일 때만 바로 숨기고 Mattermost로 알립니다. 나머지는 신고 3건 자동 숨김과 사람 검토로 넘깁니다. 사용자 글은 JSON 값으로만 전달해 글 속 지시문이 프롬프트로 읽히지 않게 했습니다.',
       comparisonTitle: 'LLM과 금칙어 필터 비교 (직접 만든 100건)',
       comparisonNote: '직접 만들고 판단 기준을 정할 때는 쓰지 않은 100건(숨김 30, 유지 70)에 신뢰도 기준 0.9로 1회 실행한 결과입니다.',
+      columns: ['정밀도', '재현율', '오탐'],
       alternatives: [
-        { method: 'LLM (gpt-4o)', selected: true, difference: '정밀도 85.7%, 재현율 100%, 오탐 5건(유지 70건 중 7.1%). 오탐 5건은 모두 모임 오픈채팅이나 동호회 카페 같은 취미 관련 링크였습니다.' },
-        { method: '금칙어 필터', difference: '정밀도 45.2%, 재현율 46.7%, 오탐 17건(24.3%). 숨겨야 할 30건 중 절반 넘게 놓쳤고, 정상 글은 LLM보다 3배 넘게 숨겼습니다.' },
+        { method: 'LLM (gpt-4o)', selected: true, values: ['85.7%', '100%', '5건 (7.1%)'], difference: '오탐 5건은 모두 모임 오픈채팅이나 동호회 카페 같은 취미 관련 링크였습니다.' },
+        { method: '금칙어 필터', values: ['45.2%', '46.7%', '17건 (24.3%)'], difference: '숨겨야 할 30건 중 절반 넘게 놓쳤습니다.' },
       ],
       additionalComparisons: [
         {
           comparisonTitle: '즉시 숨김 기준 0.9와 0.95 비교 (공개 댓글 800건)',
           comparisonNote: 'Smilegate UnSmile 공개 데이터에서 정상 500건과 악플 300건을 무작위로 뽑았습니다. 악플 라벨이 서비스 기준보다 넓어 정밀도와 재현율은 계산하지 않았습니다. 라벨은 고치지 않은 원래 값으로 셌습니다.',
+          columns: ['정상 500건 중 오탐', '악플 300건 중 즉시 숨김'],
           alternatives: [
-            { method: 'LLM 기준 0.95', selected: true, difference: '정상 500건 중 오탐 4건(0.8%). 악플 300건 중 즉시 숨김 65건(22%).' },
-            { method: 'LLM 기준 0.9', difference: '정상 500건 중 오탐 24건(4.8%). 이 중 20건의 신뢰도가 정확히 0.9였습니다. 악플 즉시 숨김 129건(43%).' },
-            { method: '금칙어 필터', difference: '정상 500건 중 오탐 8건(1.6%). 악플 즉시 숨김 87건(29%).' },
+            { method: 'LLM 기준 0.95', selected: true, values: ['4건 (0.8%)', '65건 (22%)'], difference: '' },
+            { method: 'LLM 기준 0.9', values: ['24건 (4.8%)', '129건 (43%)'], difference: '오탐 24건 중 20건의 신뢰도가 정확히 0.9였습니다.' },
+            { method: '금칙어 필터', values: ['8건 (1.6%)', '87건 (29%)'], difference: '' },
           ],
         },
       ],

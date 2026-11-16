@@ -14,15 +14,16 @@ const assets = {
   portrait: asset('profile/kim-minbeom.jpg'),
   aitLogo: asset('projects/ait-logo.png'),
   oneworkLogo: asset('projects/onework-logo.png'),
-  oneworkOverview: asset('projects/onework-overview.png'),
+  oneworkOverview: asset('projects/onework-overview.webp'),
+  oneworkOverviewLarge: asset('projects/onework-overview.png'),
   nyamnyamLogo: asset('projects/nyamnyam-logo.png'),
 }
 
 const projectPreviews = {
-  ait: { src: asset('projects/ait-landing.png'), width: 2830, height: 1446, alt: 'Ait 랜딩페이지의 면접 연습 소개와 AI 모의면접 미리보기' },
-  onework: { src: assets.oneworkOverview, width: 2558, height: 1266, alt: 'ONEWORK 디지털 트윈과 CCTV 영상 관제 화면' },
-  nyamnyam: { src: asset('projects/nyamnyam-home.png'), width: 2820, height: 1430, alt: '냠냠취미 홈 화면의 숏폼 추천 안내와 맞춤 추천 취미 목록' },
-  steamfolder: { src: asset('projects/steamfolder-landing.png'), width: 2879, height: 1440, alt: 'SteamFolder 랜딩페이지의 게임 라이브러리 소개와 로그인 화면' },
+  ait: { src: asset('projects/ait-landing.webp'), width: 1600, height: 818, alt: 'Ait 랜딩페이지의 면접 연습 소개와 AI 모의면접 미리보기' },
+  onework: { src: assets.oneworkOverview, width: 1600, height: 792, alt: 'ONEWORK 디지털 트윈과 CCTV 영상 관제 화면' },
+  nyamnyam: { src: asset('projects/nyamnyam-home.webp'), width: 1600, height: 811, alt: '냠냠취미 홈 화면의 숏폼 추천 안내와 맞춤 추천 취미 목록' },
+  steamfolder: { src: asset('projects/steamfolder-landing.webp'), width: 1600, height: 800, alt: 'SteamFolder 랜딩페이지의 게임 라이브러리 소개와 로그인 화면' },
 }
 
 type IconName = 'external' | 'mail' | 'github' | 'code' | 'message' | 'bell' | 'database' | 'check' | 'close' | 'camera' | 'play' | 'folder' | 'layers' | 'branch' | 'menu'
@@ -49,8 +50,8 @@ function Icon({ name, size = 20, className = '' }: { name: IconName; size?: numb
 }
 
 // GitHub mark from @primer/octicons (mark-github-24, MIT License, GitHub Inc.)
-function GithubMark() {
-  return <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12.2" r="10.8" fill="#fff" /><path fill="currentColor" d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943" /></svg>
+function GithubMark({ size = 24, cat = '#fff' }: { size?: number; cat?: string }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12.2" r="10.8" style={{ fill: cat }} /><path fill="currentColor" d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943" /></svg>
 }
 
 function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
@@ -66,13 +67,18 @@ function ProjectLogo({ project, className = 'project-logo' }: { project: Project
 function ProjectTile({ project }: { project: Project }) {
   const preview = projectPreviews[project.id]
   return <li className="project-showcase-row">
-    <a className="project-showcase-card" href={'#project/' + project.id} aria-label={project.name + ' 자세히 보기'} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">
+    <article className="project-showcase-card">
       <div className="project-tile">
         <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
-        <div className="project-tile-copy"><h3>{project.name}</h3><p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p></div>
+        <div className="project-tile-copy">
+          <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
+          <p className="project-tile-meta">{project.period} · {project.team} · {project.roleShort}</p>
+          <p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p>
+          <p className="project-tile-highlight">{project.highlight}</p>
+        </div>
       </div>
       <div className="project-preview"><img src={preview.src} width={preview.width} height={preview.height} alt={preview.alt} loading="lazy" decoding="async" /></div>
-    </a>
+    </article>
   </li>
 }
 
@@ -169,7 +175,7 @@ function HomePage() {
         <h2 id="contact-title">함께 만들고 싶습니다.</h2>
         <div className="contact-links">
           <a className="contact-email" href={'mailto:' + profile.email}>{profile.email}</a>
-          <a className="contact-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><Icon name="github" size={23} /></a>
+          <a className="contact-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><GithubMark cat="var(--ink)" /></a>
         </div>
       </div>
     </section>
@@ -191,18 +197,29 @@ function BenchmarkSection() {
 }
 
 function TechnologyComparisonDetails({ comparison }: { comparison: TechnologyComparison }) {
+  const columns = comparison.columns
   return <details className="technology-disclosure">
     <summary>{comparison.comparisonTitle}<Chevron /></summary>
     <div className="technology-comparison-content">
       {comparison.comparisonNote && <p className="technology-comparison-note">{comparison.comparisonNote}</p>}
-      <table className="technology-comparison">
+      {columns ? <>
+        <table className="technology-comparison technology-metrics">
+          <caption className="sr-only">{comparison.comparisonTitle}</caption>
+          <thead><tr><th scope="col">방식</th>{columns.map(column => <th scope="col" key={column}>{column}</th>)}</tr></thead>
+          <tbody>{comparison.alternatives.map(alternative => <tr key={alternative.method} className={alternative.selected ? 'technology-selected' : undefined}>
+            <th scope="row">{alternative.method}{alternative.selected && <span className="technology-used">사용</span>}</th>
+            {columns.map((column, index) => <td key={column} data-label={column}>{alternative.values?.[index]}</td>)}
+          </tr>)}</tbody>
+        </table>
+        <ul className="technology-metric-notes" role="list">{comparison.alternatives.filter(alternative => alternative.difference).map(alternative => <li key={alternative.method}><strong>{alternative.method}</strong>{alternative.difference}</li>)}</ul>
+      </> : <table className="technology-comparison">
         <caption className="sr-only">{comparison.comparisonTitle}: 현재 구현을 기준으로 본 대안과의 차이</caption>
         <thead><tr><th scope="col">방식</th><th scope="col">이 구조에서의 차이</th></tr></thead>
         <tbody>{comparison.alternatives.map(alternative => <tr key={alternative.method} className={alternative.selected ? 'technology-selected' : undefined}>
           <th scope="row">{alternative.method}{alternative.selected && <span className="technology-used">사용</span>}</th>
           <td>{alternative.difference}{alternative.reference && <div className="technology-reference"><ExternalLink href={alternative.reference.url}>{alternative.reference.label}</ExternalLink></div>}</td>
         </tr>)}</tbody>
-      </table>
+      </table>}
       {comparison.reference && <div className="technology-reference"><ExternalLink href={comparison.reference.url}>{comparison.reference.label}</ExternalLink></div>}
     </div>
   </details>
@@ -274,7 +291,7 @@ function ProjectRepositories({ project }: { project: Project }) {
   return <nav className="project-repositories" aria-label={project.name + ' GitHub 저장소'}>
     {project.repositories.map(repository => <a key={repository.url} href={repository.url} target="_blank" rel="noopener noreferrer"
       aria-label={project.name + ' ' + repository.label + ' GitHub 저장소 (새 탭)'} title={repository.label + ' GitHub 저장소 (새 탭)'}>
-      <Icon name="github" size={23} />{project.repositories.length > 1 && <span>{repository.label}</span>}
+      <GithubMark size={22} /><span>{project.repositories.length > 1 ? repository.label : '저장소'}</span>
     </a>)}
   </nav>
 }
@@ -337,7 +354,7 @@ function ProjectPage({ project }: { project: Project }) {
     <div className="case-layout">
       <nav className="case-nav" aria-label={project.name + ' 상세 목차'}><h2>이 프로젝트의 기록</h2><ul className="case-nav-list">{sections.map(section => <li key={section.id}><a href={'#project/' + project.id + '/' + section.id} aria-current={activeSection === section.id ? 'location' : undefined}>{section.label}</a></li>)}</ul></nav>
       <div className="case-content">
-        {project.id === 'onework' && <figure className="case-cover"><img src={assets.oneworkOverview} width="2558" height="1266" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /><figcaption><span>ONEWORK 서비스 화면. 제 담당은 카메라 연동과 API입니다.</span><ExternalLink href={assets.oneworkOverview}>화면 크게 보기</ExternalLink></figcaption></figure>}
+        {project.id === 'onework' && <figure className="case-cover"><img src={assets.oneworkOverview} width="1600" height="792" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /><figcaption><span>ONEWORK 서비스 화면. 제 담당은 카메라 연동과 API입니다.</span><ExternalLink href={assets.oneworkOverviewLarge}>화면 크게 보기</ExternalLink></figcaption></figure>}
         <ProjectIntroduction project={project} />
         <ProjectRole project={project} />
         <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} /></section>

@@ -65,3 +65,14 @@ ONEWORK 화면은 팀 서비스의 모습이며 개인 기여는 카메라 연�
 Spring PNG는 447×447 심볼이다. Hibernate WebP는 1280×214 가로형으로, 목록에서는 object-fit: cover와 object-position: left center를 사용해 왼쪽 심볼을 42×42로 표시한다. 배포 파일 자체에는 전체 로고가 유지된다. 기존 JPA 약칭 표시를 이 로고로 교체하고 기술 이름은 JPA / Hibernate로 쓴다. 위의 기존 spring.svg 사용 기록은 교체 전 자료다.
 
 후속 요청으로 흰 배경의 spring.png를 삭제하고 기존 spring.svg로 되돌렸다. Spring Boot에는 기존 투명 SVG를 사용하며 Hibernate 로고는 유지한다. 위 Spring PNG 기록은 삭제 전 이력이다.
+
+## 2026-11-16 미리보기 이미지 변환
+
+홈 카드와 ONEWORK 상세에 쓰는 미리보기 4장을 폭 1,600px WebP로 바꿨다(원본 PNG 합계 약 7.1MB, 변환 후 약 0.3MB). 화면 내용은 바꾸지 않고 크기와 형식만 바꿨다.
+
+| 화면에 쓰는 파일 | 원본 |
+| --- | --- |
+| public/assets/projects/ait-landing.webp | docs/source-images/ait-landing.png |
+| public/assets/projects/steamfolder-landing.webp | docs/source-images/steamfolder-landing.png |
+| public/assets/projects/nyamnyam-home.webp | docs/source-images/nyamnyam-home.png |
+| public/assets/projects/onework-overview.webp | public/assets/projects/onework-overview.png ("화면 크게 보기" 링크에서 계속 사용) |
