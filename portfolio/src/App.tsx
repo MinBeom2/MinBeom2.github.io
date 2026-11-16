@@ -72,9 +72,8 @@ function ProjectTile({ project }: { project: Project }) {
         <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
         <div className="project-tile-copy">
           <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
-          <p className="project-tile-meta">{project.period} · {project.team} · {project.roleShort}</p>
+          <p className="project-tile-meta">{project.team} · {project.roleShort}</p>
           <p className="project-tile-description" id={'project-overview-' + project.id}>{project.overview}</p>
-          <p className="project-tile-highlight">{project.highlight}</p>
         </div>
       </div>
       <div className="project-preview"><img src={preview.src} width={preview.width} height={preview.height} alt={preview.alt} loading="lazy" decoding="async" /></div>
@@ -146,8 +145,6 @@ function HomePage() {
             <h3 id="collaboration-title">협업</h3>
             <div className="approach-copy"><h4>버전 관리 담당</h4>
             <p>Git Flow를 제안하고 브랜치별 역할, 최신 코드 반영과 병합 순서를 문서로 공유했습니다. 팀원이 막힐 때 작업 방법을 설명하고 충돌 해결을 도왔습니다.</p></div>
-            <div className="approach-copy"><h4>스크럼 마스터</h4>
-            <p>ONEWORK에서 매주 KPT 회고를 진행하고 번다운 차트를 함께 봤습니다. 끝낸 작업을 Jira에 한꺼번에 반영하는 문제가 회고에서 나와, 작업을 끝낼 때마다 반영하자고 제안했습니다.</p></div>
             <div className="approach-copy"><h4>AI로 Jira 관리</h4>
             <p>냠냠취미에서는 Claude를 Jira에 연결했습니다. 저에게 할당된 미완료 작업을 확인하고, 작업을 시작할 때 진행 중으로, 끝나면 완료로 옮기게 했습니다. 내용이 바뀌어 필요 없어진 작업은 미완료 목록을 확인한 뒤 한꺼번에 삭제했습니다.</p></div>
           </article>

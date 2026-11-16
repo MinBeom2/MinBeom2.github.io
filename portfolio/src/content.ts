@@ -11,7 +11,6 @@ export type Project = {
   team: string
   role: string
   roleShort: string
-  highlight: string
   roleSummary: string
   teamDivision: { role: string; description: string }[]
   tags: string[]
@@ -43,12 +42,11 @@ export const projects: Project[] = [
     team: 'SSAFY 7인 팀',
     role: '숏폼 수집, 요청 제한, 커뮤니티와 신고 백엔드',
     roleShort: '백엔드',
-    highlight: '신고 글 판별 정밀도 85.7% (금칙어 필터 45.2%)',
-    roleSummary: '백엔드 4명 중 한 명으로 숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 처리를 맡았습니다. 영상 판별과 신고 검토에는 LLM을 썼고, 신뢰도가 기준에 못 미치는 결과는 사람이 확인하도록 나눴습니다.',
+    roleSummary: '백엔드 개발은 3명이 나눠 맡았고, 저는 숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 처리를 맡았습니다. 영상 판별과 신고 검토에는 LLM을 썼고, 신뢰도가 기준에 못 미치는 결과는 사람이 확인하도록 나눴습니다.',
     teamDivision: [
-      { role: '백엔드 4명', description: '팀장이 인프라를 함께 맡았습니다. 저는 숏폼 수집, 요청 제한, 커뮤니티와 신고를 구현했습니다.' },
-      { role: '프론트엔드 2명', description: 'React 기반 서비스 화면과 API 연동을 담당했습니다.' },
-      { role: 'PM 1명', description: '기능 요구사항과 프로젝트 명세서를 작성했습니다.' },
+      { role: '백엔드', description: '3명이 기능을 나눠 개발했고, 팀장이 인프라를 함께 맡았습니다. 저는 숏폼 수집, 요청 제한, 커뮤니티와 신고를 구현했습니다.' },
+      { role: '프론트엔드', description: '2명이 React 기반 서비스 화면과 API 연동을 담당했습니다.' },
+      { role: 'PM', description: '기능 요구사항과 프로젝트 명세서를 작성했습니다.' },
     ],
     tags: ['Spring Boot', 'PostgreSQL', 'Redis', 'LLM API', 'Mattermost'],
     summary: ['신고 1차 검토에 LLM과 신뢰도 기준 0.95 적용', 'YouTube 숏폼 수집 배치와 API 요청 제한'],
@@ -79,7 +77,6 @@ export const projects: Project[] = [
     team: '개인 프로젝트',
     role: '프론트엔드와 백엔드 전체 개발',
     roleShort: '풀스택',
-    highlight: '30명 동시 좋아요 테스트로 정합성 확인',
     roleSummary: '보유 게임을 정리하고 공유하고 싶다는 경험에서 시작한 개인 프로젝트입니다. 기능 기획부터 데이터 구조, API와 React 화면까지 직접 개발했습니다.',
     teamDivision: [
       { role: '기획과 설계 (본인)', description: '게임 분류와 공유 흐름, 폴더 구조와 API를 설계했습니다.' },
@@ -118,7 +115,6 @@ export const projects: Project[] = [
     team: 'SSAFY 6인 팀',
     role: 'MediaMTX 중심 백엔드',
     roleShort: '백엔드',
-    highlight: 'RTSP 영상을 MediaMTX로 중계해 WebRTC로 재생',
     roleSummary: '카메라 영상을 관제 화면으로 전달하는 백엔드를 맡았습니다. RTSP 송출부터 MediaMTX 중계, 카메라 조회 API와 녹화 설정까지 구현했습니다.',
     teamDivision: [
       { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
@@ -155,7 +151,6 @@ export const projects: Project[] = [
     team: 'SSAFY 6인 팀',
     role: '스터디 관리, 커뮤니티, 알림 백엔드',
     roleShort: '백엔드',
-    highlight: '채팅 조회 평균 1,804ms → 132ms',
     roleSummary: '백엔드 3명 중 한 명으로 스터디 운영, 커뮤니티와 알림을 담당했습니다. 그룹 가입부터 일정 관리와 실시간 대화까지 이어지는 API를 구현했습니다.',
     teamDivision: [
       { role: '백엔드 3명', description: '서버와 API 개발을 나눠 맡았습니다. 저는 스터디, 채팅, 커뮤니티와 알림을 구현했습니다.' },
