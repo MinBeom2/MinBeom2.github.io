@@ -115,7 +115,7 @@ export const projects: Project[] = [
     teamDivision: [
       { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
       { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
-      { role: '공정 품질', description: 'SPC 관리도 기반 품질 분석을 담당했습니다.' },
+      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
       { role: '전류 모델', description: '전류 신호 기반 탐지 모델을 실험했습니다.' },
       { role: '디자인', description: 'Figma로 서비스 화면을 디자인했습니다.' },
       { role: '영상 제작', description: '프로젝트가 끝난 뒤 AI를 활용해 소개 영상을 제작했습니다.' },
@@ -155,7 +155,7 @@ export const projects: Project[] = [
       { role: 'AI 1명', description: '자료 기반 면접 질문 생성과 답변 평가 등 AI 기능을 담당했습니다.' },
     ],
     tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE', 'nGrinder'],
-    summary: ['JWT와 그룹 멤버 권한을 검증하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
+    summary: ['연결 시 JWT, 전송 시 멤버 권한을 확인하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
     introduction: {
       goal: '이력서, 자기소개서와 GitHub 자료를 반영한 AI 모의 면접과 화상 스터디를 한곳에서 제공하는 것을 목표로 했습니다.',
       background: '스터디 모집, 면접 연습, 평가와 소통이 따로 이루어져 면접 준비의 흐름이 나뉘는 문제에 주목했습니다. 개발자의 GitHub 자료까지 반영한 질문과 반복 연습을 함께 지원하는 서비스를 기획했습니다.',
