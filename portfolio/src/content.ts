@@ -115,8 +115,10 @@ export const projects: Project[] = [
     teamDivision: [
       { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 실행과 녹화 설정을 담당했습니다.' },
       { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
-      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
-      { role: '전류 모델과 문서', description: '전류 신호 기반 탐지 모델 실험, 프로젝트 문서와 발표 자료를 담당했습니다.' },
+      { role: '공정 품질', description: 'SPC 관리도 기반 품질 분석을 담당했습니다.' },
+      { role: '전류 모델', description: '전류 신호 기반 탐지 모델을 실험했습니다.' },
+      { role: '디자인', description: 'Figma로 서비스 화면을 디자인했습니다.' },
+      { role: '영상 제작', description: '프로젝트가 끝난 뒤 AI를 활용해 소개 영상을 제작했습니다.' },
     ],
     tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
     summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
