@@ -99,7 +99,7 @@ function HomePage() {
       <div className="hero-copy">
         <h1 id="hero-title" tabIndex={-1}><span> 구현을 넘어,</span><span>더 나은 동작까지.</span></h1>
         <div className="hero-person"><p>{profile.role} {profile.name}</p><a className="hero-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 (새 탭)" title="GitHub"><GithubMark /></a></div>
-        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다. 부하 테스트로 조회 응답 시간을 측정해 줄였고, 신고 글을 거르는 LLM은 금칙어 필터와 비교해 기준을 정했습니다.</p>
+        <p className="hero-description">기능을 구현한 뒤에도, 사용자가 안정적으로 쓸 수 있는지 확인하는 개발자를 지향합니다.</p>
       </div>
     </section>
     <section className="projects-section container section-space" id="projects" aria-labelledby="projects-title">
