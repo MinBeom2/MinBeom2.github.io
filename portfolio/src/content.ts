@@ -46,7 +46,7 @@ export const projects: Project[] = [
       { role: '프론트엔드', description: '2명이 React 기반 서비스 화면과 API 연동을 담당했습니다.' },
       { role: 'PM', description: '기능 요구사항과 프로젝트 명세서를 작성했습니다.' },
     ],
-    tags: ['Spring Boot', 'PostgreSQL', 'Redis', 'LLM API', 'Mattermost'],
+    tags: ['Spring Boot', 'PostgreSQL', 'Redis'],
     summary: ['신고 1차 검토에 LLM과 신뢰도 기준 0.95 적용', 'YouTube 숏폼 수집 배치와 API 요청 제한'],
     introduction: {
       goal: '숏폼 영상으로 여러 취미를 가볍게 맛보고, 마음에 드는 취미를 골라 첫 활동까지 이어 가도록 돕는 서비스를 목표로 했습니다.',
@@ -120,7 +120,7 @@ export const projects: Project[] = [
       { role: '디자인', description: 'Figma로 서비스 화면을 디자인했습니다.' },
       { role: '영상 제작', description: '프로젝트가 끝난 뒤 AI를 활용해 소개 영상을 제작했습니다.' },
     ],
-    tags: ['Spring Boot', 'MediaMTX', 'WebRTC', 'Docker'],
+    tags: ['Spring Boot', 'MediaMTX', 'WebRTC'],
     summary: ['RTSP 영상을 MediaMTX로 중계하고 WebRTC WHEP로 전달', '카메라 API, 녹화 설정과 설비별 스트림 매핑'],
     introduction: {
       goal: '설비 이상과 공정 품질을 한곳에서 살펴보는 스마트 팩토리 관제 플랫폼을 목표로 했습니다.',
@@ -154,7 +154,7 @@ export const projects: Project[] = [
       { role: '프론트엔드 2명', description: 'React 기반 서비스 화면과 API 연동을 담당했습니다.' },
       { role: 'AI 1명', description: '자료 기반 면접 질문 생성과 답변 평가 등 AI 기능을 담당했습니다.' },
     ],
-    tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE', 'nGrinder'],
+    tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE'],
     summary: ['연결 시 JWT, 전송 시 멤버 권한을 확인하는 실시간 채팅', '부하 테스트로 조회 병목을 분석하고 개선'],
     introduction: {
       goal: '이력서, 자기소개서와 GitHub 자료를 반영한 AI 모의 면접과 화상 스터디를 한곳에서 제공하는 것을 목표로 했습니다.',
