@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '@fontsource-variable/noto-sans-kr'
-import '@fontsource-variable/manrope'
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'
 import App from './App'
 import './styles.css'
 import './case-studies.css'

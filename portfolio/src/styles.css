@@ -1,7 +1,7 @@
 @import url('./reset.css');
 
 :root {
-  font-family: 'Noto Sans KR Variable', sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   color: #262626;
   background: #f4f4f4;
   font-synthesis: none;
@@ -17,7 +17,7 @@
   --control-line: #8a8a8a;
   --inverse: #ffffff;
   --inverse-muted: #d4d4d4;
-  --numeric: 'Manrope Variable', 'Noto Sans KR Variable', sans-serif;
+  --numeric: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --max-width: 1120px;
   --page-inset: 112px;
   --compact-project-width: 900px;

@@ -20,62 +20,62 @@ colors:
   modal-close-hover: "#dedede"
 typography:
   display:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "clamp(44px, 6vw, 80px)"
     fontWeight: 740
     lineHeight: 1.3
     letterSpacing: "-.03em"
   project-display:
-    fontFamily: "Manrope Variable, Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "clamp(38px, 4vw, 56px)"
     fontWeight: 750
     lineHeight: 1.3
     letterSpacing: "-.03em"
   headline:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "30px"
     fontWeight: 700
     lineHeight: 1.45
     letterSpacing: "-.025em"
   detail-headline:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "25px"
     fontWeight: 650
     lineHeight: 1.5
     letterSpacing: "-.025em"
   project-title:
-    fontFamily: "Manrope Variable, Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "30px"
     fontWeight: 750
     lineHeight: 1.4
     letterSpacing: "-.025em"
   body:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.8
   reading-body:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.95
   label:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "14px"
     fontWeight: 600
     lineHeight: 1.8
   numeric:
-    fontFamily: "Manrope Variable, Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "18px"
     fontWeight: 700
     lineHeight: 1.8
   tag:
-    fontFamily: "Manrope Variable, Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "12px"
     fontWeight: 550
     lineHeight: 1.8
   island-mobile-label:
-    fontFamily: "Noto Sans KR Variable, sans-serif"
+    fontFamily: "Pretendard Variable, sans-serif"
     fontSize: "13px"
     fontWeight: 550
     lineHeight: 1.8
