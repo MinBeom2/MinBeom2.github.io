@@ -27,8 +27,8 @@
 .skill-text-mark { font-family: var(--numeric); color: var(--muted); font-size: 17px; font-weight: 750; letter-spacing: -.025em; }
 .skill-copy { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .skill-copy > strong { font-family: var(--numeric); font-size: 16px; font-weight: 750; line-height: 1.5; }
-.skill-copy > span { font-size: 13px; color: var(--muted); line-height: 1.8; word-break: keep-all; }
-.skill-level { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 28px; padding: 2px 7px; background: var(--pale); color: var(--ink); font-size: 12px; font-weight: 600; border-radius: 4px; white-space: nowrap; }
+.skill-copy > span { font-size: 14px; color: var(--ink); line-height: 1.65; word-break: keep-all; }
+.skill-level { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 28px; padding: 2px 7px; color: var(--quiet); font-size: 12px; font-weight: 500; white-space: nowrap; }
 .skill-chevron { width: 16px; color: var(--quiet); transition: transform 180ms ease; }
 .skill-row[open] .skill-chevron { transform: rotate(180deg); }
 .skill-row[open] { background: var(--paper); }
@@ -52,7 +52,7 @@
   .skill-row > summary { grid-template-columns: 52px minmax(0, 1fr) 34px 16px; gap: 10px; padding: 16px 0; }
   .skill-logo { width: 52px; }
   .skill-copy > strong { font-size: 15px; }
-  .skill-copy > span { font-size: 12px; }
+  .skill-copy > span { font-size: 13px; }
   .skill-level { min-width: 34px; padding-inline: 4px; }
   .skill-detail { padding: 0 8px 16px; }
   .skill-highlight { font-size: 14px; }
