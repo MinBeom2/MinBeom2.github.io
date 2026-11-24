@@ -4,6 +4,7 @@ export type SourceLink = { label: string; url: string }
 export type Project = {
   id: ProjectId
   name: string
+  overview: string
   subtitle: string
   description: string
   period: string
@@ -41,12 +42,13 @@ export const chatHistoryBenchmark = {
 export const projects: Project[] = [
   {
     id: 'nyamnyam',
+    overview: '숏폼 영상을 보고 새로운 취미를 추천받는 서비스',
     name: '냠냠취미',
     subtitle: '숏폼으로 취미를 탐색하고 첫 활동까지',
     description: '숏폼 수집 배치, API 요청 제한, 커뮤니티와 신고 백엔드를 맡았습니다. Redis 장애 대응 정책을 나누고 실제 Redis로 동시 요청을 검증했습니다.',
-    period: '2026.10.13 – 11.18',
+    period: '2026.10.13 ~ 11.18',
     team: 'SSAFY 7인 팀',
-    role: '숏폼 수집, 요청 제한, 커뮤니티와 신고 백엔드',
+    role: '숏폼 수집, 요청 제한, 커뮤니티, 신고AI 연동',
     tags: ['Spring Boot', 'JPA', 'PostgreSQL', 'Redis'],
     highlight: {
       text: 'AI 추천 동시 요청 100건 중 한도인 10건 통과',
@@ -69,13 +71,14 @@ export const projects: Project[] = [
   },
   {
     id: 'steamfolder',
+    overview: 'Steam 게임을 폴더로 정리하고 링크로 공유하는 서비스',
     name: 'SteamFolder',
     subtitle: '내 게임 라이브러리를 정리하고 공유하기',
     description: '개인 프로젝트로 Steam 연동, 게임 폴더와 공개 쇼케이스의 API 및 화면을 개발했습니다. Steam 업적 응답의 예외를 분류하고 회귀 테스트를 작성했습니다.',
     period: '2026.08.21 ~',
     status: '로컬 개발 중',
     team: '개인 프로젝트',
-    role: 'Steam 연동과 게임 폴더·쇼케이스 풀스택',
+    role: 'Steam 연동과 게임 폴더,쇼케이스 구현',
     tags: ['React', 'TypeScript', 'Spring Boot', 'JPA', 'Redis'],
     highlight: {
       text: 'Steam 업적 조회 예외를 분리하고 회귀 테스트 추가',
@@ -101,10 +104,11 @@ export const projects: Project[] = [
   },
   {
     id: 'onework',
+    overview: '설비 상태와 CCTV 영상을 한곳에서 확인하는 스마트 팩토리 관제 서비스',
     name: 'ONEWORK',
     subtitle: '디지털 트윈에 설비별 실시간 영상 연결',
     description: '설비별 CCTV 송출과 중계, 카메라 API를 담당했습니다. RTSP 영상을 MediaMTX로 받아 브라우저의 WebRTC 뷰어로 연결했습니다.',
-    period: '2026.08.18 – 09.28',
+    period: '2026.08.18 ~ 09.28',
     team: 'SSAFY 6인 팀',
     role: '설비별 CCTV 송출·중계와 카메라 API',
     teamDivision: [
@@ -136,12 +140,13 @@ export const projects: Project[] = [
   },
   {
     id: 'ait',
+    overview: 'AI 모의 면접과 화상 스터디를 제공하는 면접 준비 서비스',
     name: 'Ait',
     subtitle: 'AI 모의 면접과 화상 스터디를 한곳에',
-    description: '스터디와 채팅, 커뮤니티, 알림 백엔드를 담당했습니다. 프로젝트 종료 후 채팅 이력의 조회 방식을 바꾸고 개인 환경에서 응답 시간을 비교했습니다.',
-    period: '2026.07.06 – 08.10',
+    description: '스터디, 채팅, 커뮤니티, 알림을 담당했습니다. 프로젝트 종료 후 채팅 이력의 조회 방식을 바꾸고 개인 환경에서 응답 시간을 비교했습니다.',
+    period: '2026.07.06 ~ 08.10',
     team: 'SSAFY 6인 팀',
-    role: '스터디와 채팅, 커뮤니티, 알림 백엔드',
+    role: '스터디, 채팅, 커뮤니티, 알림 백엔드',
     teamDivision: [
       { role: '백엔드 3명', description: '서버와 API 개발을 나눠 맡았습니다.' },
       { role: '프론트엔드 2명', description: 'React 화면과 API 연동을 담당했습니다.' },
@@ -150,7 +155,7 @@ export const projects: Project[] = [
     tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE'],
     highlight: {
       text: `채팅 조회 평균 ${chatHistoryBenchmark.before} → ${chatHistoryBenchmark.after} ms`,
-      context: '프로젝트 종료 후 개인 검증',
+      context: chatHistoryBenchmark.condition,
       anchor: 'chat-history',
     },
     introduction: {

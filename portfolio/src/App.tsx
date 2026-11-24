@@ -72,8 +72,8 @@ function ProjectTile({ project }: { project: Project }) {
       <div className="project-tile">
         <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
         <div className="project-tile-copy">
-          <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-role-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
-          <p className="project-tile-role" id={'project-role-' + project.id}>{project.role}</p>
+          <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
+          <p className="project-tile-overview" id={'project-overview-' + project.id}>{project.overview}</p>
         </div>
       </div>
       <div className="project-preview"><img src={preview.src} width={preview.width} height={preview.height} alt={preview.alt} loading="lazy" decoding="async" /></div>
@@ -124,7 +124,7 @@ function HomePage() {
                   <div><dt>개선 전</dt><dd>{chatHistoryBenchmark.before} <span>ms</span></dd></div>
                   <div><dt>개선 후</dt><dd>{chatHistoryBenchmark.after} <span>ms</span></dd></div>
                 </dl>
-                <p className="approach-note">개인 검증 환경, Vuser 50, 1분</p>
+                <p className="approach-note">{chatHistoryBenchmark.condition}</p>
                 <a className="approach-link" href="#project/ait/benchmarks">Ait 성능 측정 기록</a>
               </div>
               <div className="approach-test"><h4>좋아요 동시 갱신 통합 테스트</h4>
@@ -148,7 +148,7 @@ function HomePage() {
           <article className="approach-collaboration" aria-labelledby="collaboration-title">
             <h3 id="collaboration-title">협업</h3>
             <div className="approach-copy"><h4>Git 브랜치 작업 가이드</h4>
-            <p>develop을 최신으로 맞춘 뒤 기능 브랜치에 병합하는 순서를 문서로 공유했습니다. 팀원이 병합 과정에서 충돌을 만나면 해결을 도왔습니다.</p></div>
+            <p>팀에서 Git Flow를 사용했습니다. develop의 최신 변경 사항을 기능 브랜치에 병합하는 순서를 문서로 공유했고 팀원이 병합 충돌을 해결할 때 도왔습니다.</p></div>
             <div className="approach-copy"><h4>Jira 작업 상태 관리</h4>
             <p>냠냠취미에서는 Claude와 Jira를 연결해 맡은 작업을 확인하고 상태를 업데이트했습니다.</p></div>
           </article>
@@ -266,12 +266,12 @@ function ProjectIntroduction({ project }: { project: Project }) {
 function ProjectRole({ project }: { project: Project }) {
   return <section className="detail-section project-role" id="case-scope" aria-labelledby="scope-title">
     <h2 id="scope-title">나의 역할</h2>
-    <ul className="project-role-contributions" role="list">{project.contributions.map(item => <li key={item.title}>
+    <ul className="project-overview-contributions" role="list">{project.contributions.map(item => <li key={item.title}>
       <strong>{item.title}</strong><p>{item.description}</p>
     </li>)}</ul>
     {project.teamDivision && <details className="technology-disclosure project-team" id="case-collaboration">
       <summary>팀 내 역할 분담<Chevron /></summary>
-      <dl className="project-role-team">{project.teamDivision.map(item => <div key={item.role}>
+      <dl className="project-overview-team">{project.teamDivision.map(item => <div key={item.role}>
         <dt>{item.role}</dt><dd>{item.description}</dd>
       </div>)}</dl>
     </details>}
