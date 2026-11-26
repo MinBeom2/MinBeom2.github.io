@@ -14,7 +14,10 @@ function SkillRow({ skill, onToggle }: { skill: SkillEvidence; onToggle: () => v
     <div className="skill-detail">
       <p className="skill-highlight">{skill.highlight}</p>
       <p className="skill-support">{skill.evidence}</p>
-      <div className="skill-project-links"><span>사용한 프로젝트</span>{skill.projects.map(project => <a key={project.id} href={'#project/' + project.id + '/' + project.section}>{project.name}</a>)}</div>
+      {skill.projects.length > 0 && <div className="skill-project-links">
+        <span>사용한 프로젝트</span>
+        {skill.projects.map(project => <a key={project.id} href={'#project/' + project.id + '/' + project.section}>{project.name}</a>)}
+      </div>}
     </div>
   </details>
 }

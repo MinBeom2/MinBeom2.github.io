@@ -9,6 +9,7 @@
 | ONEWORK 로고 | public/assets/projects/onework-logo.png | 사용자 요청에 따라 C:\S15P21D202\serving\api\static\img\onework-logo.png에서 복사 |
 | ONEWORK 실제 화면 | public/assets/projects/onework-overview.png | 사용자가 제공한 onework-project사진.png를 이름 변경·이동 |
 | Ait 랜딩페이지 | public/assets/projects/ait-landing.png | 2026-10-19 사용자가 루트에 저장한 ait 랜딩페이지.png를 이름 변경하고 이동 |
+| SteamFolder 로고 | src/assets/steamfolder-mark.svg | SteamFolder-front의 밝은 테마에서 사용하는 public/brand/logo-mark.svg. 검은 윤곽선과 투명 배경을 유지합니다. |
 | SteamFolder 랜딩페이지 | public/assets/projects/steamfolder-landing.png | 2026-10-19 사용자가 루트에 저장한 steamfolder 랜딩페이지.png를 이름 변경하고 이동 |
 
 ONEWORK 화면은 팀 서비스의 모습이며 개인 기여는 카메라 연동·API·실행/녹화·설비 매핑으로 설명합니다. 캡처가 있다는 사실을 HTTPS 통합 문제 해결의 근거로 사용하지 않습니다.
@@ -17,7 +18,7 @@ ONEWORK 화면은 팀 서비스의 모습이며 개인 기여는 카메라 연�
 
 - Ait 담당 기능 화면: 스터디, 채팅, 커뮤니티 등의 캡처는 추후 보충합니다. 현재 홈 미리보기에는 제공된 랜딩페이지 캡처를 사용합니다.
 - 공개 데모: 준비되면 프로젝트 links에 추가합니다.
-- SteamFolder의 폴더와 공개 쇼케이스 화면은 추후 보충합니다. 현재 홈 미리보기에는 제공된 랜딩페이지 캡처를 사용하며, 별도 로고는 아직 제공되지 않았습니다.
+- SteamFolder의 폴더와 공개 쇼케이스 화면은 추후 보충합니다. 현재 홈 미리보기에는 제공된 랜딩페이지 캡처를 사용합니다.
 
 ## 추가로 확인하면 좋은 근거
 

@@ -14,7 +14,7 @@ export type SkillEvidence = {
 }
 
 const ait = { id: 'ait', name: 'Ait', section: 'technology' } as const
-const onework = { id: 'onework', name: 'ONEWORK', section: 'technology' } as const
+const onework = { id: 'onework', name: 'ONEWORK', section: 'camera-api' } as const
 const steam = { id: 'steamfolder', name: 'SteamFolder', section: 'technology' } as const
 const nyamnyam = { id: 'nyamnyam', name: '냠냠취미', section: 'rate-limit' } as const
 const nyamnyamData = { id: 'nyamnyam', name: '냠냠취미', section: 'short-filter' } as const
@@ -28,7 +28,12 @@ export const skills: SkillEvidence[] = [
     summary: "5단계 폴더에서 순환 이동과 깊이 초과 방지",
     highlight: "게임 목록을 분류하는 폴더에서 잘못된 이동과 깊이 초과를 막았습니다.",
     evidence: "폴더를 자기 자신이나 하위 폴더 안으로 옮길 수 없게 검사했습니다. 이동할 때는 하위 폴더의 깊이를 재귀적으로 갱신하고 전체 깊이가 5단계를 넘지 않도록 했습니다.",
-    projects: [ait, steam],
+    projects: [
+      { ...steam, section: 'folder-depth' },
+      nyamnyamData,
+      onework,
+      { ...ait, section: 'concurrency' },
+    ],
   },
   {
     id: "spring",
@@ -38,7 +43,12 @@ export const skills: SkillEvidence[] = [
     summary: "API 구현, 비동기 처리와 트랜잭션 분리",
     highlight: "DB 저장을 먼저 확정하고, 외부 AI 호출은 비동기로 처리했습니다.",
     evidence: "트랜잭션을 분리하고 분석 시도 번호를 대조해 늦은 응답이 새 결과를 덮어쓰지 않게 했습니다.",
-    projects: [ait, onework, steam],
+    projects: [
+      { ...steam, section: 'ai-feedback' },
+      nyamnyam,
+      onework,
+      ait,
+    ],
   },
   {
     id: "jpa",
@@ -92,6 +102,6 @@ export const skills: SkillEvidence[] = [
     summary: "브랜치 운용과 병합, 팀원 충돌 해결 지원",
     highlight: "브랜치 운영 규칙과 작업 순서를 문서로 공유했습니다.",
     evidence: "develop과 기능 브랜치의 동기화, stash와 병합 절차를 정리하고 팀원의 충돌 해결을 도왔습니다.",
-    projects: [{ ...ait, section: 'collaboration' }],
+    projects: [],
   },
 ]

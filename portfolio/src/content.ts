@@ -11,7 +11,6 @@ export type Project = {
   status?: string
   team: string
   role: string
-  teamDivision?: { role: string; description: string }[]
   tags: string[]
   highlight: { text: string; context?: string; anchor: string }
   introduction: {
@@ -63,9 +62,9 @@ export const projects: Project[] = [
       ],
     },
     contributions: [
-      { title: '숏폼 수집 배치', description: 'YouTube 검색, 영상 필터링과 LLM 판별부터 후보 저장과 목요일 반영까지 맡았습니다. 일일 할당량 상한은 9,000단위로 두었습니다.' },
-      { title: 'API 요청 제한', description: 'Redis와 Bucket4j로 API 7개 그룹의 제한 횟수를 관리하고, 한도 초과 시 429와 Retry-After를 반환했습니다.' },
-      { title: '커뮤니티와 신고', description: '게시글·댓글·좋아요·이미지 업로드 API와 신고 화면 연동, AI 1차 검토와 Mattermost 처리 버튼을 구현했습니다.' },
+      { title: '숏폼 수집 배치', description: 'YouTube 검색, 영상 필터링과 LLM 판별부터 후보 저장과 반영까지 맡았습니다.' },
+      { title: 'API 요청 제한', description: 'Redis와 Bucket4j로 API 그룹의 제한 횟수를 관리했습니다.' },
+      { title: '커뮤니티와 신고', description: '게시글,댓글, 좋아요, 이미지 업로드, 신고 AI 검토와 Mattermost 처리 버튼을 구현했습니다.' },
     ],
     repositories: [{ label: '프로젝트', url: 'https://github.com/MinBeom2/NyamNyamHobby' }],
   },
@@ -76,7 +75,7 @@ export const projects: Project[] = [
     subtitle: '내 게임 라이브러리를 정리하고 공유하기',
     description: '개인 프로젝트로 Steam 연동, 게임 폴더와 공개 쇼케이스의 API 및 화면을 개발했습니다. Steam 업적 응답의 예외를 분류하고 회귀 테스트를 작성했습니다.',
     period: '2026.08.21 ~',
-    status: '로컬 개발 중',
+    status: '',
     team: '개인 프로젝트',
     role: 'Steam 연동과 게임 폴더,쇼케이스 구현',
     tags: ['React', 'TypeScript', 'Spring Boot', 'JPA', 'Redis'],
@@ -110,15 +109,7 @@ export const projects: Project[] = [
     description: '설비별 CCTV 송출과 중계, 카메라 API를 담당했습니다. RTSP 영상을 MediaMTX로 받아 브라우저의 WebRTC 뷰어로 연결했습니다.',
     period: '2026.08.18 ~ 09.28',
     team: 'SSAFY 6인 팀',
-    role: '설비별 CCTV 송출·중계와 카메라 API',
-    teamDivision: [
-      { role: '영상 관제 (본인)', description: '영상 송출과 중계, 카메라 API, 배포와 녹화 설정을 담당했습니다.' },
-      { role: '이상 탐지와 인프라', description: '설비 이상 탐지 엔진, 분산 처리 인프라와 3D 디지털 트윈을 담당했습니다.' },
-      { role: '공정 품질과 MES', description: 'SPC 관리도 기반 품질 분석과 MES 연동을 담당했습니다.' },
-      { role: '전류 모델', description: '전류 신호 기반 탐지 모델을 실험했습니다.' },
-      { role: '디자인', description: 'Figma로 서비스 화면을 디자인했습니다.' },
-      { role: '영상 제작', description: '프로젝트가 끝난 뒤 AI를 활용해 소개 영상을 제작했습니다.' },
-    ],
+    role: '설비별 CCTV 송출,중계',
     tags: ['Spring Boot', 'MediaMTX', 'WebRTC'],
     highlight: {
       text: '설비 ID로 해당 카메라 스트림을 조회하고 예외 응답 테스트',
@@ -147,11 +138,6 @@ export const projects: Project[] = [
     period: '2026.07.06 ~ 08.10',
     team: 'SSAFY 6인 팀',
     role: '스터디, 채팅, 커뮤니티, 알림 백엔드',
-    teamDivision: [
-      { role: '백엔드 3명', description: '서버와 API 개발을 나눠 맡았습니다.' },
-      { role: '프론트엔드 2명', description: 'React 화면과 API 연동을 담당했습니다.' },
-      { role: 'AI 1명', description: '자료 기반 면접 질문 생성과 답변 평가를 담당했습니다.' },
-    ],
     tags: ['Spring Boot', 'JPA', 'WebSocket', 'SSE'],
     highlight: {
       text: `채팅 조회 평균 ${chatHistoryBenchmark.before} → ${chatHistoryBenchmark.after} ms`,
@@ -176,8 +162,8 @@ export const projects: Project[] = [
 
 export const benchmarks = [
   chatHistoryBenchmark,
-  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613.27', after: '134.69', tpsBefore: '28.90', tpsAfter: '368.13', note: '댓글은 복합 인덱스 적용 전후를 비교했습니다. 보관된 자료에는 DDL과 실행 계획이 없어 정렬 비용만의 효과로 단정하지 않습니다.' },
-  { name: '알림 비동기 처리', condition: 'Vuser 148 / 500ms 지연 가정', before: '1,402.93', after: '856.72', tpsBefore: '103.86', tpsAfter: '183.93', note: '알림은 HTTP API 응답만 측정했습니다. 알림 완료 시간과 실제 선택된 Executor는 확인하지 못했습니다.' },
+  { name: '댓글 조회', condition: '댓글 6만 건 / Vuser 50', before: '613.27', after: '134.69', tpsBefore: '28.90', tpsAfter: '368.13', note: '댓글은 복합 인덱스 적용 전후를 비교했습니다.' },
+  { name: '알림 비동기 처리', condition: 'Vuser 148 / 500ms 지연 가정', before: '1,402.93', after: '856.72', tpsBefore: '103.86', tpsAfter: '183.93', note: '알림은 HTTP API 응답만 측정했습니다.' },
 ]
 
 export const skillGroups = [

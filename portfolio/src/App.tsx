@@ -9,15 +9,20 @@ import { aiFeedback } from './aiCapabilities'
 import AiCapabilitiesSection from './AiCapabilitiesSection'
 import Chevron from './Chevron'
 import ProcessSteps from './ProcessSteps'
+import steamfolderMark from './assets/steamfolder-mark.svg'
 
 const asset = (path: string) => import.meta.env.BASE_URL + 'assets/' + path
 const assets = {
   portrait: asset('profile/kim-minbeom.jpg'),
-  aitLogo: asset('projects/ait-logo.png'),
-  oneworkLogo: asset('projects/onework-logo.png'),
   oneworkOverview: asset('projects/onework-overview.webp'),
   oneworkOverviewLarge: asset('projects/onework-overview.png'),
-  nyamnyamLogo: asset('projects/nyamnyam-logo.png'),
+}
+
+const projectLogos = {
+  ait: { src: asset('projects/ait-logo.png'), width: 512, height: 234 },
+  onework: { src: asset('projects/onework-logo.png'), width: 584, height: 284 },
+  nyamnyam: { src: asset('projects/nyamnyam-logo.png'), width: 600, height: 203 },
+  steamfolder: { src: steamfolderMark, width: 128, height: 128 },
 }
 
 const projectPreviews = {
@@ -27,7 +32,7 @@ const projectPreviews = {
   steamfolder: { src: asset('projects/steamfolder-landing.webp'), width: 1600, height: 800, alt: 'SteamFolder 랜딩페이지의 게임 라이브러리 소개와 로그인 화면' },
 }
 
-type IconName = 'external' | 'mail' | 'github' | 'code' | 'message' | 'bell' | 'database' | 'check' | 'close' | 'camera' | 'play' | 'folder' | 'layers' | 'branch' | 'menu'
+type IconName = 'external' | 'mail' | 'github' | 'code' | 'message' | 'bell' | 'database' | 'check' | 'close' | 'camera' | 'play' | 'layers' | 'branch' | 'menu'
 
 function Icon({ name, size = 20, className = '' }: { name: IconName; size?: number; className?: string }) {
   const paths: Record<IconName, ReactNode> = {
@@ -42,7 +47,6 @@ function Icon({ name, size = 20, className = '' }: { name: IconName; size?: numb
     close: <path d="m6 6 12 12M18 6 6 18" />,
     camera: <><rect x="2" y="5" width="14" height="14" rx="3" /><path d="m16 9 6-4v14l-6-4" /></>,
     play: <path d="m9 5 11 7-11 7z" />,
-    folder: <path d="M3 7V5a2 2 0 0 1 2-2h5l3 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />,
     layers: <path d="m12 3 10 6-10 6L2 9zm-10 11 10 6 10-6M2 18l10 6 10-6" />,
     branch: <><circle cx="6" cy="5" r="3" /><circle cx="18" cy="5" r="3" /><circle cx="6" cy="19" r="3" /><path d="M6 8v8M18 8a8 8 0 0 1-8 8H6" /></>,
     menu: <path d="M4 6h16M4 12h16M4 18h16" />,
@@ -59,10 +63,9 @@ function ExternalLink({ href, children, className = '' }: { href: string; childr
   return <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}<Icon name="external" size={16} /><span className="sr-only"> (새 탭)</span></a>
 }
 
-function ProjectLogo({ project, className = 'project-logo' }: { project: Project; className?: string }) {
-  if (project.id === 'steamfolder') return null
-  const logo = { ait: { src: assets.aitLogo, width: 512, height: 234 }, onework: { src: assets.oneworkLogo, width: 584, height: 284 }, nyamnyam: { src: assets.nyamnyamLogo, width: 600, height: 203 } }[project.id]
-  return <img className={className + ' project-logo-' + project.id} src={logo.src} alt={project.name + ' 로고'} width={logo.width} height={logo.height} decoding="async" />
+function ProjectLogo({ project, className }: { project: Project; className: string }) {
+  const logo = projectLogos[project.id]
+  return <img className={className} src={logo.src} alt="" width={logo.width} height={logo.height} decoding="async" />
 }
 
 function ProjectTile({ project }: { project: Project }) {
@@ -70,7 +73,7 @@ function ProjectTile({ project }: { project: Project }) {
   return <li className="project-showcase-row">
     <article className="project-showcase-card">
       <div className="project-tile">
-        <span className="project-tile-mark" aria-hidden="true">{project.id === 'steamfolder' ? <Icon name="folder" size={48} /> : <ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} />}</span>
+        <span className="project-tile-mark" aria-hidden="true"><ProjectLogo project={project} className={'project-tile-logo project-tile-logo-' + project.id} /></span>
         <div className="project-tile-copy">
           <h3><a className="project-card-link" href={'#project/' + project.id} aria-describedby={'project-overview-' + project.id} aria-haspopup="dialog">{project.name}</a></h3>
           <p className="project-tile-overview" id={'project-overview-' + project.id}>{project.overview}</p>
@@ -161,7 +164,7 @@ function HomePage() {
       <div className="about-content"><SkillsSection /><div className="background" id="background" aria-labelledby="background-title">
         <h3 id="background-title">이력</h3>
         <section className="background-group" aria-labelledby="education-title"><h4 id="education-title">학력 및 활동</h4>
-          <div className="background-item"><span><time dateTime="2026-01">2026.01</time> ~</span><div><strong>삼성청년SW·AI아카데미 (JAVA TRACK)</strong></div></div>
+          <div className="background-item"><span className="background-period"><time dateTime="2026-01">2026.01</time> ~ <time dateTime="2026-12">2026.12</time></span><div><strong>삼성청년SW·AI아카데미 (JAVA TRACK)</strong></div></div>
           <div className="background-item"><span className="background-period"><time dateTime="2020-02">2020.02</time> ~ <time dateTime="2026-02">2026.02</time></span><div><strong>국립금오공과대학교</strong><p>컴퓨터공학과 학사</p></div></div>
         </section>
         <section className="background-group" aria-labelledby="credentials-title"><h4 id="credentials-title">자격 및 어학</h4>
@@ -269,12 +272,6 @@ function ProjectRole({ project }: { project: Project }) {
     <ul className="project-overview-contributions" role="list">{project.contributions.map(item => <li key={item.title}>
       <strong>{item.title}</strong><p>{item.description}</p>
     </li>)}</ul>
-    {project.teamDivision && <details className="technology-disclosure project-team" id="case-collaboration">
-      <summary>팀 내 역할 분담<Chevron /></summary>
-      <dl className="project-overview-team">{project.teamDivision.map(item => <div key={item.role}>
-        <dt>{item.role}</dt><dd>{item.description}</dd>
-      </div>)}</dl>
-    </details>}
   </section>
 }
 
@@ -291,7 +288,7 @@ function ProjectRepositories({ project }: { project: Project }) {
 
 function ProjectPage({ project }: { project: Project }) {
   const pageRef = useRef<HTMLElement>(null)
-  const [activeSection, setActiveSection] = useState('scope')
+  const [activeSection, setActiveSection] = useState('overview')
 
   useEffect(() => {
     const page = pageRef.current
@@ -330,8 +327,8 @@ function ProjectPage({ project }: { project: Project }) {
 
   const detail = projectDetails[project.id]
   const sections = [
-    { id: 'scope', label: '나의 역할' },
     { id: 'overview', label: '프로젝트 소개' },
+    { id: 'scope', label: '나의 역할' },
     { id: 'troubleshooting', label: '문제 해결' },
     ...(project.id === 'ait' ? [{ id: 'benchmarks', label: '성능 측정' }] : []),
     { id: 'technology', label: '기술 선택' },
@@ -339,7 +336,10 @@ function ProjectPage({ project }: { project: Project }) {
   ]
   return <article ref={pageRef} className="container case-page">
     <header className="case-header detail-header">
-      <div className="case-title-row"><h1 id="case-title" tabIndex={-1}>{project.name}</h1></div>
+      <div className="case-title-row">
+        {project.id === 'steamfolder' && <ProjectLogo project={project} className="case-logo" />}
+        <h1 id="case-title" tabIndex={-1}>{project.name}</h1>
+      </div>
       <p className="detail-subtitle">{project.subtitle}</p>
       <div className="detail-lead">
         <div>
@@ -361,9 +361,9 @@ function ProjectPage({ project }: { project: Project }) {
     <div className="case-layout">
       <nav className="case-nav" aria-label={project.name + ' 상세 목차'}><h2>이 프로젝트의 기록</h2><ul className="case-nav-list">{sections.map(section => <li key={section.id}><a href={'#project/' + project.id + '/' + section.id} aria-current={activeSection === section.id ? 'location' : undefined}>{section.label}</a></li>)}</ul></nav>
       <div className="case-content">
+        <ProjectIntroduction project={project} />
         <ProjectRole project={project} />
         {project.id === 'onework' && <figure className="case-cover"><figcaption><span>설비 ID를 영상 스트림과 연결하는 카메라 API와 WebGL 영상 창을 맡았습니다.</span><ExternalLink href={assets.oneworkOverviewLarge}>화면 크게 보기</ExternalLink></figcaption><img src={assets.oneworkOverview} width="1600" height="792" alt="ONEWORK 디지털 트윈과 CCTV 영상 관제 화면" loading="lazy" decoding="async" /></figure>}
-        <ProjectIntroduction project={project} />
         <section className="detail-section" id="case-troubleshooting" aria-labelledby="troubleshooting-title"><h2 id="troubleshooting-title">문제 해결과 검증</h2><div className="case-studies">{detail.cases.map(study => <article className="case-study" id={study.id ? 'case-' + study.id : undefined} key={study.title}><h3>{study.title}</h3><dl><div><dt>문제</dt><dd>{study.problem}</dd></div><div><dt>판단과 구현</dt><dd>{study.decision}</dd></div><div><dt>확인한 결과</dt><dd>{study.outcome}</dd></div></dl>{study.note && <p className="detail-note">{study.note}</p>}</article>)}</div></section>
         {project.id === 'ait' && <BenchmarkSection />}
         <section className="detail-section" id="case-technology" aria-labelledby="technology-title"><h2 id="technology-title">기술 선택과 이유</h2><TechnologyChoices key={project.id} detail={detail} /></section>
@@ -522,9 +522,8 @@ function ProjectModal({ route, onClose }: { route: Exclude<Route, { kind: 'home'
     const frame = requestAnimationFrame(() => {
       const anchor = route.kind === 'project' ? route.anchor : ''
       if (anchor && anchor !== 'main') {
-        const section = anchor === 'evidence' ? 'scope' : anchor === 'test-validation' ? 'troubleshooting' : anchor
+        const section = anchor === 'evidence' || anchor === 'collaboration' ? 'scope' : anchor === 'test-validation' ? 'troubleshooting' : anchor
         const target = document.getElementById('case-' + section)
-          ?? (section === 'collaboration' ? document.getElementById('case-scope') : null)
         if (target) {
           const disclosure = target.closest<HTMLDetailsElement>('details')
           if (disclosure) disclosure.open = true

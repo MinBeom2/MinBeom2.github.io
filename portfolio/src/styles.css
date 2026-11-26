@@ -95,7 +95,7 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-showcase-card:has(.project-card-link:focus-visible) { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 .project-tile { display: flex; flex: 0 1 calc(850px / 3); flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-width: 0; padding-block: 4px; text-align: center; }
-.project-tile-mark { display: flex; align-items: center; justify-content: center; width: 112px; max-width: 100%; height: 64px; color: var(--ink); }
+.project-tile-mark { display: flex; align-items: center; justify-content: center; width: 112px; max-width: 100%; height: 64px; }
 .project-tile-logo { width: 64px; height: 64px; object-fit: contain; }
 .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 112px; max-width: 100%; height: auto; }
 .project-tile-logo-onework { width: 112px; max-width: 100%; }
@@ -264,7 +264,6 @@ i { display: inline-block; width: 3px; height: 3px; border-radius: 50%; margin: 
   .project-tile-logo { width: 80px; height: 80px; }
   .project-tile-logo-ait, .project-tile-logo-nyamnyam { width: 144px; height: auto; }
   .project-tile-logo-onework { width: 144px; }
-  .project-tile-mark > svg { width: 60px; height: 60px; }
   .project-tile h3 { font-size: 24px; }
 }
 

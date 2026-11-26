@@ -85,10 +85,10 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       },
       {
         id: 'concurrency',
-        title: '프로젝트 종료 후 좋아요 수 정합성 개선',
-        problem: '팀 프로젝트 종료 후 추가 부하 테스트에서 같은 게시글의 좋아요 수가 정확히 증가하지 않는 문제를 확인했습니다.',
+        title: '좋아요 수 정합성 개선',
+        problem: '추가 부하 테스트에서 같은 게시글의 좋아요 수가 정확히 증가하지 않는 문제를 확인했습니다.',
         decision: '좋아요를 추가하거나 취소할 때 게시글을 비관적 쓰기 락으로 조회하도록 변경했습니다. 좋아요 요청 100건을 32개 작업 스레드로 실행하는 통합 테스트를 작성했습니다.',
-        outcome: '32개 작업 스레드로 요청 100건을 실행해 최종 좋아요 수가 100개인 것을 확인했습니다. 프로젝트 종료 후 개인 개선이며 팀 배포에는 반영되지 않았습니다.',
+        outcome: '32개 작업 스레드로 요청 100건을 실행해 최종 좋아요 수가 100개인 것을 확인했습니다. 팀 배포와 별개로 개인 브랜치에서 검증했습니다.',
       },
       {
         title: '스터디 채팅의 연결 인증과 전송 권한',
@@ -103,13 +103,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         decision: 'ngrok으로 로컬 Spring Boot 서버에 접근할 수 있는 공개 주소를 만들고 GitHub App의 Webhook URL로 연결했습니다. 수신한 요청은 HMAC SHA-256으로 서명을 검증한 뒤, 이벤트에 따라 저장소 목록을 재동기화하거나 앱 연동 정보를 삭제하도록 구현했습니다.',
         outcome: '실제 GitHub 이벤트를 로컬 서버로 받아 테스트했습니다. MySQL을 직접 조회해 연동 데이터가 추가되고 삭제되는 것까지 확인했습니다.',
       },
-      {
-        id: 'benchmark-check',
-        title: 'HTTP 401이 나온 부하 실험 제외',
-        problem: 'nGrinder 화면의 Errors가 0으로 표시돼 게시글 검색 실행을 정상으로 읽었습니다.',
-        decision: 'CSV의 응답 오류 수와 실행 로그를 대조해 HTTP 401 인증 실패를 확인했습니다.',
-        outcome: '해당 실행을 성능 비교에서 제외했습니다.',
-      },
     ],
   },
   onework: {
@@ -118,20 +111,19 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       background: 'MediaMTX 한 곳에서 설비별 RTSP 입력, 브라우저의 WebRTC 재생과 녹화를 설정할 수 있어 선택했습니다.',
       implementation: 'FFmpeg로 웹캠 영상을 H.264로 인코딩해 RTSP로 송출하고 MediaMTX에서 WebRTC WHEP로 중계합니다. Unity WebGL의 CCTV 버튼을 누르면 JavaScript 브릿지를 통해 같은 페이지에 겹쳐 놓은 HTML 영상 창에서 재생합니다.',
       selectionReasons: [
-        { title: 'RTSP 입력에서 브라우저 재생까지 연결', description: 'RTSP 입력과 WebRTC 출력을 함께 지원하므로 중계 기능을 직접 개발하는 범위를 줄일 수 있었습니다. 코덱을 바꿔야 할 때는 MediaMTX에 FFmpeg나 GStreamer를 함께 사용해야 합니다.', reference: { label: 'MediaMTX의 재인코딩 설명', url: 'https://mediamtx.org/docs/features/remuxing-reencoding-compression' } },
+        { title: 'RTSP 입력에서 브라우저 재생까지 연결', description: 'RTSP 입력과 WebRTC 출력을 함께 지원하므로 중계 기능을 직접 개발하는 범위를 줄일 수 있었습니다. 코덱을 바꿔야 할 때는 MediaMTX에 FFmpeg나 GStreamer를 함께 사용해야 합니다.' },
         { title: 'Docker와 YAML로 실행 구성', description: 'MediaMTX는 별도 런타임 의존성이 없는 단일 실행 파일로 제공됩니다. 프로젝트에서는 Docker와 YAML 설정으로 실행해 로컬에서도 같은 영상 전달 경로를 구성했습니다.' },
-        { title: '설비별 스트림 경로와 녹화 설정', description: 'live/fan-01처럼 경로로 영상을 구분하고 녹화를 설정할 수 있습니다. 실제 프로젝트에도 설비별 스트림 매핑, fMP4 녹화 경로와 보관 설정을 적용했습니다.', reference: { label: 'MediaMTX의 녹화 설정 설명', url: 'https://mediamtx.org/docs/features/record' } },
+        { title: '설비별 스트림 경로와 녹화 설정', description: 'live/fan-01처럼 경로로 영상을 구분하고 녹화를 설정할 수 있습니다. 실제 프로젝트에도 설비별 스트림 매핑, fMP4 녹화 경로와 보관 설정을 적용했습니다.' },
         { title: '실시간 관제에 맞춘 WebRTC 재생', description: '설비를 선택해 현재 영상을 확인하는 화면이므로 지연을 줄이는 것이 중요했습니다. WebRTC 재생을 선택한 이유이며, MediaMTX가 다른 WebRTC 서버보다 빠르다고 측정한 결과는 아닙니다.' },
       ],
       comparisonTitle: 'MediaMTX와 다른 중계 서버 비교',
       comparisonNote: '현재 구조에서 가능한 대안을 정리한 비교입니다. 당시 이 제품들을 모두 구현하거나 성능을 측정해 비교한 것은 아닙니다.',
       alternatives: [
         { method: 'MediaMTX', selected: true, difference: 'RTSP 입력을 WebRTC로 중계하고 경로별 스트림과 녹화를 함께 설정할 수 있습니다. 필요했던 영상 전달 경로와 녹화 설정을 이 서버에 구성했습니다.' },
-        { method: 'go2rtc', difference: 'RTSP 영상을 받아 WebRTC로 전달하는 직접적인 대안입니다. 교체하려면 기존 재생 코드, 카메라 API와 녹화 구성을 새 서버에 맞춰야 합니다.', reference: { label: 'go2rtc 공식 문서', url: 'https://github.com/AlexxIT/go2rtc' } },
-        { method: 'Janus Gateway', difference: 'Streaming 플러그인으로 RTSP/RTP 영상을 WebRTC로 중계할 수 있습니다. 스트림 등록과 Janus 세션, 플러그인 API에 맞춘 연동이 필요합니다.', reference: { label: 'Janus Streaming 공식 문서', url: 'https://janus.conf.meetecho.com/docs/streaming' } },
-        { method: 'OvenMediaEngine', difference: 'RTSP 입력과 WebRTC, LL-HLS 출력을 지원합니다. 내장 트랜스코딩과 여러 화질 제공까지 필요하다면 검토할 수 있으며, 요구 범위에 맞춘 구성이 필요합니다.', reference: { label: 'OvenMediaEngine 공식 문서', url: 'https://ovenmedia.com/docs/ome' } },
+        { method: 'go2rtc', difference: 'RTSP 영상을 받아 WebRTC로 전달하는 직접적인 대안입니다. 교체하려면 기존 재생 코드, 카메라 API와 녹화 구성을 새 서버에 맞춰야 합니다.' },
+        { method: 'Janus Gateway', difference: 'Streaming 플러그인으로 RTSP/RTP 영상을 WebRTC로 중계할 수 있습니다. 스트림 등록과 Janus 세션, 플러그인 API에 맞춘 연동이 필요합니다.' },
+        { method: 'OvenMediaEngine', difference: 'RTSP 입력과 WebRTC, LL-HLS 출력을 지원합니다. 내장 트랜스코딩과 여러 화질 제공까지 필요하다면 검토할 수 있으며, 요구 범위에 맞춘 구성이 필요합니다.' },
       ],
-      reference: { label: 'MediaMTX 공식 소개', url: 'https://mediamtx.org/docs/kickoff/introduction' },
       additionalComparisons: [
         {
           comparisonTitle: 'WebRTC/WHEP와 HLS 비교',
@@ -139,7 +131,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
             { method: 'WebRTC/WHEP', selected: true, difference: '관제 화면의 영상 지연을 줄이는 데 초점을 둔 경로입니다. HLS보다 낮은 지연을 기대할 수 있지만, 미디어 포트와 네트워크 연결 설정을 함께 다뤄야 합니다.' },
             { method: 'HLS', difference: '같은 MediaMTX에서 제공할 수 있는 다른 재생 경로입니다. HTTP를 이용해 연결 구성이 상대적으로 간단하지만, WebRTC보다 영상 지연이 커질 수 있습니다.' },
           ],
-          reference: { label: 'MediaMTX의 브라우저 재생 설명', url: 'https://mediamtx.org/docs/read/web-browsers' },
         },
       ],
     },
@@ -152,10 +143,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         technology: 'Spring Boot 카메라 API',
         use: '관제 화면에서 카메라와 스트림을 조회하는 API를 구현했습니다. 설비 ID와 카메라 스트림을 매핑하는 연결을 보완했습니다.',
       },
-      {
-        technology: 'Docker Compose / 녹화 설정',
-        use: 'MediaMTX 실행과 배포 구성을 연결했습니다. 녹화 경로와 보관 설정과 배포 볼륨을 구성했습니다.',
-      },
     ],
     cases: [
       {
@@ -164,19 +151,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         problem: '디지털 트윈에서 고른 설비와 영상 스트림을 연결하고, 잘못된 설비 요청이나 활성 카메라가 없는 상태도 구분해야 했습니다.',
         decision: '설비 ID를 WebRTC WHEP 주소와 매핑하고, 카메라 API에 표준 오류 응답을 추가했습니다.',
         outcome: '정상 설비는 스트림 주소를 반환하고, 잘못되거나 비어 있는 ID는 표준 HTTP 400을 반환하는지 테스트했습니다. 활성 세션이 없을 때는 active: false를 확인했습니다.',
-      },
-      {
-        title: '브라우저 영상 재생과 WebGL 배포 주소',
-        problem: 'Unity WebGL 배포본이 카메라 API를 localhost로 호출했습니다.',
-        decision: 'API 호스트를 페이지 주소에서 계산하고, Unity의 CCTV 버튼은 HTML 영상 창과 연결했습니다.',
-        outcome: 'API 호스트 계산을 수정했고, 테스트 뷰어에서는 RTSP 입력을 MediaMTX로 중계해 WebRTC로 재생하는 경로를 확인했습니다.',
-        note: '최종 HTTPS 통합 재생에서는 혼합 콘텐츠 문제가 남았습니다. 영상 지연 시간은 측정하지 않았습니다.',
-      },
-      {
-        title: 'MediaMTX 배포와 설비 이상 알림',
-        problem: '영상 중계 설정을 배포에 포함하고 설비 상태 변화를 팀이 보는 채널로 전달해야 했습니다.',
-        decision: 'Jenkins와 Docker Compose에 MediaMTX 배포를 연결했습니다. 설비 이상 알림을 Mattermost로 전환했습니다.',
-        outcome: 'MediaMTX 배포 설정과 fMP4 녹화 경로·보관 설정을 반영했습니다. Mattermost 쪽은 경고·위험·복구 상태의 알림과 전송 재시도를 테스트 코드로 확인했습니다.',
       },
     ],
   },
@@ -225,10 +199,6 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
       {
         technology: 'PostgreSQL / Flyway',
         use: '좋아요 중복은 INSERT ON CONFLICT로 막았습니다. 판별 기준을 바꿀 때 이전 기준으로 제외된 영상을 마이그레이션으로 지웠습니다.',
-      },
-      {
-        technology: 'Mattermost',
-        use: '신고를 매시 정각 비공개 채널에 모아 알리고, 숨기기와 유지 버튼으로 처리하게 했습니다.',
       },
     ],
     cases: [
@@ -324,6 +294,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         outcome: '동점일 때도 정렬 기준이 고정되고, 다음 페이지는 마지막 항목 다음부터 조회합니다.',
       },
       {
+        id: 'folder-depth',
         title: '최대 5단계 폴더와 2D 게임 배치',
         problem: '폴더를 옮기거나 게임을 다시 배치할 때 기존 계층과 위치가 어긋나지 않아야 했습니다.',
         decision: '폴더 이동 시 자기 자신이나 하위 폴더로의 이동을 막고 하위 계층 깊이를 함께 검사했습니다. 게임은 2D 좌표를 저장하고 React 화면에 연결했습니다.',
@@ -335,7 +306,7 @@ export const projectDetails: Record<ProjectId, ProjectDetail> = {
         problem: '장애는 바로 알아야 하지만 같은 오류가 반복되면 알림이 쌓이고, 예외 내용에 비밀값이 섞일 수 있습니다.',
         decision: 'Actuator로 DB·Redis·디스크 상태를 1분마다 확인해 장애와 복구를 알립니다. 반복 알림은 5분 간격으로 제한하고 토큰·비밀번호는 전송 전에 가렸습니다. 웹훅은 별도 스레드에서 호출합니다.',
         outcome: '상태 변화와 복구 알림, 중복 억제, 웹훅 실패 격리, health 응답의 세부 정보 숨김을 테스트했습니다.',
-        note: '로컬 개발 단계이며 실제 운영에서 장애를 감지한 기록은 없습니다.',
+        note: '',
       },
     ],
   },
